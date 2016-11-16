@@ -74,7 +74,6 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 if($_SERVER["HTTP_HOST"]=="repairman.esy.es"){
-	die("cd");
 	$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'mysql.idhostinger.com',
@@ -97,7 +96,6 @@ if($_SERVER["HTTP_HOST"]=="repairman.esy.es"){
 	'save_queries' => TRUE
 	);	
 }else{
-	die("vsd");
 	$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
