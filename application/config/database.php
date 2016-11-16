@@ -72,12 +72,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
+die("asd");
 if($_SERVER["HTTP_HOST"]=="repairman.esy.es"){
 	$db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'mysql.idhostinger.com',
 	'username' => 'u766024247_admin',
-	'password' => '',
+	'password' => 'calvincalvin123mysql',
 	'database' => 'u766024247_rep',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
