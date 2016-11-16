@@ -22,7 +22,7 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 //		$this->load->model('MAIN/'.country_code.'/Main_home_m');
-		$this->load->model("MAIN/User_m");
+		$this->load->model("MAIN/user_m");
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
 	}
@@ -39,7 +39,7 @@ class User extends CI_Controller {
 		$email = $this->input->post("email",true);
 		$password = md5($this->input->post("password",true));
 		$data=array("fname"=>$fname,"lname"=>$lname,"email"=>$email,"password"=>$password);
-		$this->User_m->m_insert_user($data);
+		$this->user_m->m_insert_user($data);
 		redirect();
 	}
 }
