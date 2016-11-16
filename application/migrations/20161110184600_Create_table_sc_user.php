@@ -40,6 +40,7 @@ class Migration_Create_table_sc_user extends CI_Migration{
         );
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('user_id',TRUE);
+        $this->dbforge->create_table('sc_user',TRUE);
     }
 
     public function down(){
