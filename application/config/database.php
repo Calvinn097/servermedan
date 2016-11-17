@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-if($_SERVER["HTTP_HOST"]=="repairman.esy.es"){
+if($_SERVER["HTTP_HOST"]=="repairman.esy.es" || $_SERVER["HTTP_HOST"]=="www.repairman.esy.es"){
 	$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'mysql.idhostinger.com',
