@@ -33,12 +33,17 @@ class Example extends REST_Controller {
     public function index_get()
     {
         // index from a data store e.g. database
-        $index = [
-            ['id' => 1, 'name' => 'Calvin', 'email' => 'Calvinwangxz@gmail.com', 'fact' => 'Loves coding'],
-            ['id' => 2, 'name' => 'Jim', 'email' => 'jim@example.com', 'fact' => 'Developed on CodeIgniter'],
-            ['id' => 3, 'name' => 'Jane', 'email' => 'jane@example.com', 'fact' => 'Lives in the USA', ['hobbies' => ['guitar', 'cycling']]],
-        ];
-
+        $index = array("0"=>array(
+            'id' => 1, 'name' => 'Calvin', 'email' => 'Calvinwangxz@gmail.com', 'fact' => 'Loves coding'),
+            "1"=>array('id' => 2, 'name' => 'Jim', 'email' => 'jim@example.com', 'fact' => 'Developed on CodeIgniter'),
+            "2"=>array('id' => 3, 'name' => 'Jane', 'email' => 'jane@example.com', 'fact' => 'Lives in the USA', array('hobbies' => array('guitar', 'cycling')),
+        ));
+        //$index=array();
+        unset($index);
+        for($i =0;$i<3;$i++){
+            $index[]=["id"=>1,"nama"=>"calvin"];
+        }
+        
         $id = $this->get('id');
 
         // If the id parameter doesn't exist return all the index
@@ -49,7 +54,7 @@ class Example extends REST_Controller {
             if ($index)
             {
                 // Set the response and exit
-                $this->response($index, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->response(["status"=>true,"data"=>$index], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             }
             else
             {

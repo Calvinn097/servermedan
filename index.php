@@ -54,6 +54,13 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	if($_SERVER["HTTP_HOST"]=="www.repairman.esy.es" || $_SERVER["HTTP_HOST"]=="repairman.esy.es"){
+		define('fb_i',"1817936985120500");
+		define('fb_s',"35e2c78ba9d9769a233334d18fe62d9e");
+	}else{
+		define('fb_i',"1817988788448653");
+		define('fb_s',"bcc0d5c967c4ac06c52cc512b8612e08");
+	}
 
 /*
  *---------------------------------------------------------------
