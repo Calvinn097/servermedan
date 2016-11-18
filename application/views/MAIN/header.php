@@ -149,7 +149,38 @@
 
 
     <!-- all Modal here -->
+<!-- Modal -->
+<div id="registerModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Register</h4>
+      </div>
+      <div class="modal-body">
+            <form method="post" id="registerForm">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email" required>
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" name="fname" id="fname" required>
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" name="lname" id="lname" required>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" required><span class="pw-err light" style="display:none; color:red;"></span><br>
+            <label for="rpassword">Repeat Password</label>
+            <input type="password" class="form-control" name="rpassword" id="rpassword" required>
+            <input type="submit" class="btn btn-success btn-block" value="Register">
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- Modal -->
 <div id="loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -216,4 +247,26 @@
         $("#login").click(function(){
             $("#loginModal").modal("show");
         });
+        $("document").ready(function(){
+            $("#registerModal").appendTo("body");
+        })
+        $("#register").click(function(){
+            $("#registerModal").modal("show"); 
+        })
+        $("#registerForm").submit(function(){
+            $(".pw-err").hide();
+            var password = $("#password").val();
+            var rpassword = $("#rpassword").val();
+            var valid = true;
+            if(password != rpassword){
+                valid = false;
+                $(".pw-err").html("Password pertama dan kedua harus cocok!");
+                $(".pw-err").show();
+            }
+            if(valid){
+                $(this).attr("action","user/register");
+                $(this).submit();
+            }
+            return false;
+        })
     </script>

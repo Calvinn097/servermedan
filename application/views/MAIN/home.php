@@ -82,49 +82,11 @@
     <!-- jQuery -->
 
 </body>
-<!-- Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Register</h4>
-      </div>
-      <div class="modal-body">
-            <form method="post" id="registerForm">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email">
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control" name="fname" id="fname">
-            <label for="lname">Last Name</label>
-            <input type="text" class="form-control" name="lname" id="lname">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password">
-            <label for="rpassword">Repeat Password</label>
-            <input type="password" class="form-control" name="rpassword" id="rpassword">
-            <input type="submit" class="btn btn-success btn-block" value="Register">
-            </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 </html>
 <script>
 $("document").ready(function(){
-    $("#registerModal").appendTo("body");
-})
-$("#register").click(function(){
-    $("#registerModal").modal("show"); 
-})
-$("#registerForm").submit(function(){
-    $(this).attr("action","user/register");
-    $(this).submit();
+
 })
 </script>
 <script src="<?=base_url("/asset/javascript/jquery.scrolly.min.js")?>"></script>
