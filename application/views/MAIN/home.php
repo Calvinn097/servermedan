@@ -127,3 +127,15 @@ $("#registerForm").submit(function(){
     $(this).submit();
 })
 </script>
+<script>
+    var map;
+    function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+    }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUhksLQ3jvExZGOitohgYX4JzYnIWK5w&callback=initMap">
+</script>
