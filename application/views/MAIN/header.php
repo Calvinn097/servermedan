@@ -132,7 +132,7 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Unduh</a>
+                        <a class="page-scroll" href="#download">Download</a>
                     </li>
                     <li>
                         <a class="page-scroll" id="register" href="#">Register</a>
