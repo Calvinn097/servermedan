@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<?php
+if($this->session->flashdata("signup_err")!==null){
+    $signup_err=$this->session->flashdata("signup_err");
+    $email_err=isset($signup_err["email"])?$signup_err["email"]:"";
+    $fname_err=isset($signup_err["fname"])?$signup_err["fname"]:"";
+    $lname_err=isset($signup_err["lname"])?$signup_err["lname"]:"";;
+    $password_err=isset($signup_err["password"])?$signup_err["password"]:"";
+    $rpassword_err=isset($signup_err["rpassword"])?$signup_err["rpassword"]:"";
+    $signup_form_populate=$this->session->flashdata("signup_form_populate");
+    
+}else{
+    $email_err="";
+    $fname_err="";
+    $lname_err="";
+    $password_err="";
+    $rpassword_err="";
+}
+
+
+?>
 <html lang="en">
 <style>
 #registerModal,#loginModal{
@@ -162,15 +182,15 @@
       <div class="modal-body">
             <form method="post" id="registerForm">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email" required>
+            <input type="text" class="form-control" name="email" id="email" value="<?=isset($signup_form_populate)?($signup_form_populate["email"]):'';?>" required><?=$email_err?><br>
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" name="fname" id="fname" required>
+            <input type="text" class="form-control" name="fname" id="fname" value="<?=isset($signup_form_populate)?($signup_form_populate["fname"]):'';?>" required><?=$fname_err?><br>
             <label for="lname">Last Name</label>
-            <input type="text" class="form-control" name="lname" id="lname" required>
+            <input type="text" class="form-control" name="lname" id="lname" value="<?=isset($signup_form_populate)?($signup_form_populate["lname"]):'';?>" required><?=$lname_err?><br>
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" required><span class="pw-err light" style="display:none; color:red;"></span><br>
+            <input type="password" class="form-control" name="password" id="password" required><?=$password_err?><span class="pw-err light" style="display:none; color:red;"></span><br>
             <label for="rpassword">Repeat Password</label>
-            <input type="password" class="form-control" name="rpassword" id="rpassword" required>
+            <input type="password" class="form-control" name="rpassword" id="rpassword" required><?=$rpassword_err?><br>
             <input type="submit" class="btn btn-success btn-block" value="Register">
             </form>
       </div>
@@ -216,6 +236,9 @@
     <script>
 
         $("document").ready(function(){
+            <?php if($this->session->flashdata("signup_err")!=null){ ?>
+                $("#registerModal").modal("show");
+            <?php } ?>
             $("#loginModal").appendTo("body");
 
             $("#fblogin").click(function(){

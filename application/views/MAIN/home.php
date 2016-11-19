@@ -5,7 +5,7 @@
                 "asset/css/grayscale.css"
                 )
         );
-     $this->load->view("MAIN/header.php",$header_data) 
+     $this->load->view("MAIN/header.php",$header_data);
 
 ?>
     <!-- Intro Header -->
