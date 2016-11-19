@@ -49,7 +49,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
+    <!--Maps Jquery-->
+    <script src="<?base_url("/asset/javascript/jquery.min.js")?>"</scrip>
+    <script src="../../../asset/javascript/jquery.scrolly.min.js"></script>
+    <script src="../../../asset/javascript/jquery.scrollzer.min.js"></script>
+    <script src="../../../asset/javascript/skel.min.js"></script>
+    <script src="../../../asset/javascript/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../../../asset/javascript/main.js"></script>
+    
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -129,16 +138,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#kategori">Kategori</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Download</a>
+                        <a class="page-scroll" href="#about">Tentang</a>
                     </li>
                     <li>
-                        <a class="page-scroll" id="register" href="#">Register</a>
+                        <a class="page-scroll" href="#download">Unduh</a>
                     </li>
                     <li>
-                        <a class="page-scroll" id="login" href="#">Login</a>
+                        <a class="page-scroll" id="register" href="#">Daftar</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" id="login" href="#">Masuk</a>
                     </li>
                 </ul>
             </div>

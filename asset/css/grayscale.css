@@ -136,7 +136,7 @@ a:focus {
   vertical-align: middle;
 }
 .intro .intro-body .brand-heading {
-  font-size: 40px;
+  /*font-size: 40px;*/
 }
 .intro .intro-body .intro-text {
   font-size: 18px;
@@ -147,7 +147,7 @@ a:focus {
     padding: 0;
   }
   .intro .intro-body .brand-heading {
-    font-size: 100px;
+    font-size: 50px;
   }
   .intro .intro-body .intro-text {
     font-size: 26px;
@@ -238,10 +238,10 @@ a:focus {
 }
 @media (min-width: 767px) {
   .content-section {
-    padding-top: 250px;
+    padding-top: 100px;
   }
   .download-section {
-    padding: 100px 0;
+    padding: 20px 0px 150px 0px;
   }
   #map {
     height: 400px;
