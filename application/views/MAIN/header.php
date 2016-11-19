@@ -43,6 +43,9 @@ if($this->session->flashdata("signup_err")!==null){
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
+    <!-- Animate CSS by Daniel Eden-->
+    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
+
     <!-- Theme CSS -->
     <?php
     foreach($css as $row){ ?>
@@ -62,6 +65,9 @@ if($this->session->flashdata("signup_err")!==null){
 
     <!-- Theme JavaScript -->
     <script src="<?=base_url("asset/javascript/grayscale.js")?>"></script>
+
+    <!-- Boostrap Notify -->
+    <script src="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/bootstrap-notify.min.js");?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -154,12 +160,24 @@ if($this->session->flashdata("signup_err")!==null){
                     <li>
                         <a class="page-scroll" href="#download">Download</a>
                     </li>
+                    <?php if(!isset($_COOKIE["sm_login"])){ ?> 
                     <li>
                         <a class="page-scroll" id="register" href="#">Register</a>
                     </li>
                     <li>
                         <a class="page-scroll" id="login" href="#">Login</a>
                     </li>
+                    <?php }else{ ?>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My Account
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?=base_url('user/logout')?>">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -212,7 +230,7 @@ if($this->session->flashdata("signup_err")!==null){
         <h4 class="modal-title">Masuk</h4>
       </div>
       <div class="modal-body">
-            <form method="post" id="loginForm">
+            <form method="post" id="loginForm" action="<?=base_url('user/login')?>">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="loginEmail">
                 <label for="password">Kata sandi</label>
@@ -228,7 +246,57 @@ if($this->session->flashdata("signup_err")!==null){
 
   </div>
 </div>
-
+    <!-- Bootstrap Notify -->
+    <script>
+    function notify(message,type){
+        $.notify({
+            // options
+            icon: 'glyphicon glyphicon-warning-sign',
+            title: '',
+            message: message,
+            url: '#',
+            target: '_blank'
+        },{
+            // settings
+            element: 'body',
+            position: null,
+            type: type,
+            allow_dismiss: true,
+            newest_on_top: false,
+            showProgressbar: false,
+            placement: {
+                from: "top",
+                align: "right"
+            },
+            offset: 20,
+            spacing: 10,
+            z_index: 1031,
+            delay: 5000,
+            timer: 1000,
+            url_target: '_blank',
+            mouse_over: null,
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp'
+            },
+            onShow: null,
+            onShown: null,
+            onClose: null,
+            onClosed: null,
+            icon_type: 'class',
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                '<span data-notify="icon"></span> ' +
+                '<span data-notify="title">{1}</span> ' +
+                '<span data-notify="message">{2}</span>' +
+                '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                '</div>' +
+                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+            '</div>' 
+        });
+    }
+    </script>
     <!-- Modal end-->
 
 
@@ -238,6 +306,9 @@ if($this->session->flashdata("signup_err")!==null){
         $("document").ready(function(){
             <?php if($this->session->flashdata("signup_err")!=null){ ?>
                 $("#registerModal").modal("show");
+            <?php } ?>
+            <?php if($this->session->flashdata("global_notification")){ ?> 
+                notify("<?=$this->session->flashdata("global_notification")['message']?>","<?=$this->session->flashdata("global_notification")['type']?>");
             <?php } ?>
             $("#loginModal").appendTo("body");
 
@@ -293,3 +364,4 @@ if($this->session->flashdata("signup_err")!==null){
             return false;
         })
     </script>
+

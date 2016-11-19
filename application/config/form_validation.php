@@ -32,9 +32,10 @@ $config=array(
                 array(
                         'field' => 'rpassword',
                         'label' => 'Ulangi password',
-                        'rules' => 'trim|required',
+                        'rules' => 'trim|required|matches[password]',
                         'errors'=>array(
-                                'required'=>"%s harus diisi."
+                                'required'=>"%s harus diisi.",
+                                'matches'=>"%s harus sama dengan password pertama."
                         )
                 ),
                 array(

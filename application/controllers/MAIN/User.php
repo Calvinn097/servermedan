@@ -33,7 +33,7 @@ class User extends CI_Controller {
 	}
 
 	public function register(){
-		print_r($_POST);
+		// print_r($_POST);
 		$fname=$this->input->post("fname",true);
 		$lname=$this->input->post("lname",true);
 		$email = $this->input->post("email",true);
@@ -52,11 +52,52 @@ class User extends CI_Controller {
 			$this->session->set_flashdata("signup_form_populate",$populate);
 			redirect();
 		}else{
-
+			$password = md5($this->input->post("password",true));
+			$data=array("fname"=>$fname,"lname"=>$lname,"email"=>$email,"password"=>$password);
+			$this->User_m->m_insert_user($data);
+			// $this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
+			set_global_noti("Hi $fname, Terima kasih sudah bergabung di Servermedan!","Info");
+			redirect();
 		}
-		$password = md5($this->input->post("password",true));
-		$data=array("fname"=>$fname,"lname"=>$lname,"email"=>$email,"password"=>$password);
-		$this->User_m->m_insert_user($data);
+	}
+
+	public function login(){
+		// print_r($_POST);
+		$status=$this->User_m->m_login_user();
+		if($status!=false){
+			$this->load->library('user_agent');
+            $link = $this->agent->referrer();
+            $co_sign_up= array(
+                'name' => 'login',
+                'value' => $status["user_id"],
+                'expire' =>  3600,
+                'path'=>'/',
+                'prefix' => 'sm_'
+            );
+            $this->input->set_cookie($co_sign_up);
+            $now = (new DateTime())->format("H:i:s");
+            $period="";
+            if($now>"05:00:00" && $now<"12:00:00")
+            	$period="Selamat pagi";
+            else if($now>"12:00:00" && $now<"05:00:00")
+            	$period="Selamat siang";
+            else
+            	$period="Selamat malam";
+
+            set_global_noti("Hi ".$status["fname"].", $period","Success");
+		}else{
+			set_global_noti("Email/Password salah!","Warning");
+		}
 		redirect();
+
+	}
+
+	public function logout(){
+		unset($_SESSION);
+		unset($_COOKIE["sm_login"]);
+        setcookie('sm_login', '', time() - 3600, '/');
+        $this->load->library('user_agent');
+        set_global_noti("Anda berhasil melakukan logout","Success");
+        redirect($this->agent->referrer(),"refresh");
 	}
 }
