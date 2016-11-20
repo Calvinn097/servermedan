@@ -34,31 +34,7 @@ class User extends CI_Controller {
 
 	public function register(){
 		// print_r($_POST);
-		$fname=$this->input->post("fname",true);
-		$lname=$this->input->post("lname",true);
-		$email = $this->input->post("email",true);
-		$password = $this->input->post("password",true);
-		$rpassword = $this->input->post("rpassword",true);
-		if($password!=$password){
-
-		}
-		if($this->form_validation->run("signup")==false){
-			$this->session->set_flashdata("signup_err",$this->form_validation->error_array());
-			$populate = array(
-				"fname"=>$fname,
-				"lname"=>$lname,
-				"email"=>$email,
-			);
-			$this->session->set_flashdata("signup_form_populate",$populate);
-			redirect();
-		}else{
-			$password = md5($this->input->post("password",true));
-			$data=array("fname"=>$fname,"lname"=>$lname,"email"=>$email,"password"=>$password);
-			$this->User_m->m_insert_user($data);
-			// $this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
-			set_global_noti("Hi $fname, Terima kasih sudah bergabung di Servermedan!","Info");
-			redirect();
-		}
+		$this->User_m->m_insert_user();
 	}
 
 	public function login(){
