@@ -49,9 +49,9 @@ class User extends REST_Controller {
     public function register_post(){
         $data=$this->User_m->m_insert_user('api');
         if(!$data["status"]){
-            vd("data",$data);
+            $this->response(["status"=>false,"data"=>$data["data"]],REST_Controller::HTTP_OK);
         }else{
-            vd("good",$data);
+            $this->response(["status"=>false,"data"=>$data["data"]], REST_Controller::HTTP_OK);
         }
     }
 }

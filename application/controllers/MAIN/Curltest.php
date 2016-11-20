@@ -32,7 +32,7 @@ class Curltest extends CI_Controller {
         $field = array(
             'fname'=>"Aeris",
             "lname"=>"Gainsborough",
-            "email"=>'aerisgainsborough@gmail.com',
+            "email"=>'aerithgainsborough@gmail.com',
             "password"=>'aeris123',
             'rpassword'=>'aeris123'
         );

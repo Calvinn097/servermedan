@@ -44,7 +44,7 @@ class User_m extends CI_Model{
             }else{
                 $data=$this->db->where("email",$email)
                     ->get("sc_user")->row_array();
-
+                unset($data["password"]);
                 $response=array(
                     'status'=>true,
                     'data'=>$data
