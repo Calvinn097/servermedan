@@ -318,4 +318,12 @@ body {
 .row .onthespot p{
     text-align: justify;
     overflow: hidden;
+    text-overflow: ellipsis;
+    height: 130px;
+}
+.row .onthespot img{
+    margin-bottom: 20px;   
+}
+.row .onthespot button{
+    margin-bottom: 20px;   
 }

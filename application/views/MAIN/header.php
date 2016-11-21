@@ -51,13 +51,12 @@
     <![endif]-->
     
     <!--Maps Jquery-->
-    <script src="<?base_url("/asset/javascript/jquery.min.js")?>"</scrip>
-    <script src="../../../asset/javascript/jquery.scrolly.min.js"></script>
-    <script src="../../../asset/javascript/jquery.scrollzer.min.js"></script>
-    <script src="../../../asset/javascript/skel.min.js"></script>
-    <script src="../../../asset/javascript/util.js"></script>
+    <script src="<?=base_url("asset/javascript/jquery.scrolly.min.js")?>"></script>
+    <script src="<?=base_url("asset/javascript/jquery.scrollzer.min.js")?>"></script>
+    <script src="<?=base_url("asset/javascript/skel.min.js")?>"></script>
+    <script src="<?=base_url("asset/javascript/util.js")?>"></script>
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="../../../asset/javascript/main.js"></script>
+    <script src="<?=base_url("asset/javascript/main.js")?>"></script>
     
 </head>
 
