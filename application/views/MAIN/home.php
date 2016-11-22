@@ -14,8 +14,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h3 class="brand-heading">Selamat datang</h3>
-                        <p class="intro-text">Silahkan menikmati layanan yang dapat memudahkan anda dalam mendapatkan servis dan reparasi barang anda yang rusak tanpa harus mengkhawatirkan waktu dan tempat.</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="<?=base_url("/asset/images/selamatdatang.png")?>" width=100%/>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="brand-heading">Selamat datang</h3>
+                                <p class="intro-text">Silahkan menikmati layanan yang dapat memudahkan anda dalam mendapatkan servis dan reparasi barang anda yang rusak tanpa harus mengkhawatirkan waktu dan tempat.</p>
+                            </div>
+                        
+                        </div>
                         <a href="#download" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -47,7 +55,7 @@
                     <div class="col-md-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <img src="<?=base_url("/asset/images/watersupply.png")?>" width=100% height=100px/>
                             </div>
                             <div class="col-md-6">
                                 <p>wow</p>
@@ -57,7 +65,7 @@
                     <div class="col-md-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <img src="<?=base_url("/asset/images/powersupply.jpg")?>" width=100% height=100px/>
                             </div>
                             <div class="col-md-6">
                                 <p>wow</p>
