@@ -20,7 +20,7 @@
 		<h1 class='animated infinite bounce'>Welcome</h1>
 		
 		<form method="post" class="form" action='<?=base_url('ADMIN/Account/admin_login')?>'>
-			<input type="text" placeholder="Username" name='username'>
+			<input type="text" placeholder="Username" name='admin_name'>
 			<input type="password" placeholder="Password" name='password'>
 			<button type="submit" id="login-button">Login</button>
 		</form>

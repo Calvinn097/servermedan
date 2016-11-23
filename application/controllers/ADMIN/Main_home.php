@@ -23,11 +23,12 @@ class Main_home extends ADMIN_Controller {
 	public function index()
     {
         
-        $admin_login = isset($_COOKIE['sm_admin_login']);
+        $admin_login = isset($_COOKIE['sm_admin']);
+    
         if(!$admin_login){
             $this->load->view('ADMIN/login');
         }else{
-            $this->load->view('ADMIN');
+            $this->load->view('ADMIN/dashboard');
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 $config=array(
         'signup' => array(
                 array(
@@ -50,5 +51,18 @@ $config=array(
                 ),
                 "error_prefix"=>"<div class='ci_form_val_error' style='color:blue;'>",
                 "error_suffix"=>"</div>"
+        ),
+        'add_category' => array(
+                array(
+                        'field' => 'category_name',
+                        'label' => 'Category Name',
+                        'rules' => 'trim|required|max_length[30]|is_unique[sc_category.category_name]',
+                        'errors'=>array(
+                                'required'=>"%s harus diisi.",
+                                'alpha'=>"%s hanya boleh alphabet",
+                                'max_length'=>"Panjang %s maksimal 30 huruf",
+                                'is_unique'=>'%s sudah terdaftar.'
+                        )
+                )
         )
 );

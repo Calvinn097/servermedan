@@ -6,7 +6,7 @@
  * Time: 16.37
  */
 class User_m extends CI_Model{
-    function m_insert_user($api=falses)
+    function m_insert_user($api=false)
     {
         $fname=strtolower($this->input->post("fname",true));
         $lname=strtolower($this->input->post("lname",true));
