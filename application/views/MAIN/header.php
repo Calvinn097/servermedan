@@ -143,13 +143,16 @@
                         <a class="page-scroll" href="#about">Tentang</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Unduh</a>
+                        <a class="page-scroll" href="#contact">Kontak</a>
                     </li>
                     <li>
                         <a class="page-scroll" id="register" href="#">Daftar</a>
                     </li>
                     <li>
                         <a class="page-scroll" id="login" href="#">Masuk</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="<?=base_url("application/views/main/homelogin")?>">laman2</a>
                     </li>
                 </ul>
             </div>
@@ -163,12 +166,11 @@
 
 <!-- Modal -->
 <div id="loginModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-sm masuk">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Masuk</h4>
       </div>
       <div class="modal-body">
@@ -179,10 +181,10 @@
                 <input type="password" class="form-control" name="password" id="loginPassword">
                 <input type="submit" class="btn btn-success btn-block" value="Login">
             </form>
-            <button type="button" class="btn btn-info" id="fblogin">Facebook Login</button>
+            <button type="button" class="btn btn" id="fblogin">Facebook Login</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn" data-dismiss="modal">Tutup</button>
       </div>
     </div>
 

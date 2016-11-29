@@ -20,11 +20,12 @@
                             </div>
                             <div class="col-md-6">
                                 <h3 class="brand-heading">Selamat datang</h3>
-                                <p class="intro-text">Silahkan menikmati layanan yang dapat memudahkan anda dalam mendapatkan servis dan reparasi barang anda yang rusak tanpa harus mengkhawatirkan waktu dan tempat.</p>
+                                <p class="intro-text">Silahkan menikmati layanan yang dapat memudahkan anda mendapatkan servis dan reparasi barang anda yang rusak melalui smartphone anda dengan mengunduh aplikasi dibawah ini.</p>
+                                <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-lg btn-success">Unduh Aplikasi</a>
                             </div>
                         
                         </div>
-                        <a href="#download" class="btn btn-circle page-scroll">
+                        <a href="#contact" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -33,73 +34,61 @@
         </div>
     </header>
 
-    <!-- Download Section -->
-    <section id="download" class="content-section text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Unduh App</h2>
-                    <p>Aplikasi khusus untuk smartphone mempermudah anda dalam melakukan pemesanan dan menggunakan jasa yang diberikan</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Unduh Aplikasi</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Kategori Section -->
-    <section id="about" class="container content-section text-center">
+    <section id="kategori" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Kategori Jasa Servis dan Reparasi</h2>
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row pertama">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="<?=base_url("/asset/images/watersupply.png")?>" width=100% height=100px/>
+                                <img class="rounded" src="<?=base_url("/asset/images/watersupply.png")?>" width=100% height=150px/>
                             </div>
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <p>Reparation Water</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="<?=base_url("/asset/images/powersupply.jpg")?>" width=100% height=100px/>
+                                <img src="<?=base_url("/asset/images/powersupply.jpg")?>" width=100% height=150px/>
                             </div>
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <p>Reparation Electricity</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                </div>
+                <div class="row kedua">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <img src="<?=base_url("/asset/images/laptop.jpg")?>" width=100% height=150px/>
                             </div>
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <p>Reparation Computer</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <img src="<?=base_url("/asset/images/smartphone.jpg")?>" width=100% height=150px/>
                             </div>
                             <div class="col-md-6">
-                                <p>wow</p>
+                                <p>Reparation Smartphone</p>
                             </div>
                         </div>
                     </div>
-                
                 </div>
             </div>
         </div>
     </section>
 
     <!--Tentang Section-->
-    <section id="kategori" class="container content-section text-center">
+    <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Tentang Jasa Servis dan Reparasi</h2>
@@ -126,47 +115,94 @@
             </div>
         </div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
-                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
+                <h2>Kontak Server Medan</h2>
+                <div class="row data">
+                    <div class="col-md-3">
+                        <p>Nama : Dicky Christian</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : William Karno</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : Calvin</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : Wanjemy Wijaya</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                </div>
+                
+                <ul class="list-inline">
+                    <p>Bagikan :</p>
                     <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        <a href="https://twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
                     </li>
                     <li>
-                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        <a href="https://github.com"><i class="fa fa-github fa-lg"></i></a>
                     </li>
                     <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                        <a href="https://plus.google.com"><i class="fa fa-google-plus fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-facebook fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-instagram fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-youtube fa-lg"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
+    
 
     <!-- Map Section -->
-    <div id="map"></div>
+    <!--<div id="map"></div>-->
 
     <!-- Footer -->
     <?php $this->load->view("MAIN/footer.php"); ?>
+
+
 
     <!-- jQuery -->
 
 </body>
 <!-- Modal -->
 <div id="registerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-sm daftar">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Register</h4>
       </div>
       <div class="modal-body">
@@ -205,7 +241,7 @@ $("#registerForm").submit(function(){
 })
 </script>
 
-<script>
+<!--<script>
     var map;
     function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -216,4 +252,4 @@ $("#registerForm").submit(function(){
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUhksLQ3jvExZGOitohgYX4JzYnIWK5w&callback=initMap">
-</script>
+</script>-->
