@@ -64,5 +64,27 @@ $config=array(
                                 'is_unique'=>'%s sudah terdaftar.'
                         )
                 )
+        ),
+        'add_sub_category' => array(
+                array(
+                        'field' => 'category_id',
+                        'label' => 'Category',
+                        'rules' => 'trim|required|max_length[30]',
+                        'errors'=>array(
+                                'required'=>"%s harus diisi.",
+                                'alpha'=>"%s hanya boleh alphabet",
+                                'max_length'=>"Panjang %s maksimal 30 huruf"
+                        )
+                ),
+                array(
+                        'field' => 'sub_category_name',
+                        'label' => 'Sub category name',
+                        'rules' => 'trim|required|max_length[30]',
+                        'errors'=>array(
+                                'required'=>"%s harus diisi.",
+                                'alpha'=>"%s hanya boleh alphabet",
+                                'max_length'=>"Panjang %s maksimal 30 huruf"
+                        )
+                )
         )
 );
