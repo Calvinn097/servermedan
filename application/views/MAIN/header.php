@@ -28,6 +28,8 @@
     foreach($css as $row){ ?>
         <link href="<?=base_url($row)?>" rel="stylesheet">
     <?php } ?>
+    
+    
 
     <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
 
@@ -152,7 +154,7 @@
                         <a class="page-scroll" id="login" href="#">Masuk</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?=base_url("application/views/main/homelogin")?>">laman2</a>
+                        <a class="page-scroll" href="<?=base_url("user/userlogincust")?>">laman2</a>
                     </li>
                 </ul>
             </div>

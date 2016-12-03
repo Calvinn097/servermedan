@@ -42,4 +42,11 @@ class User extends CI_Controller {
 		$this->User_m->m_insert_user($data);
 		redirect();
 	}
+    
+    public function userlogincust(){
+        $this->load->view("MAIN/homelogin");   
+    }
+    public function userloginrepair(){
+        $this->load->view("MAIN/homelogin");   
+    }
 }

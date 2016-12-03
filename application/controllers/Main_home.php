@@ -23,4 +23,6 @@ class Main_home extends CI_Controller {
 		$this->load->view('MAIN/home');
         
 	}
+    
+    
 }
