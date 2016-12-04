@@ -20,7 +20,7 @@ if($this->session->flashdata('edit_sub_category_err')!==null){
             <div class="control-group">
               <label class="control-label" required>Category:</label>
               <div class="controls">
-                <select id='category_select' name='category_id' class='span11' required>
+                <select id='category_select' name='category_id' class='form form-control' required>
                   <?php foreach($category_list as $key => $row){ ?>
                     <?php if($row['category_id']==$sub_cat_info['category_id']){ ?>
                     <option value='<?=$row['category_id']?>' selected><?=$row['category_name']?></option>
@@ -36,7 +36,7 @@ if($this->session->flashdata('edit_sub_category_err')!==null){
               </div>
               <label class="control-label" required>Sub Category Name:</label>
               <div class="controls">
-                <input type="text" name='sub_category_name' class="span11" placeholder="Sub category name" value="<?=$sub_cat_info['sub_category_name']?>" required />
+                <input type="text" name='sub_category_name' class="form form-control" placeholder="Sub category name" value="<?=$sub_cat_info['sub_category_name']?>" required />
 
                 <?php if($edit_sub_category_err!=''){ ?>
                   <span style='color:red;'><?=$edit_sub_category_err['sub_category_name']?></span><br>

@@ -21,6 +21,11 @@ class Category_m extends CI_Model{
         return $this->db->get('sc_category')->result_array();
     }
 
+    function m_get_category_by_id($category_id){
+        return $this->db->where('category_id',$category_id)
+        ->get('sc_category')->row_array();
+    }
+
     function m_insert_sub_category($data){
         $this->db->insert('sc_sub_category',$data);
     }
@@ -70,6 +75,27 @@ class Category_m extends CI_Model{
         $this->db->where('sub_category_id',$sub_category_id);
         $this->db->update("sc_sub_category",$update);
 
+    }
+
+    function m_delete_sub_category($sub_category_id){
+        $this->db->where('sub_category_id',$sub_category_id)
+        ->delete('sc_sub_category');
+    }
+
+    function m_update_category(){
+        vd("post",$_POST);
+        $category_id = $this->input->post('category_id',true);
+        $category_name = $this->input->post("category_name",true);
+        $data = array(
+            "category_name"=>$category_name
+            );
+        $this->db->where('category_id',$category_id);
+        $this->db->update("sc_category",$data);
+    }
+
+    function m_delete_category($category_id){
+        $this->db->where('category_id',$category_id)
+        ->delete('sc_category');
     }
 }
 //asdn

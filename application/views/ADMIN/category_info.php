@@ -21,7 +21,7 @@ if($this->session->flashdata('add_sub_category_err')!==null){
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"> <a href="<?=base_url('/ADMIN')?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Category &amp; Sub-Category</a></div>
-  <h1>Common Form Elements</h1>
+  <h1>Manage Category & Sub Category</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -116,6 +116,7 @@ if($this->session->flashdata('add_sub_category_err')!==null){
         <tr>
           <th>Cateogry ID</th>
           <th>Category Name</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -123,6 +124,10 @@ if($this->session->flashdata('add_sub_category_err')!==null){
        <tr class="gradeX">
           <td><?=$row['category_id']?></td>
           <td><?=$row['category_name']?></td>
+          <td>
+          <a href="#" data-cat_id="<?=$row['category_id']?>" class="editcat"><i class="fa fa-edit"></i></a>
+          <a class="delete_cat" href="#" data-cat_id="<?=$row['category_id']?>"><i class="fa fa-trash"></i></a>
+          </td>
        </tr>
       <?php } ?>
       </tbody>
@@ -169,7 +174,9 @@ if($this->session->flashdata('add_sub_category_err')!==null){
 			          <td><?=($row2['service']==1)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>'?></td>
 			          <td><?=($row2['reparation']==1)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>'?></td>
 			          <td><?=($row2['jasa']==1)?'<i class="fa fa-check"></i>':'<i class="fa fa-times"></i>'?></td>
-                <td><a href="#" data-sub_cat_id="<?=$row2['sub_category_id']?>" class="span2 edit_subcat"><i class="fa fa-edit"></i></a><a class="span2 delete_subcat" href="#" data-sub_cat_id="<?=$row2['sub_category_id']?>"><i class="fa fa-trash"></i></a></td>
+                <td><a href="#" data-sub_cat_id="<?=$row2['sub_category_id']?>" class="span2 edit_subcat"><i class="fa fa-edit"></i></a>
+                <a class="span2 delete_subcat" href="#" data-sub_cat_id="<?=$row2['sub_category_id']?>"><i class="fa fa-trash"></i></a>
+                </td>
 			       </tr>
 		    	<?php } ?>
 		    		</tbody>
@@ -189,11 +196,15 @@ if($this->session->flashdata('add_sub_category_err')!==null){
 <div id="editsubcat" class="modal fade" role="dialog">
   
 </div>
+<div id="editcat" class="modal fade" role="dialog">
+  
+</div>
 <?php $this->load->view('/ADMIN/footer')?>
 
 <script>
 	$("document").ready(function(){
     $("#editsubcat").appendTo("body");
+    $("#editcat").appendTo("body");
 		<?php if($this->session->flashdata('add_category_err')!==null){ ?>
 			$("#add_category_div").toggle();
 		<?php } ?>
@@ -222,5 +233,38 @@ if($this->session->flashdata('add_sub_category_err')!==null){
             $("#editsubcat").modal("show");
         }
     })
+  });
+  $(".delete_subcat").click(function(e){
+    if (confirm('Delete?')) {
+      var sub_cat_id = $(this).data('sub_cat_id');
+      $(this).attr('href',"<?=base_url('ADMIN/category/delete_sub_category')?>/"+sub_cat_id);
+    } else {
+      return false;
+    }
+  })
+
+$(".editcat").click(function(e) {
+  e.preventDefault();
+  var cat_id = $(this).data('cat_id');
+  $.ajax({
+      type:"POST",
+      url:"<?=base_url('/ADMIN/Category/edit_cat/')?>",
+      dataType:"html",
+      data:{
+          cat_id:cat_id
+      },
+      success:function(res){
+          $("#editcat").html(res);
+          $("#editcat").modal("show");
+      }
+  });
+});
+  $(".delete_cat").click(function(e){
+    if (confirm('Delete?')) {
+      var cat_id = $(this).data('cat_id');
+      $(this).attr('href',"<?=base_url('ADMIN/category/delete_category')?>/"+cat_id);
+    } else {
+      return false;
+    }
   });
 </script>

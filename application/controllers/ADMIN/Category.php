@@ -117,4 +117,29 @@ class Category extends ADMIN_Controller {
         $this->Category_m->m_update_sub_category();
         redirect(base_url('/ADMIN/category'));
     }
+
+    public function delete_sub_category($sub_cat_id){
+        $this->check_admin_login();
+        $this->Category_m->m_delete_sub_category($sub_cat_id);
+        redirect(base_url('/ADMIN/category'));
+    }
+
+    public function edit_cat(){
+        $this->check_admin_login();
+        $cat_id = $this->input->post('cat_id',true);
+        $cat_info = $this->Category_m->m_get_category_by_id($cat_id);
+        $data["cat_info"]=$cat_info;
+        $this->load->view('ADMIN/edit_category_modal',$data);
+    }
+
+    public function update_category(){
+        $this->Category_m->m_update_category();
+        redirect(base_url('/ADMIN/category'));
+    }
+
+    public function delete_category($cat_id){
+        $this->check_admin_login();
+        $this->Category_m->m_delete_category($cat_id);
+        redirect(base_url('/ADMIN/category'));
+    }
 }
