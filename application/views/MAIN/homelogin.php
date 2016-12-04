@@ -3,7 +3,8 @@
             "title"=>"Welcome to Servermedan",
             "css"=>array(
                 "asset/css/grayscale.css",
-                "asset/css/nav.css"
+                "asset/css/nav.css",
+                "asset/css/homelogin.css"
                 )
         );
      $this->load->view("MAIN/header.php",$header_data) 
@@ -26,10 +27,15 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!--posting-->
-            <div class="row">
+            <div class="row post">
                 <div class="col-lg-3">
-                    <p>wow
-                    </p>
+                    <div class="post-button-bar">
+                        <ul>
+                            <li>
+                                <span style="background-position: 0px 0px;"></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             

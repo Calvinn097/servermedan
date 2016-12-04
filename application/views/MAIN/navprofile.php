@@ -1,3 +1,4 @@
+
 <nav class="navbar" role="navigation" style="margin-bottom: 0">
     <!--<div class="navbar-header">
         <a class="navbar-brand" href="index.html">Server Medan</a>
@@ -180,7 +181,7 @@
     
     <div class="navbar sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
-            <ul class="nav nav-pills nav-stacked" id="side-menu">
+            <ul class="nav nav-stacked" id="side-menu">
                 <li>
                     <a href="indexrepair.html"><i class="fa fa-dashboard fa-fw"></i>Repairman</a>
                 </li>
@@ -198,56 +199,13 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-wrench fa-fw"></i>Notification<span class="fa arrow"></span> </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="panels-wells.html">Panels and Wells</a>
-                        </li>
-                        <li>
-                            <a href="buttons.html">Buttons</a>
-                        </li>
-                        <li>
-                            <a href="notifications.html">Notifications</a>
-                        </li>
-                        <li>
-                            <a href="typography.html">Typography</a>
-                        </li>
-                        <li>
-                            <a href="icons.html"> Icons</a>
-                        </li>
-                        <li>
-                            <a href="grid.html">Grid</a>
-                        </li>
-                    </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-third-level -->
-                        </li>
-                    </ul>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i>Progress<span class="fa arrow"></span></a>                
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i>History<span class="fa arrow"></span></a>                
                 </li>
             </ul>
         </div>
