@@ -34,6 +34,7 @@ class User extends CI_Controller {
 
 	public function register(){
 		// print_r($_POST);
+		//vd("post",$_POST,true);
 		$this->User_m->m_insert_user();
 	}
 

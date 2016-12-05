@@ -13,12 +13,16 @@ class User_m extends CI_Model{
         $email = strtolower($this->input->post("email",true));
         $password = strtolower($this->input->post("password",true));
         $rpassword = strtolower($this->input->post("rpassword",true));
+
         if($password!=$password){
 
         }
         if($this->form_validation->run("signup")==false){
+
             if(!$api){
                 $this->session->set_flashdata("signup_err",$this->form_validation->error_array());
+                //vd("asd",$this->form_validation->error_array());
+                //die('asd');
                 $populate = array(
                     "fname"=>$fname,
                     "lname"=>$lname,
@@ -37,7 +41,7 @@ class User_m extends CI_Model{
             $password = md5($this->input->post("password",true));
             $data=array("fname"=>$fname,"lname"=>$lname,"email"=>$email,"password"=>$password);
             $this->db->insert("sc_user",$data);
-            // $this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
+            //$this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
             if(!$api){
                 set_global_noti("Hi $fname, Terima kasih sudah bergabung di Servermedan!","Info");
                 redirect();
