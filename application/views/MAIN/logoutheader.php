@@ -126,7 +126,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="<?=base_url("user/userlogincust")?>">
                     <i class="fa fa-play-circle"></i> <span class="light">Server</span> Medan
                 </a>
             </div>
@@ -148,10 +148,7 @@
                         <a class="page-scroll" href="#about">Ranking</a>
                     </li>
                     <li>
-                        <a class="page-scroll" id="register" href="#">Daftar</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" id="login" href="#">Masuk</a>
+                        <a class="page-scroll" id="register" href="#">Logout</a>
                     </li>
                 </ul>
             </div>

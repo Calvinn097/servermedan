@@ -1,10 +1,9 @@
-
-<nav class="navbar homelogin" role="navigation">
+<nav class="navbar homeloginrepair" role="navigation">
     <div class="navbar sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav nav-stacked" id="side-menu">
                 <li>
-                    <a href="<?=base_url("user/userloginrepair")?>"><i class="fa fa-dashboard fa-fw"></i>Repairman</a>
+                    <a href="<?=base_url("user/userlogincust")?>"><i class="fa fa-dashboard fa-fw"></i>Customer</a>
                 </li>
                 <li>
                     <img scr="<?=base_url("asset/images/aa.jpg")?>" width=50px height=50px/>
@@ -21,6 +20,9 @@
                 <li>
                     <a href="#"><i class="fa fa-wrench fa-fw"></i>Notification </a>
                     <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i>Progress</a>                
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-sitemap fa-fw"></i>History</a>                

@@ -47,6 +47,15 @@ class User extends CI_Controller {
         $this->load->view("MAIN/homelogin");   
     }
     public function userloginrepair(){
-        $this->load->view("MAIN/homelogin");   
+        $this->load->view("MAIN/homeloginrepair");   
+    }
+    public function maps(){
+        $this->load->view("MAIN/maps");
+    }
+    public function detailpost(){
+        $this->load->view("MAIN/detailpost");
+    }
+    public function chat(){
+        $this->load->view("Main/chatting");   
     }
 }

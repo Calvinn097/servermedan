@@ -1,0 +1,37 @@
+/*homeloginrepair*/
+
+.homeloginrepair{
+    position: fixed;
+    margin-bottom: 0px;
+}
+.homeloginrepair a{
+    color: black;
+}
+.repair{
+    margin-top: 20px;   
+}
+.repair ul{
+    list-style: none;   
+}
+.repair .over{
+    height: 110px !important;
+    overflow: hidden;
+}
+.repair .post{
+    margin-bottom: 20px;   
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+    font-size: 20px;
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
