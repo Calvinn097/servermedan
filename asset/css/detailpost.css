@@ -1,0 +1,17 @@
+.portfolio h4{
+    margin: 0px;   
+}
+.portfolio{
+    margin-bottom: 20px;
+}
+.portfolio p{
+    font-size: 13px;   
+}
+.comment textarea{
+    height: 100px;   
+}
+
+.comment input[type="submit"]{
+    margin-top: 10px;
+    text-align: right;
+}

@@ -76,4 +76,20 @@ class User extends CI_Controller {
         set_global_noti("Anda berhasil melakukan logout","Success");
         redirect($this->agent->referrer(),"refresh");
 	}
+    
+    public function userlogincust(){
+        $this->load->view("MAIN/homelogin");   
+    }
+    public function userloginrepair(){
+        $this->load->view("MAIN/homeloginrepair");   
+    }
+    public function maps(){
+        $this->load->view("MAIN/maps");
+    }
+    public function detailpost(){
+        $this->load->view("MAIN/detailpost");
+    }
+    public function chat(){
+        $this->load->view("Main/chatting");   
+    }
 }

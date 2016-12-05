@@ -23,5 +23,8 @@ class Main_home extends CI_Controller {
 		// vd("session",$_SESSION);
 		// vd("cookie",$_COOKIE);
 		$this->load->view('MAIN/home');
+        
 	}
+    
+    
 }

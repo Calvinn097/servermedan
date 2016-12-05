@@ -1,0 +1,20 @@
+/*Homelogin navbar*/
+.homelogin{
+    margin-bottom: 0;
+    position:fixed;
+}
+.homelogin a{
+    color: black;
+}
+
+.button-bar{
+    margin-top: 10px;
+    
+}
+.posting{
+    margin-bottom: 10px;   
+}
+
+.customer ul{
+    list-style: none;  
+}

@@ -1,24 +1,4 @@
 <!DOCTYPE html>
-<?php
-if($this->session->flashdata("signup_err")!==null){
-    $signup_err=$this->session->flashdata("signup_err");
-    $email_err=isset($signup_err["email"])?$signup_err["email"]:"";
-    $fname_err=isset($signup_err["fname"])?$signup_err["fname"]:"";
-    $lname_err=isset($signup_err["lname"])?$signup_err["lname"]:"";;
-    $password_err=isset($signup_err["password"])?$signup_err["password"]:"";
-    $rpassword_err=isset($signup_err["rpassword"])?$signup_err["rpassword"]:"";
-    $signup_form_populate=$this->session->flashdata("signup_form_populate");
-    
-}else{
-    $email_err="";
-    $fname_err="";
-    $lname_err="";
-    $password_err="";
-    $rpassword_err="";
-}
-
-
-?>
 <html lang="en">
 <style>
 #registerModal,#loginModal{
@@ -43,9 +23,6 @@ if($this->session->flashdata("signup_err")!==null){
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-    <!-- Animate CSS by Daniel Eden-->
-    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
-
     <!-- Theme CSS -->
     <?php
     foreach($css as $row){ ?>
@@ -67,9 +44,6 @@ if($this->session->flashdata("signup_err")!==null){
 
     <!-- Theme JavaScript -->
     <script src="<?=base_url("asset/javascript/grayscale.js")?>"></script>
-
-    <!-- Boostrap Notify -->
-    <script src="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/bootstrap-notify.min.js");?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -152,7 +126,7 @@ if($this->session->flashdata("signup_err")!==null){
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="<?=base_url("user/userlogincust")?>">
                     <i class="fa fa-play-circle"></i> <span class="light">Server</span> Medan
                 </a>
             </div>
@@ -173,24 +147,9 @@ if($this->session->flashdata("signup_err")!==null){
                     <li>
                         <a class="page-scroll" href="#about">Ranking</a>
                     </li>
-                    <?php if(!isset($_COOKIE["sm_login"])){ ?> 
                     <li>
-                        <a class="page-scroll" id="register" href="#">Daftar</a>
+                        <a class="page-scroll" id="register" href="#">Logout</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" id="login" href="#">Masuk</a>
-                    </li>
-                    <?php }else{ ?>
-                    <li>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My Account
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?=base_url('user/logout')?>">Logout</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -200,38 +159,7 @@ if($this->session->flashdata("signup_err")!==null){
 
 
     <!-- all Modal here -->
-<!-- Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Register</h4>
-      </div>
-      <div class="modal-body">
-            <form method="post" id="registerForm">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email" value="<?=isset($signup_form_populate)?($signup_form_populate["email"]):'';?>" required><?=$email_err?><br>
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control" name="fname" id="fname" value="<?=isset($signup_form_populate)?($signup_form_populate["fname"]):'';?>" required><?=$fname_err?><br>
-            <label for="lname">Last Name</label>
-            <input type="text" class="form-control" name="lname" id="lname" value="<?=isset($signup_form_populate)?($signup_form_populate["lname"]):'';?>" required><?=$lname_err?><br>
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" required><?=$password_err?><span class="pw-err light" style="display:none; color:red;"></span><br>
-            <label for="rpassword">Repeat Password</label>
-            <input type="password" class="form-control" name="rpassword" id="rpassword" required><?=$rpassword_err?><br>
-            <input type="submit" class="btn btn-success btn-block" value="Register">
-            </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 <!-- Modal -->
 <div id="loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm masuk">
@@ -242,7 +170,7 @@ if($this->session->flashdata("signup_err")!==null){
         <h4 class="modal-title">Masuk</h4>
       </div>
       <div class="modal-body">
-            <form method="post" id="loginForm" action="<?=base_url('user/login')?>">
+            <form method="post" id="loginForm">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="loginEmail">
                 <label for="password">Kata sandi</label>
@@ -258,57 +186,7 @@ if($this->session->flashdata("signup_err")!==null){
 
   </div>
 </div>
-    <!-- Bootstrap Notify -->
-    <script>
-    function notify(message,type){
-        $.notify({
-            // options
-            icon: 'glyphicon glyphicon-warning-sign',
-            title: '',
-            message: message,
-            url: '#',
-            target: '_blank'
-        },{
-            // settings
-            element: 'body',
-            position: null,
-            type: type,
-            allow_dismiss: true,
-            newest_on_top: false,
-            showProgressbar: false,
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            offset: 20,
-            spacing: 10,
-            z_index: 1031,
-            delay: 5000,
-            timer: 1000,
-            url_target: '_blank',
-            mouse_over: null,
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutUp'
-            },
-            onShow: null,
-            onShown: null,
-            onClose: null,
-            onClosed: null,
-            icon_type: 'class',
-            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                '<span data-notify="icon"></span> ' +
-                '<span data-notify="title">{1}</span> ' +
-                '<span data-notify="message">{2}</span>' +
-                '<div class="progress" data-notify="progressbar">' +
-                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                '</div>' +
-                '<a href="{3}" target="{4}" data-notify="url"></a>' +
-            '</div>' 
-        });
-    }
-    </script>
+
     <!-- Modal end-->
 
 
@@ -316,12 +194,6 @@ if($this->session->flashdata("signup_err")!==null){
     <script>
 
         $("document").ready(function(){
-            <?php if($this->session->flashdata("signup_err")!=null){ ?>
-                $("#registerModal").modal("show");
-            <?php } ?>
-            <?php if($this->session->flashdata("global_notification")){ ?> 
-                notify("<?=$this->session->flashdata("global_notification")['message']?>","<?=$this->session->flashdata("global_notification")['type']?>");
-            <?php } ?>
             $("#loginModal").appendTo("body");
 
             $("#fblogin").click(function(){
@@ -353,27 +225,4 @@ if($this->session->flashdata("signup_err")!==null){
         $("#login").click(function(){
             $("#loginModal").modal("show");
         });
-        $("document").ready(function(){
-            $("#registerModal").appendTo("body");
-        })
-        $("#register").click(function(){
-            $("#registerModal").modal("show"); 
-        })
-        $("#registerForm").submit(function(){
-            $(".pw-err").hide();
-            var password = $("#password").val();
-            var rpassword = $("#rpassword").val();
-            var valid = true;
-            if(password != rpassword){
-                valid = false;
-                $(".pw-err").html("Password pertama dan kedua harus cocok!");
-                $(".pw-err").show();
-            }
-            if(valid){
-                $(this).attr("action","user/register");
-                $(this).submit();
-            }
-            return false;
-        })
     </script>
-

@@ -14,10 +14,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Grayscale</h1>
-                        <p class="intro-text">A free, responsive, one page Bootstrap theme.
-                            <br>Created by Start Bootstrap.</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="<?=base_url("/asset/images/selamatdatang.png")?>" width=100%/>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="brand-heading">Selamat datang</h3>
+                                <p class="intro-text">Silahkan menikmati layanan yang dapat memudahkan anda mendapatkan servis dan reparasi barang anda yang rusak melalui smartphone anda dengan mengunduh aplikasi dibawah ini.</p>
+                                <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-lg btn-success">Unduh Aplikasi</a>
+                            </div>
+                        
+                        </div>
+                        <a href="#contact" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -25,26 +33,84 @@
             </div>
         </div>
     </header>
-    <!-- About Section -->
-    <section id="about" class="container content-section text-center">
+
+    <!-- Kategori Section -->
+    <section id="kategori" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Grayscale</h2>
-                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
-                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+                <h2>Kategori Jasa Servis dan Reparasi</h2>
+                <div class="row pertama">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="rounded" src="<?=base_url("/asset/images/watersupply.png")?>" width=100% height=150px/>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Reparation Water</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="<?=base_url("/asset/images/powersupply.jpg")?>" width=100% height=150px/>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Reparation Electricity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row kedua">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="<?=base_url("/asset/images/laptop.jpg")?>" width=100% height=150px/>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Reparation Computer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="<?=base_url("/asset/images/smartphone.jpg")?>" width=100% height=150px/>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Reparation Smartphone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Download Section -->
-    <section id="download" class="content-section text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+<!--Tentang Section-->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Tentang Jasa Servis dan Reparasi</h2>
+                <div class="row">
+                    <div class="col-md-4 onthespot">
+                        <img src="<?=base_url("/asset/images/onthesport.png")?>" width=100% height=150px/>
+                        <h3>Reparasi On The Spot</h3>
+                        <p>Reparasi on the spot merupakan jenis reparasi yang dibutuhkan segera dan dapat langsung dipanggil sekarang juga untuk memperbaiki barang yang rusak</p>
+                        <button type="button" id="more" class="btn btn-danger">Read More</button>
+                    </div>
+                    <div class="col-md-4 onthespot">
+                        <img src="<?=base_url("/asset/images/bringandtakeaway.png")?>" width=100% height=150px/>
+                        <h3>Reparasi Bring and Take Away</h3>
+                        <p>Reparasi Bring and Take Away yaitu jenis reparasi dimana anda membawa barang anda yang rusak dan mengambilnya sendiri setelah selesai dilakukan perbaikan</p>
+                        <button type="button" id="more" class="btn btn-danger">Read More</button>
+                    </div>
+                    <div class="col-md-4 onthespot">
+                        <img src="<?=base_url("/asset/images/pickupandreturn.png")?>" width=100% height=150px/>
+                        <h3>Reparasi Pick Up and Return</h3>
+                        <p>Reparasi Pick Up and Return merupakan jenis perbaikan dimana anda yang tidak memiliki waktu dan tidak sempat untuk mengantarkan barang rusak dapat dijemput oleh repairman</p>
+                        <button type="button" id="more" class="btn btn-danger">Read More</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,24 +120,71 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
-                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
+<h2>Kontak Server Medan</h2>
+                <div class="row data">
+                    <div class="col-md-3">
+                        <p>Nama : Dicky Christian</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : William Karno</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : Calvin</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>nama : Wanjemy Wijaya</p>
+                        <p>Age  : 20 tahun</p>
+                        <p>Job  : IOS Developer</p>
+                        <p>Status : Student</p>
+                        <p>University : STMIK Mikroskil</p>
+                        <p>Company : </p>
+                        <p>Deskription :</p>
+                    </div>
+                </div>
+                
+                <ul class="list-inline">
+                    <p>Bagikan :</p>
                     <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        <a href="https://twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
                     </li>
                     <li>
-                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        <a href="https://github.com"><i class="fa fa-github fa-lg"></i></a>
                     </li>
                     <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                        <a href="https://plus.google.com"><i class="fa fa-google-plus fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-facebook fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-instagram fa-lg"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://facebook.com"><i class="fa fa-youtube fa-lg"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
+
 
     <!-- Map Section -->
     <div id="map"></div>
@@ -83,19 +196,13 @@
 
 </body>
 
-</html>
 <script>
 $("document").ready(function(){
 
 })
 </script>
-<script src="<?=base_url("/asset/javascript/jquery.scrolly.min.js")?>"></script>
-<script src="<?=base_url("/asset/javascript/jquery.scrollzer.min.js")?>"></script>
-<script src="<?=base_url("/asset/javascript/skel.min.js")?>"></script>
-<script src="<?=base_url("/asset/javascript/util.js")?>"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="../../../asset/javascript/main.js"></script>
-<script>
+
+<!--<script>
     var map;
     function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -106,4 +213,4 @@ $("document").ready(function(){
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUhksLQ3jvExZGOitohgYX4JzYnIWK5w&callback=initMap">
-</script>
+</script>-->
