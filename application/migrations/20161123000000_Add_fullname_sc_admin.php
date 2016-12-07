@@ -7,7 +7,7 @@
  */
 defined ('BASEPATH') OR exit('NO DIRECT ACCESS SCRIPT ALLOWED');
 
-class Migration_Add_column_sc_user extends CI_Migration{
+class Migration_Add_fullname_sc_admin extends CI_Migration{
     public function __construct()
     {
         $this->load->dbforge();

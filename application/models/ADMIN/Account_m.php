@@ -26,5 +26,10 @@ class Account_m extends CI_Model{
             
         }
     }
+
+    function m_get_admin_name_by_id($admin_id){
+        return $this->db->where("admin_id",$admin_id)
+        ->get("sc_admin")->row_array()["admin_name"];
+    }
 }
 //asdn

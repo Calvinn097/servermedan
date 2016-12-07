@@ -35,4 +35,6 @@ class Account extends ADMIN_Controller {
     	$this->check_admin_login();
     	redirect(base_url('/ADMIN'));
     }
+
+    
 }

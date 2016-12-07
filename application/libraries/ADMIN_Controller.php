@@ -18,6 +18,7 @@ abstract class ADMIN_Controller extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model('/ADMIN/Account_m');
 
     }
 
@@ -28,6 +29,10 @@ abstract class ADMIN_Controller extends CI_Controller {
     	}else{
     		
     	}
+    }
+
+    protected function get_admin_name(){
+        return $this->Account_m->m_get_admin_name_by_id($_COOKIE["sm_admin"]);
     }
 
     protected function test(){
