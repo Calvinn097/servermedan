@@ -33,7 +33,7 @@ class Category extends ADMIN_Controller {
         $config["base_url"] = base_url("/ADMIN/category/index");
         $config["total_rows"] = $this->Category_m->m_category_count();
         $config["per_page"] = 5;
-        $config["uri_segment"] = 5;
+        $config["uri_segment"] = 4;
 
         //config for bootstrap pagination class integration
         $config['full_tag_open'] = '<ul class="pagination">';
