@@ -154,7 +154,7 @@ class Example extends REST_Controller {
         $this->set_response($message, REST_Controller::HTTP_OK); // NO_CONTENT (204) being the HTTP response code
     }
 
-    function users_get(){
+    public function users_get(){
         $id = $this->get('id');
         echo $id;
         echo"asd";

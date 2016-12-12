@@ -5,7 +5,7 @@
                 "asset/css/grayscale.css"
                 )
         );
-     $this->load->view("MAIN/header.php",$header_data) 
+     $this->load->view("MAIN/header.php",$header_data);
 
 ?>
     <!-- Intro Header -->
@@ -87,7 +87,7 @@
         </div>
     </section>
 
-    <!--Tentang Section-->
+<!--Tentang Section-->
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -115,11 +115,12 @@
             </div>
         </div>
     </section>
+
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Kontak Server Medan</h2>
+<h2>Kontak Server Medan</h2>
                 <div class="row data">
                     <div class="col-md-3">
                         <p>Nama : Dicky Christian</p>
@@ -183,61 +184,21 @@
             </div>
         </div>
     </section>
-    
+
 
     <!-- Map Section -->
-    <!--<div id="map"></div>-->
+    <div id="map"></div>
 
     <!-- Footer -->
     <?php $this->load->view("MAIN/footer.php"); ?>
 
-
-
     <!-- jQuery -->
 
 </body>
-<!-- Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm daftar">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Register</h4>
-      </div>
-      <div class="modal-body">
-            <form method="post" id="registerForm">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email">
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control" name="fname" id="fname">
-            <label for="lname">Last Name</label>
-            <input type="text" class="form-control" name="lname" id="lname">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password">
-            <label for="rpassword">Repeat Password</label>
-            <input type="password" class="form-control" name="rpassword" id="rpassword">
-            <input type="submit" class="btn btn-success btn-block" value="Register">
-            </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-</html>
 <script>
 $("document").ready(function(){
-    $("#registerModal").appendTo("body");
-})
-$("#register").click(function(){
-    $("#registerModal").modal("show"); 
-})
-$("#registerForm").submit(function(){
-    $(this).attr("action","user/register");
-    $(this).submit();
+
 })
 </script>
 
