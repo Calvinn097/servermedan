@@ -21,7 +21,7 @@
                         <!-- Portfolio Item Heading -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Detail Posting
+                                <h1 class="page-header">Acceptance
                                     <small>Kerusakan Barang</small>
                                 </h1>
                             </div>

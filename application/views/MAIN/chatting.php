@@ -69,7 +69,7 @@
                                             </small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            mantap
                                         </p>
                                     </div>
                                 </li>
@@ -84,7 +84,7 @@
                                             <strong class="pull-right primary-font">Bhaumik Patel</strong>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            menarik
                                         </p>
                                     </div>
                                 </li>
@@ -99,7 +99,7 @@
                                                 <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            luar biasa
                                         </p>
                                     </div>
                                 </li>
@@ -114,7 +114,7 @@
                                             <strong class="pull-right primary-font">Bhaumik Patel</strong>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            nice
                                         </p>
                                     </div>
                                 </li>
@@ -143,7 +143,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+<?php $this->load->view("MAIN/footer.php"); ?>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

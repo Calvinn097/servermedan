@@ -139,7 +139,17 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#kategori">Kategori</a>
+                        <a class="page-scroll" href="#category" data-toggle="collapse">Kategori</a>
+                        <div id="category" class="collapse">
+                            <ul>
+                                <li>Perabotan rumah tangga</li>
+                                <li>Gadget</li>
+                                <li>Kendaraan</li>
+                                <li>Listrik</li>
+                                <li>Bangunan</li>
+                                <li>Saluran Air</li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">Berita</a>

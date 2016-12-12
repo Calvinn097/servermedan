@@ -58,4 +58,13 @@ class User extends CI_Controller {
     public function chat(){
         $this->load->view("Main/chatting");   
     }
+    public function Rank(){
+        $this->load->view("Main/ranking");   
+    }
+    public function detailrepair(){
+        $this->load->view("Main/detailrepair");   
+    }
+    public function accept(){
+        $this->load->view("Main/accept");   
+    }
 }

@@ -139,7 +139,17 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#kategori">Kategori</a>
+                        <a class="page-scroll" href="#category" data-toggle="collapse">Kategori</a>
+                        <div id="category" class="collapse">
+                            <ul>
+                                <li>Perabotan rumah tangga</li>
+                                <li>Gadget</li>
+                                <li>Kendaraan</li>
+                                <li>Listrik</li>
+                                <li>Bangunan</li>
+                                <li>Saluran Air</li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">Berita</a>
@@ -180,8 +190,13 @@
                 <input type="password" class="form-control" name="password" id="loginPassword">
                 <input type="submit" class="btn btn-success btn-block" value="Login">
             </form>
-            <button type="button" class="btn btn" id="fblogin">Facebook Login</button>
-      </div>
+            <div class="fblogin">
+                <button type="button" class="btn btn" id="fblogin"><img src="<?=base_url("asset/images/Facebook-icon-1.png")?>"/>Facebook Login</button>
+            </div>
+            <div class="glogin">
+                <button type="button" class="btn btn" id="glogin"><img src="<?=base_url("asset/images/Google_plus.png")?>"/>Google+ Login</button>
+            </div>
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn" data-dismiss="modal">Tutup</button>
       </div>
@@ -229,3 +244,4 @@
             $("#loginModal").modal("show");
         });
     </script>
+    

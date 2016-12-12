@@ -1,11 +1,13 @@
 /*Homelogin navbar*/
 .homelogin{
     margin-bottom: 0;
-    position:fixed;
+    min-height: 0px !important;
 }
 .homelogin a{
     color: black;
 }
+
+
 
 .button-bar{
     margin-top: 10px;
