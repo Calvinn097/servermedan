@@ -5,7 +5,7 @@
                 "asset/css/grayscale.css",
                 "asset/css/nav.css",
                 "asset/css/homeloginrepair.css",
-                "asset/css/detailpost.css"
+                "asset/css/detailrepair.css"
                 )
         );
      $this->load->view("MAIN/logoutheader.php",$header_data) 
@@ -21,8 +21,7 @@
                         <!-- Portfolio Item Heading -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Detail Posting
-                                    <small>Kerusakan Barang</small>
+                                <h1 class="page-header">Detail Repairman
                                 </h1>
                             </div>
                         </div>
@@ -35,24 +34,21 @@
                             </div>
 
                             <div class="col-md-6">
-                                <h4>Kerusakan sepeda motor</h4>
-                                <p>Berikut laporan kerusakan yaitu: ban sepeda motor tidak dapat ditemukan, mesin sepeda motor tidak dapat dilihat, badan sepeda motor tidak memiliki fisik. Kepada mekanik bersangkutan mohon agar segera datang dan melihat kondisi sepeda motor</p>
-                                <h4>Detail Kerusakan</h4>
+                                <h4>Saroha</h4>
+                                <p>Memiliki latar belakang tamatan SMK. Sudah bekerja selama 5 tahun dan memiliki keahlian khusus dalam memegang barang serta sangat ahli dalam membongkar barang.</p>
+                                <h4>Detail Kemampuan</h4>
                                 <ul>
-                                    <li>Sulit dibaca</li>
-                                    <li>Sulit dilihat</li>
-                                    <li>Tidak dapat diterawang</li>
-                                    <li>Tembus pandang</li>
+                                    <li>Rajin</li>
+                                    <li>Dapat memperbaiki perabotan</li>
+                                    <li>Dapat memperbaiki rumah</li>
+                                    <li>Dapat menganalisi barang rusak</li>
                                 </ul>
-                                <div class="agree">
-                                    <ul>
-                                        <li>
-                                            <button class="btn btn-info">Terima</button>
-                                        </li>
-                                        <li>
-                                            <button class="btn btn-info">Tolak</button>
-                                        </li>
-                                    </ul>
+                                <div class="rating">
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                    <span>☆</span>
+                                    <span>☆</span>
                                 </div>
                             </div>
                         </div>
@@ -70,10 +66,10 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
+<?php $this->load->view("MAIN/footer.php"); ?>
     </div>
     <!-- /#wrapper -->
-<?php $this->load->view("MAIN/footer.php"); ?>
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

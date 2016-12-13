@@ -25,7 +25,7 @@
                 <div class="col-lg-8 repair">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                            <i class="fa fa-clock-o fa-fw"></i> Timeline
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -33,37 +33,23 @@
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                            <h4 class="timeline-title">Kerusakan mobil</h4>
                                             <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Terjadi kerusakan luar biasa dibagian belakang mobil dikarenakan ditabrak oleh tank yang sedang lewat mohon agar segera diberikan feedback untuk perbaikkannya</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <h4 class="timeline-title">Rusak baling-baling kipas</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 12 hours ago via Twitter</small>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Terjadi insiden yang cukup menegangkan mengakibatkan baling-baling kipas rusak berantakan kepada mekanik mohon agar dapat di cek serpihan yang dapat diperbaiki</p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,36 +58,22 @@
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <h4 class="timeline-title">Darurat kerusakan tutup botol</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 12 hours ago via Twitter</small>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Kepada para mekanik mohon agar segera ditanggapi kerusakan tutup botol yang mengakibatkan botol tidak dapat tertutup dengan rapat.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <h4 class="timeline-title">Kerusakan AC tidak dingin</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 13 hours ago via Twitter</small>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Berikut adalah kronologi terjadinya kerusakan AC. Dikarenakan pemasukkan batu es kedalam kipas AC yang mengakibatkan terjadinya peledakan terhadap mesin AC tersebut mohon kepada mekanik agar dapat diperiksa</p>
                                         </div>
                                     </div>
                                 </div>
@@ -110,56 +82,22 @@
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <h4 class="timeline-title">Kerusakan Lemari es</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 14 hours ago via Twitter</small>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Berikut laporan kerusakan yang di alami oleh lemari es yaitu: lampu lemari es tidak dapat hidup, lemari es tidak dapat mengeluarkan angin, kipas lemari es tidak dapat berputar, pintu lemari es sulit ditutup, mesin lemari es tidak dapat ditemukan.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <h4 class="timeline-title">Kerusakan sepeda motor</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 15 hours ago via Twitter</small>
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row post">
-                                <div class="col-md-6">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p class="over">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                        <div class="rating">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <p class="over">Berikut laporan kerusakan yaitu: ban sepeda motor tidak dapat ditemukan, mesin sepeda motor tidak dapat dilihat, badan sepeda motor tidak memiliki fisik. Kepada mekanik bersangkutan mohon agar segera datang dan melihat kondisi sepeda motor</p>
                                         </div>
                                     </div>
                                 </div>
@@ -179,48 +117,8 @@
                         <div class="panel-body">
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <i class="fa fa-comment fa-fw"></i> Request
                                     <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
                                     </span>
                                 </a>
                             </div>
@@ -239,7 +137,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+    <?php $this->load->view("MAIN/footer.php"); ?>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

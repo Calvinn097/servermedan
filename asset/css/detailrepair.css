@@ -1,0 +1,25 @@
+.rating {
+  unicode-bidi: bidi-override;
+  direction: ltr;
+}
+.rating > span {
+    float: left;
+    font-size: 30px;
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+.portfolio h4{
+    margin: 0px;   
+}
+.portfolio{
+    margin-bottom: 20px;
+}
+.portfolio p{
+    font-size: 13px;   
+}

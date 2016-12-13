@@ -32,5 +32,6 @@
     <div class="ok">
         <a class="btn btn-info" href="<?=base_url("user/userlogincust")?>">OK</a>  
     </div>
+      <?php $this->load->view("MAIN/footer.php"); ?>
   </body>
 </html>

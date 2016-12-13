@@ -313,7 +313,7 @@ ul.banner-social-buttons {
 #contact a:hover,
 a:focus {
   text-decoration: none;
-  color: #ffa800;
+    color: black;
 }
 
 
@@ -367,8 +367,8 @@ body {
 .masuk button{
     width: 100%;   
 }
-.masuk .modal-header h4,.masuk .modal-footer button,.masuk .modal-body button,.daftar .modal-header h4,.daftar .modal-footer button{
-    background-color: #66a0ff;
+.masuk .modal-header h4,.masuk .modal-footer button,.masuk .fblogin button,.daftar .modal-header h4,.daftar .modal-footer button{
+    background-color: #4a6ea8;
 }
 .masuk .modal-header,.masuk .modal-footer,.daftar .modal-header{
     padding: 0px;   
@@ -383,4 +383,21 @@ body {
 /*Kategori row*/
 #kategori .row .pertama{
     margin-bottom: 40px;
+}
+
+/*login fb*/
+.fblogin img{
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+
+/*google login*/
+.glogin img{
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.glogin button{
+    background-color: #dc4a38;
 }
