@@ -368,10 +368,6 @@ if($this->session->flashdata("signup_err")!==null){
         $("#login").click(function(){
             $("#loginModal").modal("show");
         });
-<<<<<<< HEAD
-    </script>
-    
-=======
         $("document").ready(function(){
             $("#registerModal").appendTo("body");
         })
@@ -395,5 +391,3 @@ if($this->session->flashdata("signup_err")!==null){
             return false;
         })
     </script>
-
->>>>>>> b82c3ad3e71708c6e2c7a92f5adefb8444064f87
