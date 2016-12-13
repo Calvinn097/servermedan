@@ -78,25 +78,25 @@ class User extends CI_Controller {
         redirect($this->agent->referrer(),"refresh");
 	}
     
-    public function userlogincust(){
+    public function user_login_customer(){
         $this->load->view("MAIN/homelogin");   
     }
-    public function userloginrepair(){
+    public function user_login_repair(){
         $this->load->view("MAIN/homeloginrepair");   
     }
     public function maps(){
         $this->load->view("MAIN/maps");
     }
-    public function detailpost(){
+    public function detail_post(){
         $this->load->view("MAIN/detailpost");
     }
     public function chat(){
         $this->load->view("Main/chatting");   
     }
-    public function Rank(){
+    public function rank(){
         $this->load->view("Main/ranking");   
     }
-    public function detailrepair(){
+    public function detail_repair(){
         $this->load->view("Main/detailrepair");   
     }
     public function accept(){
