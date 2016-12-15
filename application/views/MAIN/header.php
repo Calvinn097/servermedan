@@ -168,6 +168,9 @@ if($this->session->flashdata("signup_err")!==null){
                         <a class="page-scroll" href="#category" data-toggle="collapse">Kategori</a>
                         <div id="category" class="collapse">
                             <ul>
+                                <?php foreach($this->category_list as $row){ ?>
+                                <li><?=$row['category_name']?></li>
+                                <?php } ?>
                                 <li>Perabotan rumah tangga</li>
                                 <li>Gadget</li>
                                 <li>Kendaraan</li>

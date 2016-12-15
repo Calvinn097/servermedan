@@ -62,7 +62,7 @@
     <li><a href="<?=base_url('/ADMIN')?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="active"> <a href="<?=base_url('ADMIN/Category')?>"><i class="icon icon-th"></i> <span>Category &amp; sub-category</span></a> </li>
     <li> <a href="<?=base_url('/ADMIN/News/')?>"><i class="icon icon-inbox"></i> <span>Manage News</span></a> </li>
-    <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+    <li><a href="<?=base_url('/ADMIN/Service_type/')?>"><i class="icon icon-th"></i> <span>Service Type</span></a></li>
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
       <ul>

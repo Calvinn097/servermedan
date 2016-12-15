@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main_home extends CI_Controller {
+class Main_home extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,6 +22,7 @@ class Main_home extends CI_Controller {
 	{
 		// vd("session",$_SESSION);
 		// vd("cookie",$_COOKIE);
+		// vd("bla",$this->category_list);
 		$this->load->view('MAIN/home');
         
 	}

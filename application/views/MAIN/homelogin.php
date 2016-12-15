@@ -24,7 +24,7 @@
                 <div class="col-lg-8">
                     <div class="button-bar">
                         <!--form postingan-->
-                        <form>
+                        <form id="post_order" method="post" enctype="multipart/form-data" role="form">
                             <div class="form-group">
                                 <ul class="nav navbar-nav">
                                     <li>
@@ -34,20 +34,24 @@
                                         <input class="btn btn-info" type="submit" value="attach"/>
                                     </li>
                                     <li>
-                                        <select class="btn btn-info">
+                                        <select class="btn btn-info" name="service_type">
                                             <option>Bring and Take Away</option>
                                             <option>On The Spot</option>
                                             <option>Pick Up and Return</option>
                                         </select>
                                     </li>
                                     <li>
-                                        <select class="btn btn-info">
-                                            <option>Perabotan rumah tangga</option>
-                                            <option>Gadget</option>
+                                        <select name="category" class="btn btn-info" required>
+                                        <option value="" disabled selected>Pilih kategori anda</option>
+                                            <?php foreach($this->category_list as $row){ ?>
+                                                <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
+                                            <?php } ?>
+                                            <!-- <option>Gadget</option> -->
+                                            <!-- 
                                             <option>Kendaraan</option>
                                             <option>Listrik</option>
                                             <option>Bangunan</option>
-                                            <option>Saluran Air</option>
+                                            <option>Saluran Air</option> -->
                                         </select>
                                     </li>
                                 </ul>

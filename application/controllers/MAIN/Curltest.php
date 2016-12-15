@@ -28,21 +28,29 @@ class Curltest extends CI_Controller {
     }
     public function index()
     {
-        $url = base_url("API/User/register");
-        $field = array(
-            'fname'=>"Aeris",
-            "lname"=>"Gainsborough",
-            "email"=>'aerithgainsborough@gmail.com',
-            "password"=>'aeris123',
-            'rpassword'=>'aeris123'
-        );
-        $field_string = http_build_query($field);
+        // $url = base_url("API/User/register");
+        // $field = array(
+        //     'fname'=>"Aeris",
+        //     "lname"=>"Gainsborough",
+        //     "email"=>'aerithgainsborough@gmail.com',
+        //     "password"=>'aeris123',
+        //     'rpassword'=>'aeris123'
+        // );
+        // $field_string = http_build_query($field);
+        // $ch = curl_init();
+        // curl_setopt($ch,CURLOPT_URL,$url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        // curl_setopt($ch,CURLOPT_POST,count($field));
+        // curl_setopt($ch,CURLOPT_POSTFIELDS,$field_string);
+        // $res=curl_exec($ch);
+        // echo $res;
+        // curl_close($ch);
+        $url = base_url("API/Category");
+        
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($ch,CURLOPT_POST,count($field));
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$field_string);
         $res=curl_exec($ch);
         echo $res;
         curl_close($ch);

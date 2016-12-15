@@ -72,7 +72,7 @@ class News extends ADMIN_Controller {
     public function add_news(){
     	$this->check_admin_login();
     	// vd("se",$_COOKIE);
-    	// vd("post",$_POST);
+    	vd("post",$_POST,true);
     	$data=array(
     		"news_category_id"=>$this->input->post("news_category_id",true),
     		"content"=>$this->input->post("content",true),

@@ -21,6 +21,9 @@ class MY_Controller extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model("MAIN/Category_m");
+        $this->category_list = $this->Category_m->m_get_category();
+
 
     }
 }

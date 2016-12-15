@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -79,7 +79,7 @@ class User extends CI_Controller {
 	}
     
     public function user_login_customer(){
-        $this->load->view("MAIN/homelogin");   
+        $this->load->view("MAIN/homelogin");
     }
     public function user_login_repair(){
         $this->load->view("MAIN/homeloginrepair");   
