@@ -75,5 +75,59 @@ class User_m extends CI_Model{
     		}
     	}
     }
+
+    function m_check_email_exist($email){
+        $res=$this->db->where("email",$email)
+        ->select("user_id,fb_id,google_id")
+        ->get("sc_user")->row_array();
+        if(count($res)!=0){
+            if($res["fb_id"]!=null){
+                return "FB";
+            }else if($res["google_id"]!=null){
+                return "GP";
+            }else{
+                return "SM";
+            }
+        }else{
+            return "CLEAR";
+        }
+    }
+
+    function m_check_fb_exist($fb_id){
+        $res = $this->db->where("fb_id",$fb_id)
+        ->select("user_id")
+        ->get("sc_user")->row_array();
+        if(count($res)==0){
+            return false;
+        }
+        return true;
+    }
+
+    function m_insert_fb_user($data){
+        $fb_exist = $this->m_check_fb_exist($data['fb_id']);
+        if(!$fb_exist){
+            $status = $this->m_check_email_exist($data["email"]);
+            if($status=="CLEAR"){
+                $this->db->insert('sc_user',$data);
+            }else{
+                if($status=="FB"){
+                    $response = array(
+                        'status'=>false,
+                        'data'=>"Email ini sudah ter registrasi dengan facebook."
+                    );
+                    set_global_noti("Email ini sudah ter registrasi dengan Facebook.","danger");
+                }else if($status="GP"){
+                    $response = array(
+                        'status'=>false,
+                        'data'=>"Email ini sudah ter registrasi dengan google."
+                    );
+                    set_global_noti("Email ini sudah ter registrasi dengan goggle.","danger");
+                }
+            }    
+        }else{
+            set_global_noti("User ID sudah terdaftar","danger");
+        }
+        
+    }
 }
 //asdn

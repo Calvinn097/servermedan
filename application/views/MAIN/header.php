@@ -121,7 +121,6 @@ if($this->session->flashdata("signup_err")!==null){
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            testAPI();
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
             document.getElementById('status').innerHTML = 'Please log ' +
@@ -347,7 +346,7 @@ if($this->session->flashdata("signup_err")!==null){
                     if(response.status==="connected"){
                         $.ajax({
                             type:"POST",
-                            url:"<?=base_url("/Customer/login")?>",
+                            url:"<?=base_url("/User/fb_login")?>",
                             data:{data:response,fb_login:true},
                             dataType:'html',
                             success:function(res){
@@ -364,7 +363,7 @@ if($this->session->flashdata("signup_err")!==null){
                         else{
 
                         }
-                    },{scope: 'public_profile,email'});
+                    },{scope: 'public_profile,email,user_birthday'});
                 });
             });
 

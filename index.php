@@ -58,8 +58,10 @@
 		define('fb_i',"1817936985120500");
 		define('fb_s',"35e2c78ba9d9769a233334d18fe62d9e");
 	}else{
-		define('fb_i',"1817988788448653");
-		define('fb_s',"bcc0d5c967c4ac06c52cc512b8612e08");
+		// define('fb_i',"1817988788448653");
+		// define('fb_s',"bcc0d5c967c4ac06c52cc512b8612e08");
+		define('fb_i',"641661376006354");
+		define('fb_s',"d912b009b4bbffc6b679d771f4b7b2e0");
 	}
 
 /*
@@ -319,4 +321,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+include_once './vendor/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';

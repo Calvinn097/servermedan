@@ -46,7 +46,7 @@ class User extends MY_Controller {
             $link = $this->agent->referrer();
             $co_sign_up= array(
                 'name' => 'login',
-                'value' => $status["user_id"],
+                'value' => json_encode(array('user_id'=>$status["user_id"])),
                 'expire' =>  3600,
                 'path'=>'/',
                 'prefix' => 'sm_'
@@ -68,6 +68,65 @@ class User extends MY_Controller {
 		redirect();
 
 	}
+
+    public function fb_login(){
+        $fb_data = $this->input->post("data",true);
+        $authResponse = $fb_data['authResponse'];
+        $accessToken   = $authResponse['accessToken'];
+        $userID = $authResponse['userID'];
+
+        $fb=new Facebook\Facebook([
+            'app_id'=>fb_i,
+            'app_secret'=>fb_s,
+            'default_graph_version'=>'v2.8'
+        ]);
+        $response = $fb->get('/me?fields=id,name,gender,birthday,email',$accessToken);
+        $user = $response->getGraphUser();
+        $fb_id = $user->getProperty('id');
+
+        $fb_exist = $this->User_m->m_check_fb_exist($fb_id);
+        if($fb_exist){
+            
+        }else{
+            $birthday= $user->getProperty('birthday');
+            $name = $user->getProperty('name');
+            $explode_name = explode(' ',$name);
+            $first_name = $explode_name[0];
+            $last_name = $explode_name[1];
+            $gender = $user->getProperty('gender');
+            $email = $user->getProperty('email');
+            
+            $data=array(
+                "email"=>$email,"fname"=>$first_name,
+                "lname"=>$last_name,
+                "fb_id"=>$fb_id,"gender"=>$gender
+            );
+
+            $this->User_m->m_insert_fb_user($data);
+        }
+        $this->load->library('user_agent');
+        $link = $this->agent->referrer();
+        $co_sign_up= array(
+            'name' => 'login',
+            'value' => json_encode(array('id'=>$fb_id,'fb_acc_token'=>$accessToken)),
+            'expire' =>  3600,
+            'path'=>'/',
+            'prefix' => 'sm_'
+        );
+        $this->input->set_cookie($co_sign_up);
+        $now = (new DateTime())->format("H:i:s");
+        $period="";
+        if($now>"05:00:00" && $now<"12:00:00")
+            $period="Selamat pagi";
+        else if($now>"12:00:00" && $now<"05:00:00")
+            $period="Selamat siang";
+        else
+            $period="Selamat malam";
+
+        set_global_noti("Hi ".$first_name.", $period","Success");
+        
+
+    }
 
 	public function logout(){
 		unset($_SESSION);
