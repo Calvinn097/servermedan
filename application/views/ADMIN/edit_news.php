@@ -16,7 +16,12 @@ tinymce.init({
   <div class="row-fluid">
   <div class="span12">
     <div class="widget-content nopadding">
-      <form method="post" role="form" action="<?=base_url('/ADMIN/news/change_news/'.$news["news_id"])?>">
+      <form method="post" role="form" enctype="multipart/form-data" action="<?=base_url('/ADMIN/news/change_news/'.$news["news_id"])?>">
+      <label>Header Image</label>
+      <?php if($news['header_image']!=null){ ?>
+        <img src="<?=base_url($news['header_image'])?>">
+        <?php } ?><br>
+      <input type="file" name="userfile">
       <select class="form form-control" name="news_category_id">
       <?php foreach($news_category as $key=>$row){ ?>
       <option value = "<?=$row["news_category_id"]?>"><?=$row["news_category"]?></option>

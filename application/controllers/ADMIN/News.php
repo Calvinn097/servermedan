@@ -24,6 +24,7 @@ class News extends ADMIN_Controller {
     {
         parent::__construct();
         $this->load->model('ADMIN/Account_m');
+        $this->load->model('MAIN/Image_m');
         $this->load->model('ADMIN/Category_m');
         $this->load->model('ADMIN/News_m');
     }
@@ -72,22 +73,27 @@ class News extends ADMIN_Controller {
     public function add_news(){
     	$this->check_admin_login();
     	// vd("se",$_COOKIE);
-    	vd("post",$_POST,true);
+     //    vd("file",$_FILES,true);
+    	// vd("post",$_POST,true);
     	$data=array(
     		"news_category_id"=>$this->input->post("news_category_id",true),
     		"content"=>$this->input->post("content",true),
     		"author"=>$this->get_admin_name(),
     		"date_created"=>date("Y-m-d H:i:s"),
     		"date_edited"=>date("Y-m-d H:i:s"),
-    		"edited_by"=>$this->get_admin_name()
+    		"edited_by"=>$this->get_admin_name(),
+            "news_title"=>$this->input->post("news_title",true)
     		);
-    	$this->News_m->m_save_news($data);
+    	$news_id=$this->News_m->m_save_news($data);
+        $path = "/asset/images/news/$news_id/header_image";
+        $this->Image_m->m_upload_pic($path,$news_id,"news_id","header_image","sc_news");
     	redirect(base_url("/ADMIN/News"));
     }
 
     public function edit_news($news_id){
         $data["news"]=$this->News_m->m_get_news_by_id($news_id);
         $data["news_category"]=$this->News_m->m_get_news_category();
+
         $this->load->view("/ADMIN/edit_news",$data);
     }
 
@@ -102,7 +108,18 @@ class News extends ADMIN_Controller {
         $data["edited_by"]=$this->get_admin_name();
         $data["date_edited"]=date("Y-m-d H:i:s");
         $data["news_category_id"]=$this->input->post("news_category_id",true);
+        $datap["title"]=$this->input->post("news_title",true);
         $this->News_m->m_edit_news($news_id,$data);
+
+        $image_path = $this->News_m->m_get_news_header_image($news_id);
+        $image_path = storage_path(get_image_folder_path(get_image_folder_path($image_path)));
+        if($_FILES['userfile']['name']!=''){
+            if(file_exists($image_path)){
+                delete_folder($image_path);
+            }
+            $path = "/asset/images/news/$news_id/header_image";
+            $this->Image_m->m_upload_pic($path,$news_id,"news_id","header_image","sc_news");
+        }
         redirect("ADMIN/News");
     }
 }

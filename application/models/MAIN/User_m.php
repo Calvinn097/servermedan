@@ -76,6 +76,11 @@ class User_m extends CI_Model{
     	}
     }
 
+    function m_get_user_id_by_fb_id($fb_id){
+        return $this->db->where("fb_id",$fb_id)
+        ->get()->row_array()["fb_id"];
+    }
+
     function m_check_email_exist($email){
         $res=$this->db->where("email",$email)
         ->select("user_id,fb_id,google_id")
@@ -128,6 +133,34 @@ class User_m extends CI_Model{
             set_global_noti("User ID sudah terdaftar","danger");
         }
         
+    }
+
+    function m_insert_user_posting(){
+
+        $array=array(
+            "content"=>$this->input->post("content",true),
+            "service_type_id"=>$this->input->post("service_type_id",true),
+            "category_id"=>$this->input->post("category_id",true),
+            "sub_category_id"=>$this->input->post("sub_category_id",true),
+            "location_lat"=>$this->input->post("location_lat",true),
+            "location_lng"=>$this->input->post("location_lng",true),
+            "date_posted"=>date("Y-m-d H:i:s"),
+            "user_id"=>user_login_info()["user_id"]
+        );
+        vd("user_file",$_FILES);
+        $post_id=$this->m_insert_post($array);
+        $path = "/asset/images/post/$post_id";
+        $this->load->model("MAIN/Image_m");
+        $this->Image_m->m_upload_pic($path,$post_id,"user_post_id","image","sc_user_post");
+        vd("array",$array,true);
+
+
+    }
+
+    function m_insert_post($data){
+        $this->db->insert("sc_user_post",$data);
+        $insert_id=$this->db->insert_id();
+        return $insert_id;
     }
 }
 //asdn

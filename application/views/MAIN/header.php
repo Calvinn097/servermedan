@@ -180,7 +180,7 @@ if($this->session->flashdata("signup_err")!==null){
                         </div>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Berita</a>
+                        <a class="page-scroll" href="<?=base_url("news")?>">Berita</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">Ranking</a>

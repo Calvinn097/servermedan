@@ -7,7 +7,7 @@
                 "asset/css/homeloginrepair.css"
                 )
         );
-     $this->load->view("MAIN/logoutheader.php",$header_data) 
+     $this->load->view("MAIN/header.php",$header_data) 
 
 ?>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">

@@ -7,7 +7,7 @@
                 "asset/css/homelogin.css"
                 )
         );
-     $this->load->view("MAIN/logoutheader.php",$header_data) 
+     $this->load->view("MAIN/header.php",$header_data) 
 
 ?>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
@@ -24,24 +24,24 @@
                 <div class="col-lg-8">
                     <div class="button-bar">
                         <!--form postingan-->
-                        <form id="post_order" method="post" enctype="multipart/form-data" role="form">
+                        <form id="post_order" method="post" enctype="multipart/form-data" role="form" action="<?=base_url("User/user_posting")?>">
                             <div class="form-group">
                                 <ul class="nav navbar-nav">
                                     <li>
                                         <input type="submit" class="btn btn-info" value="locate">
                                     </li>
                                     <li>
-                                        <input class="btn btn-info" type="submit" value="attach"/>
+                                        <input type="file" name="userfile">
                                     </li>
                                     <li>
-                                        <select class="btn btn-info" name="service_type">
-                                            <option>Bring and Take Away</option>
-                                            <option>On The Spot</option>
-                                            <option>Pick Up and Return</option>
+                                        <select class="btn btn-info" name="service_type_id">
+                                            <?php foreach($service_type as $key=>$row){ ?>
+                                            <option value="<?=$row["service_type_id"]?>"><?=$row["service_type"]?></option>
+                                            <?php } ?>
                                         </select>
                                     </li>
                                     <li>
-                                        <select name="category" class="btn btn-info" required>
+                                        <select name="category_id" class="btn btn-info" required>
                                         <option value="" disabled selected>Pilih kategori anda</option>
                                             <?php foreach($this->category_list as $row){ ?>
                                                 <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
@@ -55,7 +55,7 @@
                                         </select>
                                     </li>
                                 </ul>
-                                <textarea class="form-control" rows="5" id="posting"></textarea>
+                                <textarea class="form-control" rows="5" name="content" id="posting"></textarea>
                                 <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
                             </div>
                         </form>

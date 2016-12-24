@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/matrix-style.css')?>" />
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/matrix-media.css')?>" />
 <link href="<?=base_url('/asset/font-awesome/css/font-awesome.css')?>" rel="stylesheet" />
+<link href="<?=base_url('/asset/matrix_admin_package/font-awesome/css/font-awesome.css')?>" rel="stylesheet" />
+
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/jquery.gritter.css')?>" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?=base_url('/asset/css/admin.css')?>" />

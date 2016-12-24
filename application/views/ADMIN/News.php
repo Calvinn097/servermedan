@@ -15,7 +15,7 @@ tinymce.init({
   <div class="container-fluid">
   <hr>
   <div class="widget-title"> <span class="icon"> <i class="icon-file"></i></span>
-  <h5>Recent Posts</h5>
+  <h5>Recent News</h5>
   </div>
   <div class="row-fluid">
   <div class="span12">
@@ -23,12 +23,15 @@ tinymce.init({
     <ul class="recent-posts">
     <?php foreach($news as $key=>$row){ ?>
       <li>
+        <?php if($row['header_image']!=null){ ?>
+        <img src="<?=base_url($row['header_image'])?>">
+        <?php } ?>
         <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
         <div class="article-post">
           <div class="fr"><a href="<?=base_url("ADMIN/News/edit_news/".$row["news_id"])?>" class="btn btn-primary btn-mini edit_news" data-news_id="<?=$row['news_id']?>">Edit</a> 
           <a href="#" class="btn btn-success btn-mini publish_news" data-news_id="<?=$row['news_id']?>">Publish</a> 
           <a href="#" class="btn btn-danger btn-mini delete_news" data-news_id="<?=$row['news_id']?>">Delete</a></div>
-          <span class="user-info"> By: <?=$row['author']?> / Date: <?=$row['date_created']?> / Edited:<?=$row['date_edited']?> By: <?=$row['edited_by']?> </span>
+          <span class="user-info"><h3><?=$row["news_title"]?></h3> By: <?=$row['author']?> / Date: <?=$row['date_created']?> / Edited:<?=$row['date_edited']?> By: <?=$row['edited_by']?> </span>
           <p><a href="#"><?=$row['content']?></a> </p>
         </div>
       </li>
@@ -42,6 +45,11 @@ tinymce.init({
   </div>
   </div>
   <div class="container-fluid">
+    <div class="widget-title"> <span class="icon"> <i class="icon-file"></i></span>
+    <h5>Add Posts</h5>
+    </div>
+  </div>
+  <div class="container-fluid">
   <hr>
   <div class="widget-title"> <span class="icon"> <i class="icon-file"></i></span>
   <h5>Add Posts</h5>
@@ -49,13 +57,18 @@ tinymce.init({
   <div class="row-fluid">
   <div class="span12">
     <div class="widget-content nopadding">
-    <form method="post" role="form" action="<?=base_url('/ADMIN/news/add_news')?>">
+    <form method="post" role="form" enctype="multipart/form-data" action="<?=base_url('/ADMIN/news/add_news')?>">
     <select class="form form-control" name="news_category_id">
     <?php foreach($news_category as $key=>$row){ ?>
     <option value = "<?=$row["news_category_id"]?>"><?=$row["news_category"]?></option>
     <?php } ?>
     </select>
-    <textarea id="news_area" name="content">Hello world!</textarea>
+    <br>
+    <label for="news_title">News Title</label>
+    <input type="text" name="news_title">
+    <label>Header Image</label>
+    <input type="file" name="userfile">
+    <textarea id="news_area" name="content"></textarea>
     <input type="submit" class="btn btn-success" value="Post">
     <button class="btn btn-warning btn-cancel">Cancel</button>
     </form>

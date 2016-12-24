@@ -13,6 +13,8 @@ class News_m extends CI_Model{
 
     function m_save_news($data){
         $this->db->insert("sc_news",$data);
+        $insertid = $this->db->insert_id();
+        return $insertid;
     }
 
     function m_get_news($limit=null,$offset=null){
@@ -38,8 +40,22 @@ class News_m extends CI_Model{
     }
 
     function m_delete_news($news_id){
+        $header_image = $this->m_get_news_header_image($news_id);
+        if($header_image!=null){
+            $header_image = get_image_folder_path(get_image_folder_path($header_image));
+            $header_image = storage_path($header_image);
+            if(file_exists($header_image)){
+                delete_folder($header_image);
+            }
+        }
         $this->db->where("news_id",$news_id)
         ->delete("sc_news");
+    }
+
+    function m_get_news_header_image($news_id){
+        return $this->db->select("header_image")
+        ->where("news_id",$news_id)
+        ->get("sc_news")->row_array()["header_image"];
     }
 }
 //asdn

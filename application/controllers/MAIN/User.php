@@ -23,6 +23,7 @@ class User extends MY_Controller {
 		parent::__construct();
 //		$this->load->model('MAIN/'.country_code.'/Main_home_m');
 		$this->load->model("MAIN/User_m");
+        $this->load->model("MAIN/Service_type_m");
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
 	}
@@ -106,9 +107,10 @@ class User extends MY_Controller {
         }
         $this->load->library('user_agent');
         $link = $this->agent->referrer();
+        $user_id=$this->User_m->m_get_user_id_by_fb_id($fb_id);
         $co_sign_up= array(
             'name' => 'login',
-            'value' => json_encode(array('id'=>$fb_id,'fb_acc_token'=>$accessToken)),
+            'value' => json_encode(array('user_id'=>$user_id,'id'=>$fb_id,'fb_access_token'=>$accessToken)),
             'expire' =>  3600,
             'path'=>'/',
             'prefix' => 'sm_'
@@ -138,7 +140,8 @@ class User extends MY_Controller {
 	}
     
     public function user_login_customer(){
-        $this->load->view("MAIN/homelogin");
+        $data["service_type"]=$this->Service_type_m->m_get_service_type();
+        $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
         $this->load->view("MAIN/homeloginrepair");   
@@ -160,5 +163,8 @@ class User extends MY_Controller {
     }
     public function accept(){
         $this->load->view("Main/accept");   
+    }
+    public function user_posting(){
+        $this->User_m->m_insert_user_posting();
     }
 }
