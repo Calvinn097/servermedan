@@ -140,7 +140,13 @@ class User extends MY_Controller {
 	}
     
     public function user_login_customer(){
+        if(!isset($_COOKIE["sm_login"])){
+            redirect(base_url());
+        }
+        $user_id=user_login_info()["user_id"];
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
+        $data["user_posting"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
+        // vd("data",$data);
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
@@ -160,11 +166,12 @@ class User extends MY_Controller {
     }
     public function detail_repair(){
         $this->load->view("Main/detailrepair");   
-    }
+    } 
     public function accept(){
         $this->load->view("Main/accept");   
     }
     public function user_posting(){
         $this->User_m->m_insert_user_posting();
+        redirect(base_url("user/user_login_customer"));
     }
 }

@@ -145,14 +145,15 @@ class User_m extends CI_Model{
             "location_lat"=>$this->input->post("location_lat",true),
             "location_lng"=>$this->input->post("location_lng",true),
             "date_posted"=>date("Y-m-d H:i:s"),
-            "user_id"=>user_login_info()["user_id"]
+            "user_id"=>user_login_info()["user_id"],
+            "post_title"=>$this->input->post("post_title",true)
         );
-        vd("user_file",$_FILES);
+        // vd("user_file",$_FILES);
         $post_id=$this->m_insert_post($array);
         $path = "/asset/images/post/$post_id";
         $this->load->model("MAIN/Image_m");
         $this->Image_m->m_upload_pic($path,$post_id,"user_post_id","image","sc_user_post");
-        vd("array",$array,true);
+        // vd("array",$array,true);
 
 
     }
@@ -161,6 +162,43 @@ class User_m extends CI_Model{
         $this->db->insert("sc_user_post",$data);
         $insert_id=$this->db->insert_id();
         return $insert_id;
+    }
+
+    function m_get_user_posting_by_user_id($user_id=null,$api=false){
+        $user_post= $this->db
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        c.category_name,
+        st.service_type,st.called,
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender"
+        )
+        ->where("up.user_id",$user_id)
+        ->from("sc_user_post up")
+        ->join("sc_user u","u.user_id=up.user_id")
+        ->join("sc_category c","up.category_id=c.category_id")
+        ->join("sc_service_type st","st.service_type_id = up.service_type_id")
+        ->order_by("date_posted","desc")
+        ->get()->result_array();
+        // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        foreach($user_post as $key=>$row){
+            $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+        }
+        return $user_post;
+    }
+
+    function m_get_post_comment_by_post_id($post_id){
+        $res = $this->db
+            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            pc.post_comment_id,pc.user_post_id,pc.comment,pc.date")
+            ->where("user_post_id",$post_id)
+            ->from("sc_post_comment pc")
+            ->join("sc_user u","pc.user_id=u.user_id")
+            ->order_by("pc.date","desc")
+            ->get()->result_array();
+        if(count($res)==0){
+            return array();
+        }else{
+            return $res;
+        }
     }
 }
 //asdn

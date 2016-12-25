@@ -55,7 +55,9 @@
                                         </select>
                                     </li>
                                 </ul>
+                                
                                 <textarea class="form-control" rows="5" name="content" id="posting"></textarea>
+                                <label for="post_title_input">Post Title:</label> <input id="post_title_input" type="text" name="post_title">
                                 <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
                             </div>
                         </form>
@@ -75,7 +77,32 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul>
+                            <?php foreach($user_posting as $key=>$row){ ?>
                                 <li>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title"><?=$row["post_title"]?></h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?=$row["date_posted"]?></small>
+                                            </p>
+                                            <p></p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p><?=$row["content"]?></p>
+                                            <div class="progresscust">
+                                                <div class="progress progress-striped active">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        Kategory: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
+                                        <?php if($row["image"]!=null){?>
+                                        Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
+                                        <?php } ?>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                                <!-- <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">Kerusakan mobil</h4>
@@ -181,7 +208,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <!-- /.panel-body -->
