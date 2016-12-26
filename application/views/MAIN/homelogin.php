@@ -81,13 +81,13 @@
                                 <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title"><?=$row["post_title"]?></h4>
+                                            <h4 class="timeline-title"><?=hsc($row["post_title"])?></h4><!--post title-->
                                             <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?=$row["date_posted"]?></small>
                                             </p>
                                             <p></p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p><?=$row["content"]?></p>
+                                            <p><?=hsc($row["content"])?></p><!--postcontent-->
                                             <div class="progresscust">
                                                 <div class="progress progress-striped active">
                                                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
@@ -99,6 +99,27 @@
                                         <?php if($row["image"]!=null){?>
                                         Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
                                         <?php } ?>
+                                        <b>Number of likes: <span class="<?=$row["user_post_id"]."_num_likes"?>" data-num_likes="<?=$row["like_count"]?>"><?=$row["like_count"]?></span></b> <button class="like" data-user_post_id="<?=$row["user_post_id"]?>"><?=$row["like_by_me"]?"Liked":"Like";?></button>
+                                        <div class="panel">
+                                        Comment:
+                                        <ul>
+                                            <?php foreach ($row["comment"] as $key => $value): ?>
+                                                <li>
+                                                At <?=$value["date"]?>
+                                                <?=hsc($value["fname"])?> is
+                                                <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                                <?=hsc($value["comment"])?>"
+                                                    
+                                                </li>
+                                                
+                                            <?php endforeach ?>
+                                        </ul>
+                                        <form action="<?=base_url("user/user_comment")?>" method="post">
+                                            <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
+                                            <textarea name="comment"></textarea>
+                                            <input type="submit" value="Submit comment"></input>
+                                        </form>
+                                        </div>
                                     </div>
                                 </li>
                             <?php } ?>
@@ -264,4 +285,34 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
-
+<script>
+$(".like").click(function(){
+    var button = $(this);
+    var user_post_id = $(this).data("user_post_id");
+    $.ajax({
+        url:"<?=base_url("user/user_post_like_action")?>",
+        type:"post",
+        dataType:"json",
+        data:{
+            user_post_id:user_post_id
+        },
+        success:function(res){
+            if(res["like"]==true){
+                button.html("Liked");
+                $like_span = $("."+user_post_id+"_num_likes");
+                $num_like = $like_span.data("num_likes");
+                $num_like++;
+                $like_span.data("num_likes",$num_like);
+                $like_span.html($num_like);
+            }else if(res["like"]==false){
+                button.html("Like");
+                $like_span = $("."+user_post_id+"_num_likes");
+                $num_like = $like_span.data("num_likes");
+                $num_like--;
+                $like_span.data("num_likes",$num_like);
+                $like_span.html($num_like);
+            }
+        }
+    })
+})
+</script>

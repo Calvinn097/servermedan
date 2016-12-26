@@ -181,6 +181,8 @@ class User_m extends CI_Model{
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
         foreach($user_post as $key=>$row){
             $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
+            $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
         }
         return $user_post;
     }
@@ -192,13 +194,66 @@ class User_m extends CI_Model{
             ->where("user_post_id",$post_id)
             ->from("sc_post_comment pc")
             ->join("sc_user u","pc.user_id=u.user_id")
-            ->order_by("pc.date","desc")
+            ->order_by("pc.date","asc")
             ->get()->result_array();
         if(count($res)==0){
             return array();
         }else{
             return $res;
         }
+    }
+
+    function m_get_user_post_like_count($user_post_id){
+        return $this->db->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_user_post_like");
+    }
+
+    function m_get_user_post_liked_by_me($user_post_id,$user_id){
+        $res = $this->db->where("user_post_id",$user_post_id)
+        ->where("user_id",$user_id)
+        ->count_all_results("sc_user_post_like");
+        if($res>0)
+            return true;
+        return false;
+    }
+
+    function m_user_comment($user_id){
+        $post_id = $this->input->post("user_post_id",true);
+        $comment = $this->input->post("comment",true);
+        $data = array(
+            "user_post_id"=>$post_id,
+            "comment"=>$comment,
+            "user_id"=>$user_id,
+            "date"=>date("Y-m-d H:i:s")
+        );
+        $this->db->insert("sc_post_comment",$data);
+    }
+
+    function m_user_post_like_action($user_post_id,$user_id){
+        $liked_by_user = $this->m_check_user_post_liked_by_user_id($user_post_id,$user_id);
+        if(!$liked_by_user){
+            $data = array(
+            "user_post_id"=>$user_post_id,
+            "user_id"=>$user_id,
+            "date_liked"=>date("Y-m-d H:i:s")
+            );
+            $this->db->insert("sc_user_post_like",$data);
+            return true;
+        }else{
+            $this->db->where("user_id",$user_id)
+            ->where("user_post_id",$user_post_id)
+            ->delete("sc_user_post_like");
+            return false;
+        }
+    }
+
+    function m_check_user_post_liked_by_user_id($user_post_id,$user_id){
+        $res = $this->db->where("user_post_id",$user_post_id)
+        ->where("user_id",$user_id)
+        ->count_all_results("sc_user_post_like");
+        if($res>0)
+            return true;
+        return false;
     }
 }
 //asdn

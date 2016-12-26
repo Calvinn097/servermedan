@@ -174,4 +174,23 @@ class User extends MY_Controller {
         $this->User_m->m_insert_user_posting();
         redirect(base_url("user/user_login_customer"));
     }
+
+    public function user_comment(){
+        $user_id = user_login_info()["user_id"];
+        $this->User_m->m_user_comment($user_id);
+        redirect(base_url("user/user_login_customer"));
+    }
+
+    public function user_post_like_action(){
+        $user_post_id = $this->input->post("user_post_id",true);
+        $user_id = user_login_info()["user_id"];
+        $result = $this->User_m->m_user_post_like_action($user_post_id,$user_id);
+        //$result == false means unliked if result==true means liked
+        if($result){
+            echo json_encode(array("like"=>true));
+        }else{
+            echo json_encode(array("like"=>false));
+        }
+
+    }
 }
