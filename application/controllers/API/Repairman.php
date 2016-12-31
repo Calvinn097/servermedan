@@ -16,7 +16,7 @@ require_once APPPATH.'libraries/REST_Controller.php';
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class Category extends REST_Controller {
+class Repairman extends REST_Controller {
 
     function __construct()
     {
@@ -28,28 +28,19 @@ class Category extends REST_Controller {
         $this->methods['user_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['user_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key
-        $this->load->model('Main/Category_m');
+        $this->load->model('Main/User_m');
+        $this->load->model('Main/Repairman_m');
     }
 
-
-    public function index_get()
-    {
-        die($id);
-        $data = $this->Category_m->m_get_category();
-        if($data==false){
-            $this->response(["status"=>false,"data"=>"No data"], REST_Controller::HTTP_OK);
-        }else{
-            $this->response(["status"=>true,"data"=>$data], REST_Controller::HTTP_OK);
+    public function index_get(){
+        $email = $this->get("email");
+        $repairman = $this->Repairman_m->m_get_repairman($email);
+        if($repairman==null){
+            $this->response(["status"=>false,"data"=>$repairman], REST_Controller::HTTP_OK);    
         }
+        else{
+            $this->response(["status"=>true,"data"=>$repairman], REST_Controller::HTTP_OK);
+        }
+        
     }
-
-    public function sub_category_get(){
-        $category_id=$this->get("category_id");
-        $data=$this->Category_m->m_get_sub_category_by_category_id($category_id);
-        if($data==false){
-            $this->response(["status"=>false,"data"=>"No data"], REST_Controller::HTTP_OK);
-        }else{
-            $this->response(["status"=>true,"data"=>$data], REST_Controller::HTTP_OK);
-        }
-    }   
 }

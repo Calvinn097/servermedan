@@ -9,6 +9,14 @@ class Category_m extends CI_Model{
     function m_get_category($api=false){
         return $this->db->get("sc_category")->result_array();
     }
+    function m_get_sub_category_list(){
+        return $this->db->get("sc_sub_category")->result_array();
+    }
+    function m_get_sub_category_by_category_id($category_id){
+        return $this->db->where("category_id",$category_id)
+        ->from("sc_sub_category")
+        ->get()->result_array();
+    }
     function m_insert_user($api=false)
     {
         $fname=strtolower($this->input->post("fname",true));

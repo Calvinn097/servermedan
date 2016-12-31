@@ -10,6 +10,53 @@
      $this->load->view("MAIN/header.php",$header_data) 
 
 ?>
+<style>
+    #map {
+        height: 70%;
+    }
+    .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /*#gmap_input {*/
+        /*background-color: #fff;*/
+        /*font-family: Roboto;*/
+        /*font-size: 15px;*/
+        /*font-weight: 300;*/
+        /*margin-left: 12px;*/
+        /*padding: 0 11px 0 13px;*/
+        /*text-overflow: ellipsis;*/
+        /*width: 300px;*/
+    /*}*/
+
+    #gmap_input:focus {
+        border-color: #4d90fe;
+    }
+
+    /*.pac-container {*/
+        /*font-family: Roboto;*/
+    /*}*/
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+    #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+</style>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
 
     <div id="wrapper">
@@ -28,7 +75,8 @@
                             <div class="form-group">
                                 <ul class="nav navbar-nav">
                                     <li>
-                                        <input type="submit" class="btn btn-info" value="locate">
+                                        <!-- <input type="submit" class="btn btn-info" value="locate"> -->
+                                        
                                     </li>
                                     <li>
                                         <input type="file" name="userfile">
@@ -57,7 +105,28 @@
                                 </ul>
                                 
                                 <textarea class="form-control" rows="5" name="content" id="posting"></textarea>
+                                <!-- select location on map -->
+                                <input type="hidden" name="user_lat" id="user_lat">
+                                <input type="hidden" name="user_lng" id="user_lng">
                                 <label for="post_title_input">Post Title:</label> <input id="post_title_input" type="text" name="post_title">
+                                <div class="box-tools pull-right">
+                                    <a type="button" class="btn btn-info" title="locate map" data-toggle="collapse" data-target="#locate_map">Pilih lokasi di peta</a>
+                                </div>
+                                <div id="locate_map" class="collapse">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="map"></div>
+                                        </div>
+                                    </div>
+                                    <label for="address">Alamat:</label>
+                                    <input type="text" name="address" id="address">
+                                </div>
                                 <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
                             </div>
                         </form>
@@ -315,4 +384,85 @@ $(".like").click(function(){
         }
     })
 })
+$("document").ready(function(){
+    initMap();
+})
 </script>
+
+<!-- google map script -->
+<script>
+    function initMap() {
+        var marker2;
+        var geocoder = new google.maps.Geocoder();
+        var map = new google.maps.Map(document.getElementById('map'));
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('gmap_input'));
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+//        var options = {
+//            types: ['(cities)'],
+//            componentRestrictions: {country: "id"}
+//        };
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.setComponentRestrictions({country:"id"});
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed',autocomplete_function);
+        google.maps.event.addListener(map, 'click', function( event ) {
+            if (typeof marker2 != 'undefined') {
+                marker2.setMap(null);
+            }
+            if (typeof marker != 'undefined') {
+                marker.setMap(null);
+            }
+//            alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+            var myLatlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+            $("#user_lat").val(event.latLng.lat());
+            $("#user_lng").val(event.latLng.lng());
+            marker2 = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+            marker2.setMap(map);
+        });
+
+
+        function autocomplete_function() {
+            infowindow.close();
+            marker.setVisible(true);
+            var place = this.getPlace();
+
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            $("#user_lat").val(place.geometry.location.lat());
+            $("#user_lng").val(place.geometry.location.lng());
+//            marker.setIcon(/** @type {google.maps.Icon} */({
+//                url: place.icon,
+//                size: new google.maps.Size(71, 71),
+//                origin: new google.maps.Point(0, 0),
+//                anchor: new google.maps.Point(17, 34),
+//                scaledSize: new google.maps.Size(35, 35)
+//            }));
+            marker.setPosition(place.geometry.location);
+        }
+    }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7DAYC5xAZ2cARU_7olhRhRtVgcV3jeWc&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>

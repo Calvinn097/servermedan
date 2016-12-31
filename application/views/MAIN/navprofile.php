@@ -14,7 +14,7 @@
                             <!-- /input-group -->
                         </li>
                 <li>
-                    <a href="<?=base_url("user/userloginrepair")?>"><i class="fa fa-dashboard fa-fw"></i>Repairman</a>
+                    <a href="<?=base_url("user/user_login_repair")?>"><i class="fa fa-dashboard fa-fw"></i>Repairman</a>
                 </li>
                 <li>
                     <img scr="<?=base_url("asset/images/smartphone.jpg")?>" width=50px height=50px/>

@@ -31,6 +31,18 @@ class User extends REST_Controller {
         $this->load->model('Main/User_m');
     }
 
+    public function index_get(){
+        $email = $this->get("email");
+        $user = $this->User_m->m_get_user_by_email($email);
+        if($user==null){
+            $this->response(["status"=>false,"data"=>$user], REST_Controller::HTTP_OK);    
+        }
+        else{
+            $this->response(["status"=>true,"data"=>$user], REST_Controller::HTTP_OK);    
+        }
+        
+    }
+
 
 
     public function login_post()

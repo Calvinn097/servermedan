@@ -135,8 +135,14 @@ class User_m extends CI_Model{
         
     }
 
-    function m_insert_user_posting(){
+    function m_get_user_by_email($email){
+        return $this->db->where("email",$email)
+        ->from("sc_user")
+        ->get()->row_array();
+    }
 
+    function m_insert_user_posting(){
+       // vd("post",$_POST,true);
         $array=array(
             "content"=>$this->input->post("content",true),
             "service_type_id"=>$this->input->post("service_type_id",true),
@@ -146,7 +152,10 @@ class User_m extends CI_Model{
             "location_lng"=>$this->input->post("location_lng",true),
             "date_posted"=>date("Y-m-d H:i:s"),
             "user_id"=>user_login_info()["user_id"],
-            "post_title"=>$this->input->post("post_title",true)
+            "post_title"=>$this->input->post("post_title",true),
+            "user_lat"=>$this->input->post("user_lat",true),
+            "user_lng"=>$this->input->post("user_lng",true),
+            "address"=>$this->input->post("address",true)
         );
         // vd("user_file",$_FILES);
         $post_id=$this->m_insert_post($array);

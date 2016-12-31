@@ -193,4 +193,13 @@ class User extends MY_Controller {
         }
 
     }
+
+    public function become_repairman(){
+        $user_id = user_login_info()["user_id"];
+        $this->User_m->m_become_repairman("user_id");
+        set_global_noti("Success Become Repairman");
+        redirect(base_url("user/user_login_customer"));
+    }
+    
+    
 }
