@@ -24,6 +24,7 @@ class User extends MY_Controller {
 //		$this->load->model('MAIN/'.country_code.'/Main_home_m');
 		$this->load->model("MAIN/User_m");
         $this->load->model("MAIN/Service_type_m");
+        $this->load->model("MAIN/Repairman_m");
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
 	}
@@ -62,7 +63,7 @@ class User extends MY_Controller {
             else
             	$period="Selamat malam";
 
-            set_global_noti("Hi ".$status["fname"].", $period","Success");
+            set_global_noti("Hi ".$status["fname"].", $period","warning");
 		}else{
 			set_global_noti("Email/Password salah!","Warning");
 		}
@@ -125,7 +126,7 @@ class User extends MY_Controller {
         else
             $period="Selamat malam";
 
-        set_global_noti("Hi ".$first_name.", $period","Success");
+        set_global_noti("Hi ".$first_name.", $period","warning");
         
 
     }
@@ -135,7 +136,7 @@ class User extends MY_Controller {
 		unset($_COOKIE["sm_login"]);
         setcookie('sm_login', '', time() - 3600, '/');
         $this->load->library('user_agent');
-        set_global_noti("Anda berhasil melakukan logout","Success");
+        set_global_noti("Anda berhasil melakukan logout","warning");
         redirect($this->agent->referrer(),"refresh");
 	}
     
@@ -150,7 +151,18 @@ class User extends MY_Controller {
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
-        $this->load->view("MAIN/homeloginrepair");   
+        $user_id=user_login_info()["user_id"];
+        $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+        if($repairman_id==null){
+            set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
+            redirect();
+        }
+        $data["repairman_id"]=$repairman_id;
+        $data["user_id"]=$user_id;
+        $data["timeline"]=$this->Repairman_m->m_get_user_posting_by_repairman_id($repairman_id);
+        $data["service_type"]=$this->Service_type_m->m_get_service_type();
+        vd("Data",$data);
+        $this->load->view("MAIN/homeloginrepair",$data);
     }
     public function maps(){
         $this->load->view("MAIN/maps");
@@ -196,10 +208,8 @@ class User extends MY_Controller {
 
     public function become_repairman(){
         $user_id = user_login_info()["user_id"];
-        $this->User_m->m_become_repairman("user_id");
-        set_global_noti("Success Become Repairman");
-        redirect(base_url("user/user_login_customer"));
-    }
-    
-    
+        $this->User_m->m_become_repairman($user_id);
+        set_global_noti("Success Become Repairman","warning");
+        redirect(base_url("user/user_login_repair"));
+    }    
 }

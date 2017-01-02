@@ -29,6 +29,38 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        <?php $counter=0;?>
+                            <?php foreach($timeline as $key=>$row){ ?>
+                            <?php if(($counter)==0){ ?>
+                                    <div class="row post">    
+                            <?php } ?>
+                            <?php if(($counter)%2==0 && $counter!=0){ ?>
+                            </div>
+                            <div class="row post">
+                            <?php } ?>
+                                    <div class="col-md-6">
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                            Posted by: <?=$row["fname"]." ".$row["lname"]?>
+                                                <h4 class="timeline-title"><?=$row["post_title"]?></h4>
+                                                <p><small class="text-muted"><i class="fa fa-clock-o"></i><?=$row["date_posted"]?></small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p class="over">
+                                                <?=$row["content"]?>
+                                                </p>
+                                            </div>
+                                            Category:<?=$row["category_name"]?>
+                                            Service Type:<?=$row["service_type"]?>
+                                            <img src="<?=base_url($row["image"])?>">
+
+                                        </div>
+                                    </div>
+
+                                
+                            <?php $counter++; }//akhir foreach ?>                   
+<!-- 
                             <div class="row post">
                                 <div class="col-md-6">
                                     <div class="timeline-panel">
@@ -102,6 +134,7 @@
                                     </div>
                                 </div>
                             </div>
+                             -->
                         </div>
                         <!-- /.panel-body -->
                     </div>

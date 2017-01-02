@@ -264,5 +264,25 @@ class User_m extends CI_Model{
             return true;
         return false;
     }
+
+    function m_become_repairman($user_id){
+        if($this->m_check_repairman_exist_by_user_id($user_id)>0){
+
+        }else{
+            $data=array(
+                "user_id"=>$user_id
+            );
+            $this->db->insert("sc_repairman",$data);
+            $insert_id = $this->db->insert_id();
+            $data=array(
+                "user_level"=>$insert_id
+            );
+            $this->db->where("user_id",$user_id)
+            ->update("sc_user",$data);
+        }
+    }
+    function m_check_repairman_exist_by_user_id($user_id){
+        return $this->db->where("user_id",$user_id)->count_all_results("sc_repairman");
+    }
 }
 //asdn

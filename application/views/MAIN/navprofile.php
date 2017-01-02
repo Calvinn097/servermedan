@@ -17,6 +17,9 @@
                     <a href="<?=base_url("user/user_login_repair")?>"><i class="fa fa-dashboard fa-fw"></i>Repairman</a>
                 </li>
                 <li>
+                  <a href="<?=base_url("user/become_repairman")?>">Become Repairman</a>
+                </li>
+                <li>
                     <img scr="<?=base_url("asset/images/smartphone.jpg")?>" width=50px height=50px/>
                     <!--img profile pengguna-->
                 </li>
