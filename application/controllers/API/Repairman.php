@@ -43,4 +43,23 @@ class Repairman extends REST_Controller {
         }
         
     }
+
+    public function banner_get(){
+        $repairman_id = $this->get("repairman_id");
+        if($repairman_id!=null){
+            $data=$this->Repairman_m->m_get_request_banner_by_repairman_id($repairman_id);
+            if(count($data)==0 && !is_array($data)){
+                $this->response(["status"=>false,"data"=>$data],REST_Controller::HTTP_OK);
+            }else{
+                $this->response(["status"=>true,"data"=>$data],REST_Controller::HTTP_OK);
+            }
+        }else{
+            $data=$this->Repairman_m->m_get_request_banner();
+            if(count($data)==0 && !is_array($data)){
+                $this->response(["status"=>false,"data"=>$data],REST_Controller::HTTP_OK);
+            }else{
+                $this->response(["status"=>true,"data"=>$data],REST_Controller::HTTP_OK);
+            }
+        }
+    }
 }

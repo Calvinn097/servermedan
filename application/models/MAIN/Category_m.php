@@ -68,5 +68,29 @@ class Category_m extends CI_Model{
             }
         }
     }
+    function m_get_sub_category($sub_category_id=null){
+        if($sub_category_id!==null){
+            $this->db->where('sub_category_id',$sub_category_id);
+        }
+        $this->db->select('sc_sub_category.sub_category_id,sc_sub_category.category_id,sub_category_name,service,reparation,jasa,category_name')
+        ->from('sc_sub_category')
+        ->join('sc_category',"sc_sub_category.category_id=sc_category.category_id");
+        if($sub_category_id!==null){
+            return $this->db->get()->row_array();
+        }else{
+            $data=$this->db->get()->result_array();
+            foreach($data as $key=>$row){
+                $array[$row['category_name']][]=$row;
+            }
+            return $array;
+        }
+    }
+
+    // function m_get_sub_category_by_category_id($category_id){
+    //     return $this->db->select('sc_sub_category.sub_category_id,sc_sub_category.category_id,sub_category_name,service,reparation,jasa,category_name')
+    //     ->from('sc_sub_category')
+    //     ->join('sc_category',"sc_sub_category.category_id=sc_category.category_id")
+    //     ->where("sc_category.category_id",$category_id)->get()->result_array();
+    // }
 }
 //asdn

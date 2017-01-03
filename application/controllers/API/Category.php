@@ -34,7 +34,7 @@ class Category extends REST_Controller {
 
     public function index_get()
     {
-        die($id);
+        //die($id);
         $data = $this->Category_m->m_get_category();
         if($data==false){
             $this->response(["status"=>false,"data"=>"No data"], REST_Controller::HTTP_OK);

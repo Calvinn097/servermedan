@@ -76,5 +76,51 @@ class Repairman_m extends CI_Model{
         return false;
     }
 
+    function m_insert_request_banner($dat=array(),$api=false){
+        $user_id = $dat["user_id"];
+        $repairman_id=$this->m_get_repairman_id_by_user_id($user_id);
+        if($repairman_id==null){
+            if($api){
+                return "Harus jadi repairman dulu!";
+            }
+            else{
+                set_global_noti("Harus jadi repairman dulu!","Warning");
+                return false;
+            }
+        }
+        $data=array(
+            "repairman_id"=>$repairman_id,
+            "category_id"=>$this->input->post("category_id",true),
+            "sub_category_id"=>$this->input->post("sub_category_id",true)
+        );
+        $this->db->insert("sc_banner_repairman",$data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+
+    function m_get_request_banner(){
+        $res= $this->db->get("sc_banner_repairman")->result_array();
+        foreach($res as $key=>$row){
+            $res[$key]["path"]=base_url($row["path"]);
+        }
+        return $res;
+    }
+
+    function m_get_request_banner_by_repairman_id($repairman_id){
+        $res= $this->db->where("repairman_id",$repairman_id)
+        ->get("sc_banner_repairman")->result_array();
+        foreach($res as $key=>$row){
+            $res[$key]["path"]=base_url($row["path"]);
+        }
+        return $res;
+    }
+
+    function m_delete_request_banner($banner_id){
+        return $this->db->where("repairman_banner_id",$banner_id)
+        ->delete("sc_banner_repairman");
+    }
+
+
+
 }
 //asdn
