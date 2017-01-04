@@ -8,7 +8,9 @@
 class Repairman_m extends CI_Model{
     function m_get_repairman($email){
         return $this->db->where("email",$email)
-        ->from("sc_user")->get()->result_array();
+        ->from("sc_user")
+        ->join("sc_repairman","sc_user.user_level=sc_repairman.repairman_id")
+        ->get()->result_array();
     }
     function m_get_repairman_id_by_user_id($user_id){
     	return $this->db->where("user_id",$user_id)
@@ -91,7 +93,8 @@ class Repairman_m extends CI_Model{
         $data=array(
             "repairman_id"=>$repairman_id,
             "category_id"=>$this->input->post("category_id",true),
-            "sub_category_id"=>$this->input->post("sub_category_id",true)
+            "sub_category_id"=>$this->input->post("sub_category_id",true),
+            "date"=>date("Y-m-d H:i:s")
         );
         $this->db->insert("sc_banner_repairman",$data);
         $insert_id = $this->db->insert_id();

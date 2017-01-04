@@ -106,15 +106,4 @@ $(".btn-cancel").click(function(e){
     var tinymce_editor_id = 'news_area'; 
     tinymce.get(tinymce_editor_id).setContent('');
 });
-$(".edit_news").click(function(e){
-    
-
-
-});
-$(".publish_news").click(function(){
-
-});
-$(".delete_news").click(function(){
-
-});
 </script>
