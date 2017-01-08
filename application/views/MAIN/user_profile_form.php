@@ -1,4 +1,4 @@
-<?=vd("at",$repairman)?>
+<?=vd("at",$user)?>
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
@@ -13,13 +13,13 @@
 
 ?>
 <div class="container" style="width:50%;">
-<form action="<?=base_url("repairman/edit_profile")?>" method="post">
+<form action="<?=base_url("user/edit_profile")?>" method="post">
 	<div class="row">
 		<div class="col-md-3">
 		First Name:
 		</div>
 		<div class="col-md-3">
-		<input type="text" name="user[fname]" value="<?=$repairman["fname"]?>">
+		<input type="text" name="user[fname]" value="<?=$user["fname"]?>">
 		</div>
 	</div>
 	<div class="row">
@@ -27,7 +27,7 @@
 		Last Name:
 		</div>
 		<div class="col-md-3">
-		<input type="text" name="user[lname]" value="<?=$repairman["lname"]?>">
+		<input type="text" name="user[lname]" value="<?=$user["lname"]?>">
 		</div>
 	</div>
 	<div class="row">
@@ -35,7 +35,7 @@
 		Email:
 		</div>
 		<div class="col-md-3">
-		<?=$repairman["email"]?>
+		<?=$user["email"]?>
 		<!-- <input type="email" value="<?=$repairman["email"]?>" name="email"> -->
 		</div>
 	</div>
@@ -44,8 +44,8 @@
 		Gender:
 		</div>
 		<div class="col-md-3">
-		<input type="radio" name="user[gender]" value="male" <?=$repairman["gender"]=="male"?"checked":""?>> Male<br>
-  		<input type="radio" name="user[gender]" value="female" <?=$repairman["gender"]=="female"?"checked":""?>> Female<br>
+		<input type="radio" name="user[gender]" value="male" <?=$user["gender"]=="male"?"checked":""?>> Male<br>
+  		<input type="radio" name="user[gender]" value="female" <?=$user["gender"]=="female"?"checked":""?>> Female<br>
 		</div>
 	</div>
 	<div class="row">
@@ -53,7 +53,7 @@
 		Phone Number:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["phone_number"]?>" name="user[phone_number]">
+		<input type="text" value="<?=$user["phone_number"]?>" name="user[phone_number]">
 		</div>
 	</div>
 	<div class="row">
@@ -61,7 +61,7 @@
 		State:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["state"]?>" name="user[state]">
+		<input type="text" value="<?=$user["state"]?>" name="user[state]">
 		</div>
 	</div>
 	<div class="row">
@@ -69,7 +69,7 @@
 		Address:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["address"]?>" name="user[address]">
+		<input type="text" value="<?=$user["address"]?>" name="user[address]">
 		</div>
 	</div>
 	<div class="row">
@@ -77,14 +77,8 @@
 		Postal:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["postal"]?>" name="user[postal]">
+		<input type="text" value="<?=$user["postal"]?>" name="user[postal]">
 		</div>
-	</div>
-	<div class="row">
-	<div class="col-md-3">
-	Keahlian:
-	</div>
-	<textarea name="repairman[keahlian]"><?=$repairman["keahlian"]?></textarea>
 	</div>
 
 	<input type="submit" value="Simpan">

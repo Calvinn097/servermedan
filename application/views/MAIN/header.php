@@ -151,7 +151,7 @@ if($this->session->flashdata("signup_err")!==null){
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="<?=base_url()?>">
                     <i class="fa fa-play-circle"></i> <span class="light">Server</span> Medan
                 </a>
             </div>
@@ -170,12 +170,12 @@ if($this->session->flashdata("signup_err")!==null){
                                 <?php foreach($this->category_list as $row){ ?>
                                 <li><?=$row['category_name']?></li>
                                 <?php } ?>
-                                <li>Perabotan rumah tangga</li>
+                                <!-- <li>Perabotan rumah tangga</li>
                                 <li>Gadget</li>
                                 <li>Kendaraan</li>
                                 <li>Listrik</li>
                                 <li>Bangunan</li>
-                                <li>Saluran Air</li>
+                                <li>Saluran Air</li> -->
                             </ul>
                         </div>
                     </li>
@@ -183,7 +183,7 @@ if($this->session->flashdata("signup_err")!==null){
                         <a class="page-scroll" href="<?=base_url("news")?>">Berita</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Ranking</a>
+                        <a class="page-scroll" href="<?=base_url("user/rank")?>">Ranking</a>
                     </li>
                     <?php if(!isset($_COOKIE["sm_login"])){ ?> 
                     <li>
@@ -199,13 +199,17 @@ if($this->session->flashdata("signup_err")!==null){
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="<?=base_url("user/user_login_customer")?>">Dasbor user</a></li>
+
                                 <?php if(json_decode($this->input->cookie("sm_login"),true)["user_level"]!=null){ ?>
                                 <li><a href="<?=base_url("user/user_login_repair")?>">Dasbor repairman</a></li>
                                 <?php }?>
+
                                 <?php if(json_decode($this->input->cookie("sm_login"),true)["user_level"]!=null){ ?>
-                                <li><a href="<?=base_url("repairman/profile")?>">Profile Repairman</a></li>
-                                <?php }?>
+                                <li><a href="<?=base_url("repairman/profile")?>">Profile</a></li>
+                                <?php }else{?>
                                 <li><a href="<?=base_url("user/profile")?>">Profile user</a></li>
+                                <?php }?>
+
                                 <li><a href="<?=base_url('user/logout')?>">Logout</a></li>
                             </ul>
                         </div>
@@ -273,6 +277,7 @@ if($this->session->flashdata("signup_err")!==null){
             </div>
             <div class="glogin">
                 <button type="button" class="btn btn" id="glogin"><img src="<?=base_url("asset/images/Google_plus.png")?>"/>Google+ Login</button>
+                <a href="<?=base_url('user/forgot_password')?>" type="button" class="btn btn-danger" >Forgot Password</a>
             </div>
         </div>
       <div class="modal-footer">

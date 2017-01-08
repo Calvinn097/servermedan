@@ -12,6 +12,9 @@
      $this->load->view("MAIN/header.php",$header_data) 
 
 ?>
+<?php if(count($repairman)==0){ ?>
+not found
+<?php }else{ ?>
 <div class="container" style="width:50%;">
 	<div class="row">
 		<div class="col-md-3">
@@ -93,5 +96,14 @@
 		<?=$repairman["number_job"]?>
 		</div>
 	</div>
+	<div class="row">
+	<div class="col-md-3">
+		Keahlian:
+		</div>
+		<div class="col-md-3">
+		<?=$repairman["keahlian"]?>
+		</div>
+	</div>
 	<a href="<?=base_url("repairman/edit_profile_form")?>">Edit</a>
 </div>
+<?php } ?>

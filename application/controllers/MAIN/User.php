@@ -211,4 +211,82 @@ class User extends MY_Controller {
         set_global_noti("Success Become Repairman","warning");
         redirect(base_url("user/user_login_repair"));
     }
+
+    public function profile(){
+        $user_id = user_login_info()["user_id"];
+        $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+        $this->load->view("MAIN/user_profile",$data);
+    }
+
+    public function edit_profile_form(){
+        $user_id = user_login_info()["user_id"];
+        $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+        $this->load->view("MAIN/user_profile_form",$data);
+    }
+
+    public function edit_profile(){
+        $user_id = user_login_info()["user_id"];
+        $this->User_m->m_edit_user_profile($user_id);
+        redirect(base_url("user/profile"));
+    }
+
+    public function forgot_password(){
+        $this->load->view("MAIN/forgot_password");
+    }
+
+    function check_user_email(){
+        //============= forget password ======================
+
+        // kirim email ke alamat email untuk pemulihan akun
+        $email = $this->input->post("email",true);
+        $nama=$this->User_m->m_get_user_name_by_email($email);
+        if(!$this->User_m->m_check_email_exist_2($email)){
+            set_global_noti("Email not exist","warning");
+            redirect(base_url("user/forgot_password"));
+        }
+        $first_name = $nama["fname"];
+        $last_name = $nama["lname"];
+        $activation_code = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),0,30);
+        $activation_code= md5($activation_code);
+        $message="
+        <h1>Activation Link</h1>
+        <p>Hello $first_name, $last_name,</p>
+        <p>Please click <a href='".base_url('/user/password_recovery?q='.$activation_code.'&e='.$email)."'>this</a> to set your new password</p>
+        ";
+        $this->User_m->m_forgot_password($email,$activation_code);
+        send_email(WEBNAME,$email,"Recover Your Password from ServerMedan",$message);
+        set_global_noti("Recovery Link has been sent to your email","warning");
+
+        $this->load->library('user_agent');
+        redirect($this->agent->referrer());
+    }
+
+    function password_recovery()
+    {
+        $code = $this->input->get("q",true);
+        $email = $this->input->get("e",true);
+        $data["email"]=$email;
+        $data["code"]=$code;
+        $valid = $this->User_m->m_forgot_password_validation($email,$code);
+        if($valid){
+//            $this->load->view('/MAIN/'.country_code.'/recover_password',$data);
+            $this->load->view('/MAIN/recover_password',$data);
+        }
+        else{
+//            $this->load->view('/MAIN/'.country_code.'/page_error');
+            set_global_noti("Invalid Access","warning");
+            redirect();
+        }
+    }
+    function change_password_recovery(){
+        $user_id = user_login_info()["user_id"];
+        $result  =$this->User_m->m_change_password_via_recovery($user_id);
+        if($result>0){
+            set_global_noti("Password changed","warning");
+        }
+        else{
+            set_global_noti("Password fail to change","warning");   
+        }
+        redirect(base_url());
+    }
 }

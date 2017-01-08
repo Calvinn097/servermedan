@@ -66,4 +66,30 @@ class User extends REST_Controller {
             $this->response(["status"=>false,"data"=>$data["data"]], REST_Controller::HTTP_OK);
         }
     }
+
+    public function forgot_password_post(){
+        $email = $this->input->post("email",true);
+        $nama=$this->User_m->m_get_user_name_by_email($email);
+        if(!$this->User_m->m_check_email_exist_2($email)){
+            $this->response(["status"=>false,"data"=>"email tidak ditemukan"], REST_Controller::HTTP_OK);
+            return;
+            // set_global_noti("Email not exist","warning");
+            // redirect(base_url("user/forgot_password"));
+        }
+        $first_name = $nama["fname"];
+        $last_name = $nama["lname"];
+        $activation_code = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),0,30);
+        $activation_code= md5($activation_code);
+        $message="
+        <h1>Activation Link</h1>
+        <p>Hello $first_name, $last_name,</p>
+        <p>Please click <a href='".base_url('/user/password_recovery?q='.$activation_code.'&e='.$email)."'>this</a> to set your new password</p>
+        ";
+        $this->User_m->m_forgot_password($email,$activation_code);
+        send_email(WEBNAME,$email,"Recover Your Password from ServerMedan",$message);
+        $this->response(["status"=>true,"data"=>"Cek email anda."], REST_Controller::HTTP_OK);
+        // set_global_noti("Recovery Link has been sent to your email","warning");
+    }
+
+
 }

@@ -53,9 +53,17 @@ class Curltest extends CI_Controller {
         // $url = base_url("API/Repairman/banner"); //get subcategory by categoryid
         // $url=base_url("API/post/repairman?user_id=17"); //ambil postingan user semuanya dan status apakah dilike oleh repairman
 
-        $url=base_url("API/post/user?user_id=9");
-        
+        // $url=base_url("API/post/user?user_id=9");
+
+        $url=base_url("API/user/forgot_password");
+        $field=array("email"=>"calvinwangxz@gmail.com");
+        $field_string = http_build_query($field);
         $ch = curl_init();
+        curl_setopt($ch,CURLOPT_POST,count($field));
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$field_string);
+
+        
+
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $res=curl_exec($ch);

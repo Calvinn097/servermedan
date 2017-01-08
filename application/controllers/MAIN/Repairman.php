@@ -29,10 +29,15 @@ class Repairman extends MY_Controller {
         $this->load->model("MAIN/Category_m");
         $user_id=user_login_info()["user_id"];
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
-        if($repairman_id==null){
-            set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
-            redirect();
+        // die($this->uri->segment(2));
+        $whitelist=array("profile");
+        if(!in_array($this->uri->segment(2), $whitelist)){
+            if($repairman_id==null){
+                set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
+                redirect();
+            }
         }
+        
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
 	}
@@ -70,9 +75,12 @@ class Repairman extends MY_Controller {
         $this->Repairman_m->m_delete_request_banner($repairman_banner_id);
         redirect(base_url("/Repairman/lihat_banner"));
     }
-    public function profile(){
-    	$user_id = user_login_info()["user_id"];
-    	$repairman_id = $this->get_repairman_id($user_id);
+    public function profile($repairman_id){
+        if($repairman_id ==null){
+            $user_id = user_login_info()["user_id"];
+            $repairman_id = $this->get_repairman_id($user_id);
+        }
+    	
     	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
     	$this->load->view("MAIN/repairman_profile",$data);
     }

@@ -97,6 +97,13 @@ class User_m extends CI_Model{
             return "CLEAR";
         }
     }
+    function m_check_email_exist_2($email){
+        $res=$this->db->where("email",$email)->count_all_results("sc_user");
+        if($res>0){
+            return true;
+        }
+        return false;
+    }
 
     function m_check_fb_exist($fb_id){
         $res = $this->db->where("fb_id",$fb_id)
@@ -135,10 +142,66 @@ class User_m extends CI_Model{
         
     }
 
+    function m_get_user_name_by_email($email){
+        $res=$this->db->where("email",$email)
+        ->select("fname,lname")
+        ->get("sc_user")->row_array();
+        return $res;
+    }
+    function m_forgot_password($email,$code){
+        $data = array(
+            "pass_recovery"=>$code
+        );
+        $this->db->where("email",$email);
+        $this->db->update("sc_user",$data);
+    }
+    function m_forgot_password_validation($email,$code){
+        if($code==null){
+            return false;
+        }
+        $res=$this->db->where("email",$email)
+        ->where("pass_recovery",$code)
+        ->count_all_results("sc_user");
+        if($res>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function m_change_password_via_recovery($user_id){
+        $password=$this->input->post("password",true);
+        $rpassword=$this->input->post("rpassword",true);
+        $code=$this->input->post("code",true);
+        // vd("user_id",$user_id);
+        // vd("poast",$_POST,true);
+        if($code==null){
+            return 0;
+        }
+        $data=array(
+            "password"=>md5($password),
+            "pass_recovery"=>null
+        );
+        $this->db->where("pass_recovery",$code);
+        $this->db->where("user_id",$user_id);
+        $this->db->update("sc_user",$data);
+        $affected_rows=$this->db->affected_rows();
+        return $affected_rows;
+    }
     function m_get_user_by_email($email){
         return $this->db->where("email",$email)
         ->from("sc_user")
         ->get()->row_array();
+    }
+
+    function m_get_user_by_user_id($user_id){
+        return $this->db->where("user_id",$user_id)
+        ->from("sc_user")
+        ->get()->row_array();
+    }
+    function m_edit_user_profile($user_id){
+        $user = $this->input->post("user",true);
+        $this->db->where("user_id",$user_id)
+        ->update("sc_user",$user);
     }
 
     function m_insert_user_posting(){

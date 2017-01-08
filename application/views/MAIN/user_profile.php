@@ -1,4 +1,4 @@
-<?=vd("at",$repairman)?>
+<?=vd("at",$user)?>nih line 1 di view/user_profile for information ya karno hapus aja kalau sudah siap pakai
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
@@ -12,14 +12,16 @@
      $this->load->view("MAIN/header.php",$header_data) 
 
 ?>
+<?php if(count($user)==0){ ?>
+Not found
+<?php }else{ ?>
 <div class="container" style="width:50%;">
-<form action="<?=base_url("repairman/edit_profile")?>" method="post">
 	<div class="row">
 		<div class="col-md-3">
 		First Name:
 		</div>
 		<div class="col-md-3">
-		<input type="text" name="user[fname]" value="<?=$repairman["fname"]?>">
+		<?=$user["fname"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -27,7 +29,7 @@
 		Last Name:
 		</div>
 		<div class="col-md-3">
-		<input type="text" name="user[lname]" value="<?=$repairman["lname"]?>">
+		<?=$user["lname"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -35,8 +37,7 @@
 		Email:
 		</div>
 		<div class="col-md-3">
-		<?=$repairman["email"]?>
-		<!-- <input type="email" value="<?=$repairman["email"]?>" name="email"> -->
+		<?=$user["email"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -44,8 +45,7 @@
 		Gender:
 		</div>
 		<div class="col-md-3">
-		<input type="radio" name="user[gender]" value="male" <?=$repairman["gender"]=="male"?"checked":""?>> Male<br>
-  		<input type="radio" name="user[gender]" value="female" <?=$repairman["gender"]=="female"?"checked":""?>> Female<br>
+		<?=$user["gender"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -53,7 +53,7 @@
 		Phone Number:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["phone_number"]?>" name="user[phone_number]">
+		<?=$user["phone_number"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -61,7 +61,7 @@
 		State:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["state"]?>" name="user[state]">
+		<?=$user["state"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -69,7 +69,7 @@
 		Address:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["address"]?>" name="user[address]">
+		<?=$user["address"]?>
 		</div>
 	</div>
 	<div class="row">
@@ -77,16 +77,9 @@
 		Postal:
 		</div>
 		<div class="col-md-3">
-		<input type="text" value="<?=$repairman["postal"]?>" name="user[postal]">
+		<?=$user["postal"]?>
 		</div>
 	</div>
-	<div class="row">
-	<div class="col-md-3">
-	Keahlian:
-	</div>
-	<textarea name="repairman[keahlian]"><?=$repairman["keahlian"]?></textarea>
-	</div>
-
-	<input type="submit" value="Simpan">
-	</form>
+	<a href="<?=base_url("user/edit_profile_form")?>">Edit</a>
 </div>
+<?php } ?>

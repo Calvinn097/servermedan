@@ -240,3 +240,57 @@ function user_login_info(){
         return false;
     }
 }
+function send_email($name,$receiver,$subject,$message)
+{
+    $email_config = Array(
+        'protocol'  => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => '465',
+        'smtp_user' => 'vlanzyvinz@gmail.com',
+        'smtp_pass' => 'Vlanzyvinz1234#@!',
+        'mailtype'  => 'html',
+        'starttls'  => true,
+        'charset' => 'iso-8859-1'
+    );
+    $name="ServerMedan";
+    $CI=& get_instance();
+    $CI->load->library('email',$email_config);
+    $CI->email->set_newline("\r\n");
+
+    $CI->email->from('vlanzyvinz@gmail.com', $name);
+    $CI->email->to($receiver);
+    $CI->email->subject($subject);
+    $CI->email->message($message);
+    while ( ! @$CI->email->send())
+    {
+        //echo"Error.. Retrying...";
+
+    }
+}
+
+function send_email_custom($receiver,$subject,$message,$sendername,$msgtitle,$smtp_user,$smtp_pass)
+{
+    $email_config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => '465',
+        'smtp_user' => $smtp_user,
+        'smtp_pass' => $smtp_pass,
+        'mail_type' => 'html',
+        'starttls' => true,
+        'charset' => 'iso-8859-1'
+    );
+
+    $CI =& get_instance();
+    $CI->load->library('email',$email_config);
+    $CI->email->set_newline("\r\n");
+
+    $CI->email->from($sendername,$msgtitle);
+    $CI->email->to($receiver);
+    $CI->email->subject($subject);
+    $CI->email->message($message);
+    while(! @$CI->email->send())
+    {
+
+    }
+}
