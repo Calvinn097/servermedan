@@ -51,6 +51,4 @@ class Input extends ADMIN_Controller {
         $this->Repairman_m->m_delete_repairman_banner($repairman_banner_id);
         redirect(base_url("/ADMIN/input/repairman_banner"));
     }
-
-    
 }

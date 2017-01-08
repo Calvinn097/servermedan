@@ -24,7 +24,7 @@
                 <?php if(!$row["approved"]){ ?>
                 <a href="<?=base_url("ADMIN/Input/approve_repairman_banner/".$row["repairman_banner_id"])?>" class="btn btn-primary btn-mini" data-banner_id="<?=$row['repairman_banner_id']?>">Approve</a>
                 <?php }else{ ?>
-                <a href="<?=base_url("ADMIN/Input/disapprove_repairman_banner/".$row["repairman_banner_id"])?>" class="btn btn-primary btn-mini delete_banner" data-banner_id="<?=$row['repairman_banner_id']?>">Disapprove</a>
+                <a href="<?=base_url("ADMIN/Input/disapprove_repairman_banner/".$row["repairman_banner_id"])?>" class="btn btn-primary btn-mini" data-banner_id="<?=$row['repairman_banner_id']?>">Disapprove</a>
                 <?php } ?>
                 <a href="#" class="btn btn-danger btn-mini delete_banner" data-banner_id="<?=$row['repairman_banner_id']?>">Delete</a></div>
                 <span class="user-info"><h3>Banner ID:<?=$row["repairman_banner_id"]?></h3> By: <?=$row['repairman_info']["fname"]." ".$row['repairman_info']["lname"]?> / Date: <?=$row['date']?> </span>

@@ -198,6 +198,14 @@ if($this->session->flashdata("signup_err")!==null){
                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My Account
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
+                                <li><a href="<?=base_url("user/user_login_customer")?>">Dasbor user</a></li>
+                                <?php if(json_decode($this->input->cookie("sm_login"),true)["user_level"]!=null){ ?>
+                                <li><a href="<?=base_url("user/user_login_repair")?>">Dasbor repairman</a></li>
+                                <?php }?>
+                                <?php if(json_decode($this->input->cookie("sm_login"),true)["user_level"]!=null){ ?>
+                                <li><a href="<?=base_url("repairman/profile")?>">Profile Repairman</a></li>
+                                <?php }?>
+                                <li><a href="<?=base_url("user/profile")?>">Profile user</a></li>
                                 <li><a href="<?=base_url('user/logout')?>">Logout</a></li>
                             </ul>
                         </div>
@@ -209,7 +217,6 @@ if($this->session->flashdata("signup_err")!==null){
         </div>
         <!-- /.container -->
     </nav>
-
 
     <!-- all Modal here -->
 <!-- Modal -->

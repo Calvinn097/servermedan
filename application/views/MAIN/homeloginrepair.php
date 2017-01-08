@@ -53,7 +53,7 @@
                                             </div>
                                             Category:<?=$row["category_name"]?>
                                             Service Type:<?=$row["service_type"]?>
-                                            <img src="<?=base_url($row["image"])?>">
+                                            <img width="100" height="100" src="<?=base_url($row["image"])?>">
 
                                         </div>
                                     </div>

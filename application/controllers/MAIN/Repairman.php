@@ -27,8 +27,19 @@ class Repairman extends MY_Controller {
         $this->load->model("MAIN/Repairman_m");
         $this->load->model("MAIN/Image_m");
         $this->load->model("MAIN/Category_m");
+        $user_id=user_login_info()["user_id"];
+        $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+        if($repairman_id==null){
+            set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
+            redirect();
+        }
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
+	}
+	private function get_repairman_id($user_id){
+		$user_id=user_login_info()["user_id"];
+        $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+        return $repairman_id;
 	}
     public function pasang_banner_form(){
     	$data["category"]=$this->Category_m->m_get_category();
@@ -46,5 +57,36 @@ class Repairman extends MY_Controller {
         	set_global_noti("Berhasil dikirim, jika sudah diapprove akan ditampilkan selama 7 hari.");
         }
         redirect(base_url("user/user_login_repair"));
+    }
+    public function lihat_banner(){
+    	$user_id = user_login_info()["user_id"];
+    	$repairman_id = $this->get_repairman_id($user_id);
+    	$data["repairman_banner"]=$this->Repairman_m->m_get_request_banner_by_repairman_id($repairman_id);
+        // vd("data",$data);
+        $this->load->view("MAIN/lihat_banner",$data);
+    }
+    public function delete_repairman_banner($repairman_banner_id){
+
+        $this->Repairman_m->m_delete_request_banner($repairman_banner_id);
+        redirect(base_url("/Repairman/lihat_banner"));
+    }
+    public function profile(){
+    	$user_id = user_login_info()["user_id"];
+    	$repairman_id = $this->get_repairman_id($user_id);
+    	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
+    	$this->load->view("MAIN/repairman_profile",$data);
+    }
+    public function edit_profile_form(){
+    	$user_id = user_login_info()["user_id"];
+    	$repairman_id = $this->get_repairman_id($user_id);
+    	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
+    	$this->load->view("MAIN/repairman_profile_form",$data);
+    }
+    public function edit_profile(){
+    	vd("sasd",$_POST);
+    	$user_id = user_login_info()["user_id"];
+    	//die();
+    	$this->Repairman_m->m_edit_profile_repairman($user_id);
+    	redirect(base_url("/repairman/profile"));
     }
 }

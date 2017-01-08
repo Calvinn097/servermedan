@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -17,6 +18,12 @@ class Repairman_m extends CI_Model{
     	->select("repairman_id")
     	->from("sc_repairman")
     	->get()->row_array()["repairman_id"];
+    }
+    function m_get_repairman_by_repairman_id($repairman_id){
+        return $this->db->where("sc_repairman.repairman_id",$repairman_id)
+        ->from("sc_user")
+        ->join("sc_repairman","sc_user.user_level=sc_repairman.repairman_id")
+        ->get()->row_array();
     }
     function m_get_user_id_by_repairman_id($repairman_id){
     	return $this->db->where("repairman_id",$repairman_id)
@@ -107,21 +114,72 @@ class Repairman_m extends CI_Model{
             $res[$key]["path"]=base_url($row["path"]);
         }
         return $res;
+
     }
 
     function m_get_request_banner_by_repairman_id($repairman_id){
-        $res= $this->db->where("repairman_id",$repairman_id)
-        ->get("sc_banner_repairman")->result_array();
+        $this->db->select("t1.repairman_banner_id,t1.repairman_id,t1.path,t1.date,t1.approved,t1.category_id,t1.sub_category_id,
+t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
+        $this->db->from("sc_banner_repairman t1")
+        ->join("sc_category t2","t2.category_id=t1.category_id")
+        ->join("sc_sub_category t3","t3.sub_category_id=t1.sub_category_id")
+        ->where("t1.repairman_id",$repairman_id);
+        $res= $this->db->get()->result_array();
         foreach($res as $key=>$row){
             $res[$key]["path"]=base_url($row["path"]);
+        }
+        
+        foreach($res as $key=>$row){
+            $res[$key]["repairman_info"]=$this->m_get_repairman_by_repairman_id($row["repairman_id"]);
+        }
+        return $res;
+    }
+    function m_get_request_banner_approved(){
+        $this->db->select("t1.repairman_banner_id,t1.repairman_id,t1.path,t1.date,t1.approved,t1.category_id,t1.sub_category_id,
+t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
+        $this->db->from("sc_banner_repairman t1")
+        ->join("sc_category t2","t2.category_id=t1.category_id")
+        ->join("sc_sub_category t3","t3.sub_category_id=t1.sub_category_id")
+        ->where("t1.approved",1);
+        $res= $this->db->get()->result_array();
+        foreach($res as $key=>$row){
+            $res[$key]["path"]=base_url($row["path"]);
+        }
+        
+        foreach($res as $key=>$row){
+            $res[$key]["repairman_info"]=$this->m_get_repairman_by_repairman_id($row["repairman_id"]);
         }
         return $res;
     }
 
-    function m_delete_request_banner($banner_id){
-        return $this->db->where("repairman_banner_id",$banner_id)
-        ->delete("sc_banner_repairman");
+    function m_get_repairman_banner_image_by_repairman_banner_id($repairman_banner_id){
+        return $this->db->where("repairman_banner_id",$repairman_banner_id)
+        ->select("path")
+        ->get("sc_banner_repairman")->row_array()["path"];
     }
+
+    function m_delete_request_banner($repairman_banner_id){
+        $repairman_image = $this->m_get_repairman_banner_image_by_repairman_banner_id($repairman_banner_id);
+        // vd("repairman_image",$repairman_image,true);
+        $header_image = get_image_folder_path($repairman_image);
+        $header_image = storage_path($header_image);
+        if(file_exists($header_image)){
+            delete_folder($header_image);
+        }
+        $this->db->where("repairman_banner_id",$repairman_banner_id)
+        ->delete("sc_banner_repairman");
+        $aff=$this->db->affected_rows();
+    }
+    function m_edit_profile_repairman($user_id){
+        $repairman_id = $this->m_get_repairman_id_by_user_id($user_id);
+        $user=$this->input->post("user",true);
+        $repairman=$this->input->post("repairman",true);
+        $this->db->where("user_id",$user_id)
+        ->update("sc_user",$user);
+        $this->db->where("repairman_id",$repairman_id)
+        ->update("sc_repairman",$repairman);
+    }
+
 
 
 

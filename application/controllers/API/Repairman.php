@@ -34,7 +34,11 @@ class Repairman extends REST_Controller {
 
     public function index_get(){
         $email = $this->get("email");
+        $repairman_id = $this->get("repairman_id");
         $repairman = $this->Repairman_m->m_get_repairman($email);
+        if($email==null){
+            $repairman = $this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id)
+        }
         if($repairman==null){
             $this->response(["status"=>false,"data"=>$repairman], REST_Controller::HTTP_OK);    
         }
@@ -61,5 +65,15 @@ class Repairman extends REST_Controller {
                 $this->response(["status"=>true,"data"=>$data],REST_Controller::HTTP_OK);
             }
         }
+    }
+
+    public function banner_delete_post(){
+        $repairman_banner_id = $this->post("repairman_id");
+        $this->Repairman_m->m_delete_request_banner($repairman_banner_id);
+        $this->response(["status"=>true,"data"=>"success delete"]);
+    }
+
+    public function banner_insert_post(){
+        //$this->post("")
     }
 }

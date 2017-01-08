@@ -44,7 +44,10 @@ class Category_m extends CI_Model{
             foreach($data as $key=>$row){
                 $array[$row['category_name']][]=$row;
             }
-            return $array;
+            if(isset($array)){
+                return $array;    
+            }
+            return array();
         }
     }
 

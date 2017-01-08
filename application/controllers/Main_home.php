@@ -23,7 +23,10 @@ class Main_home extends MY_Controller {
 		// vd("session",$_SESSION);
 		// vd("cookie",$_COOKIE);
 		// vd("bla",$this->category_list);
-		$this->load->view('MAIN/home');
+		$this->load->model("MAIN/Repairman_m");
+		$data["home_banner"]=$this->Repairman_m->m_get_request_banner_approved();
+		// vd("data",$data);
+		$this->load->view('MAIN/home',$data);
         
 	}
     

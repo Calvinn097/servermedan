@@ -21,7 +21,10 @@
                     <!--img profile pengguna-->
                 </li>
                 <li>
-                <a href="<?=base_url("repairman/pasang_banner_form")?>">Pasang Promo banner</a>
+                <a href="<?=base_url("repairman/pasang_banner_form")?>">Pasang Promo Banner</a>
+                </li>
+                <li>
+                <a href="<?=base_url("repairman/lihat_banner")?>">Lihat Promo Banner</a>
                 </li>
                 <li>
                     <a href="tables.html"><i class="fa fa-table fa-fw"></i>Username</a>

@@ -64,7 +64,7 @@ class Category extends ADMIN_Controller {
         $data['sub_category_list'] = $this->Category_m->m_get_sub_category();
         
         // vd('data',$data,true);
-     	$this->load->view('/ADMIN/Category_info',$data);
+     	$this->load->view('/ADMIN/category_info',$data);
     }
    	public function add_category(){
    		$category_name = $this->input->post('category_name',true);

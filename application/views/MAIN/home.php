@@ -8,6 +8,24 @@
      $this->load->view("MAIN/header.php",$header_data);
 
 ?>
+<h1>banner</h1>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+        <li data-target="#banner_<?=$row["repairman_banner_id"]?>" data-slide-to="<?=$i++?>" class="active"></li>
+        <?php } ?>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <?php foreach($home_banner as $key=>$row){ ?>
+        <div class="item active">
+            <img src="<?=$row['path']?>" width="800" height="300">
+        </div>
+        <div class="item">
+            <img src="<?=$row['path']?>" width="800" height="300">
+        </div>
+        <?php } ?>
+    </div>
+</div>
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">

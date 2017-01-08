@@ -48,7 +48,7 @@ class User extends MY_Controller {
             $link = $this->agent->referrer();
             $co_sign_up= array(
                 'name' => 'login',
-                'value' => json_encode(array('user_id'=>$status["user_id"])),
+                'value' => json_encode(array('user_id'=>$status["user_id"],'user_level'=>$status["user_level"])),
                 'expire' =>  3600,
                 'path'=>'/',
                 'prefix' => 'sm_'
@@ -161,7 +161,7 @@ class User extends MY_Controller {
         $data["user_id"]=$user_id;
         $data["timeline"]=$this->Repairman_m->m_get_user_posting_by_repairman_id($repairman_id);
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
-        vd("Data",$data);
+        //vd("Data",$data);
         $this->load->view("MAIN/homeloginrepair",$data);
     }
     public function maps(){
@@ -203,7 +203,6 @@ class User extends MY_Controller {
         }else{
             echo json_encode(array("like"=>false));
         }
-
     }
 
     public function become_repairman(){
@@ -211,5 +210,5 @@ class User extends MY_Controller {
         $this->User_m->m_become_repairman($user_id);
         set_global_noti("Success Become Repairman","warning");
         redirect(base_url("user/user_login_repair"));
-    }    
+    }
 }
