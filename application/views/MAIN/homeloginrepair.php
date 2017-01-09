@@ -54,11 +54,29 @@
                                             Category:<?=$row["category_name"]?>
                                             Service Type:<?=$row["service_type"]?>
                                             <img width="100" height="100" src="<?=base_url($row["image"])?>">
-
+                                            <a class="btn btn-default" href="<?=base_url("user/detail_post/".$row["user_post_id"])?>">View Detail</a>
+                                        </div>
+                                        <div class="panel">
+                                            Comment:
+                                            <ul>
+                                                <?php foreach ($row["comment"] as $key => $value): ?>
+                                                    <li>
+                                                    At <?=$value["date"]?>
+                                                    <?=hsc($value["fname"])?> is
+                                                    <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                                    <?=hsc($value["comment"])?>"
+                                                        
+                                                    </li>
+                                                    
+                                                <?php endforeach ?>
+                                            </ul>
+                                            <form action="<?=base_url("user/user_comment")?>" method="post">
+                                                <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
+                                                <textarea name="comment"></textarea>
+                                                <input type="submit" value="Submit comment"></input>
+                                            </form>
                                         </div>
                                     </div>
-
-                                
                             <?php $counter++; }//akhir foreach ?>                   
 <!-- 
                             <div class="row post">
@@ -187,6 +205,5 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
 </body>
 

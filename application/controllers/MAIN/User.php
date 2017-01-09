@@ -164,20 +164,41 @@ class User extends MY_Controller {
         //vd("Data",$data);
         $this->load->view("MAIN/homeloginrepair",$data);
     }
+    private function get_repairman_id($user_id){
+        $user_id=user_login_info()["user_id"];
+        $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+        return $repairman_id;
+    }
     public function maps(){
         $this->load->view("MAIN/maps");
     }
-    public function detail_post(){
-        $this->load->view("MAIN/detailpost");
+    public function detail_post($user_post_id){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id = $this->get_repairman_id($user_id);
+        if($repairman_id==null){
+            $data["detail_post"]=$this->User_m->m_user_get_user_posting_by_user_post_id($user_post_id,$user_id);
+            $data["repairman"]=false;
+        }else if($repairman_id!=null){
+            $data["detail_post"]=$this->User_m->m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id);
+            $data["accepted"]=$this->User_m->m_get_post_accepted_by_repairman_id_post_id($user_post_id,$repairman_id);
+            $data["repairman"]=true;
+        }
+        
+        //vd("data",$data);
+        $this->load->view("MAIN/detailpost",$data);
     }
     public function chat(){
         $this->load->view("Main/chatting");   
     }
     public function rank(){
+        $data["rank"]=$this->User_m->m_get_rank();
+        vd("data",$data);
         $this->load->view("Main/ranking");   
     }
-    public function detail_repair(){
-        $this->load->view("Main/detailrepair");   
+    public function detail_repair($user_post_id){
+        $data["detail_repair"]=$this->User_m->m_get_user_posting_by_user_post_id($user_post_id);
+        vd("data",$data);
+        $this->load->view("Main/detailrepair",$data);   
     } 
     public function accept(){
         $this->load->view("Main/accept");   
@@ -189,8 +210,11 @@ class User extends MY_Controller {
 
     public function user_comment(){
         $user_id = user_login_info()["user_id"];
+        $this->load->library('user_agent');
+        $link = $this->agent->referrer();
         $this->User_m->m_user_comment($user_id);
-        redirect(base_url("user/user_login_customer"));
+
+        redirect($link);
     }
 
     public function user_post_like_action(){

@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Detail Posting
-                                    <small>Kerusakan Barang</small>
+                                    <!-- <small><?=$detail_post["post_title"]?></small> -->
                                 </h1>
                             </div>
                         </div>
@@ -31,39 +31,70 @@
                         <!-- Portfolio Item Row -->
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                                <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
+                                <img class="img-responsive" width="750" height="500" src=<?=base_url($detail_post["image"])?>>
                             </div>
 
                             <div class="col-md-6">
-                                <h4>Kerusakan sepeda motor</h4>
-                                <p>Berikut laporan kerusakan yaitu: ban sepeda motor tidak dapat ditemukan, mesin sepeda motor tidak dapat dilihat, badan sepeda motor tidak memiliki fisik. Kepada mekanik bersangkutan mohon agar segera datang dan melihat kondisi sepeda motor</p>
-                                <h4>Detail Kerusakan</h4>
+                                <h4><?=$detail_post["post_title"]?></h4>
+                                <p><?=$detail_post["content"]?></p>
+                                <!-- <h4>Detail Kerusakan</h4>
                                 <ul>
                                     <li>Sulit dibaca</li>
                                     <li>Sulit dilihat</li>
                                     <li>Tidak dapat diterawang</li>
                                     <li>Tembus pandang</li>
-                                </ul>
+                                </ul> -->
+                                <?php if($repairman){ ?>
                                 <div class="agree">
                                     <ul>
                                         <li>
-                                            <button class="btn btn-info">Terima</button>
+                                        <?php if(!empty($accepted)){ ?>
+                                        <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
+                                        ?>" method="post">
+                                        <?php }else{ ?>
+                                        <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
+                                        ?>" method="post">
+                                        <?php } ?>
+                                        Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
+                                        Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
+                                        <?php if(!empty($accepted)){ ?>
+                                        <input class="btn btn-info" type="submit" value="Edit">
+                                        <?php }else{ ?>
+                                        <input class="btn btn-info" type="submit" value="Terima">
+                                        <?php } ?>
+                                        </form>
                                         </li>
                                         <li>
-                                            <button class="btn btn-info">Tolak</button>
+                                            <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
                                         </li>
                                     </ul>
                                 </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                     <div class="comment">
-                        <form class="form-group">
-                            <label>Comment</label>
-                            <textarea class="form-control"></textarea>
-                            <input class="btn btn-info" type="submit" value="Comment"/>
+                        Comment:
+                        <ul>
+                            <?php foreach ($detail_post["comment"] as $key => $value): ?>
+                                <li>
+                                At <?=$value["date"]?>
+                                <?=hsc($value["fname"])?> is
+                                <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                <?=hsc($value["comment"])?>"
+                                    
+                                </li>
+                                
+                            <?php endforeach ?>
+                        </ul>
+                        <form action="<?=base_url("user/user_comment")?>" method="post">
+                            <input type="hidden" name="user_post_id" value="<?=$detail_post["user_post_id"]?>">
+                            <textarea name="comment"></textarea>
+                            <input type="submit" value="Submit comment"></input>
                         </form>
                     </div>
+                    <ul>
                 <!-- /.col-lg-8 -->
                 <!-- /.col-lg-4 -->
             </div>

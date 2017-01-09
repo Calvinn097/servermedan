@@ -168,7 +168,7 @@
                                         <?php if($row["image"]!=null){?>
                                         Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
                                         <?php } ?>
-                                        <b>Number of likes: <span class="<?=$row["user_post_id"]."_num_likes"?>" data-num_likes="<?=$row["like_count"]?>"><?=$row["like_count"]?></span></b> <button class="like" data-user_post_id="<?=$row["user_post_id"]?>"><?=$row["like_by_me"]?"Liked":"Like";?></button>
+                                        <!-- <b>Number of likes: <span class="<?=$row["user_post_id"]."_num_likes"?>" data-num_likes="<?=$row["like_count"]?>"><?=$row["like_count"]?></span></b> <button class="like" data-user_post_id="<?=$row["user_post_id"]?>"><?=$row["like_by_me"]?"Liked":"Like";?></button> -->
                                         <div class="panel">
                                         Comment:
                                         <ul>

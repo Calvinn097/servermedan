@@ -179,9 +179,48 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
         $this->db->where("repairman_id",$repairman_id)
         ->update("sc_repairman",$repairman);
     }
-
-
-
-
+    function m_get_repairman_name_by_repairman_id($repairman_id){
+        return $this->db->select("fname")
+        ->where("repairman_id",$repairman_id)
+        ->from("sc_user")
+        ->join("sc_repairman","sc_user.user_level=sc_repairman.repairman_id")->get()->row_array()["fname"];
+    }
+    function m_accept_user_post($repairman_id,$post_id,$harga,$estimasi_waktu){
+        $array=array(
+            "repairman_id"=>$repairman_id,
+            "user_post_id"=>$post_id,
+            "date_accept"=>date("Y-m-d H:i:s"),
+            "price"=>$harga,
+            "estimated_time"=>$estimasi_waktu,
+            "notif_user"=>"Accepted by ".$this->m_get_repairman_name_by_repairman_id($repairman_id)
+        );
+        $this->db->insert("sc_post_accepted",$array);
+        $post_accepted_id = $this->db->insert_id();
+    }
+    function m_edit_user_post($repairman_id,$post_id,$harga,$estimasi_waktu){
+        $array=array(
+            "repairman_id"=>$repairman_id,
+            "user_post_id"=>$post_id,
+            "price"=>$harga,
+            "estimated_time"=>$estimasi_waktu,
+            "notif_user"=>"Edited"
+        );
+        $this->db->where("repairman_id",$repairman_id);
+        $this->db->where("user_post_id",$post_id);
+        $this->db->update("sc_post_accepted",$array);
+        $post_accepted_id = $this->db->insert_id();
+    }
+    function m_reject_user_post($post_id,$repairman_id){
+        $array=array(
+            "repairman_id"=>$repairman_id,
+            "user_post_id"=>$post_id,
+            "date_reject"=>date("Y-m-d H:i:s")
+        );
+        $this->db->insert("sc_post_rejected",$array);
+        $post_accepted_id = $this->db->insert_id();
+        $this->db->where("user_post_id",$post_id)
+        ->where("repairman_id",$repairman_id)
+        ->delete("sc_post_accepted");
+    }
 }
 //asdn

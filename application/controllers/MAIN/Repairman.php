@@ -75,7 +75,7 @@ class Repairman extends MY_Controller {
         $this->Repairman_m->m_delete_request_banner($repairman_banner_id);
         redirect(base_url("/Repairman/lihat_banner"));
     }
-    public function profile($repairman_id){
+    public function profile($repairman_id=null){
         if($repairman_id ==null){
             $user_id = user_login_info()["user_id"];
             $repairman_id = $this->get_repairman_id($user_id);
@@ -96,5 +96,29 @@ class Repairman extends MY_Controller {
     	//die();
     	$this->Repairman_m->m_edit_profile_repairman($user_id);
     	redirect(base_url("/repairman/profile"));
+    }
+    public function accept_post($post_id){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id = $this->get_repairman_id($user_id);
+        $harga = $this->input->post("harga",true);
+        $estimasi_waktu=$this->input->post("estimasi_waktu",true);
+        // vd("post",$_POST,true);
+        $this->Repairman_m->m_accept_user_post($repairman_id,$post_id,$harga,$estimasi_waktu);
+        redirect(base_url("/user/detail_post/$post_id"));
+    }
+    public function edit_post($post_id){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id = $this->get_repairman_id($user_id);
+        $harga = $this->input->post("harga",true);
+        $estimasi_waktu=$this->input->post("estimasi_waktu",true);
+        // vd("post",$_POST,true);
+        $this->Repairman_m->m_edit_user_post($repairman_id,$post_id,$harga,$estimasi_waktu);
+        redirect(base_url("/user/detail_post/$post_id"));   
+    }
+    public function reject_post($user_post_id){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id = $this->get_repairman_id($user_id);
+        $this->Repairman_m->m_reject_user_post($user_post_id,$repairman_id);
+        redirect(base_url("/user/detail_post/$post_id"));   
     }
 }
