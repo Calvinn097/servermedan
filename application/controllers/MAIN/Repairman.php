@@ -128,7 +128,7 @@ class Repairman extends MY_Controller {
         $repairman_id = $this->get_repairman_id($user_id);
         $data["my_repairman_id"]=$repairman_id;
         $data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
-        vd("daata",$data);
+        // vd("daata",$data);
         $this->load->view("MAIN/job_repository",$data);
     }
 }

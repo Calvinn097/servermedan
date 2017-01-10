@@ -37,13 +37,15 @@ class Repairman_m extends CI_Model{
         ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
-        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender"
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,
+        sub_cat.sub_category_name,sub_cat.service,sub_cat.reparation,sub_cat.jasa"
         )
         // ->where("up.user_id",$user_id)
         ->from("sc_user_post up")
         ->join("sc_user u","u.user_id=up.user_id")
         ->join("sc_category c","up.category_id=c.category_id")
         ->join("sc_service_type st","st.service_type_id = up.service_type_id")
+        ->join("sc_sub_category sub_cat","sub_cat.category_id=c.category_id")
         ->order_by("date_posted","desc")
         ->get()->result_array();
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
@@ -199,16 +201,23 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
         ->join("sc_repairman","sc_user.user_level=sc_repairman.repairman_id")->get()->row_array()["fname"];
     }
     function m_accept_user_post($repairman_id,$post_id,$harga,$estimasi_waktu){
-        $array=array(
-            "repairman_id"=>$repairman_id,
-            "user_post_id"=>$post_id,
-            "date_accept"=>date("Y-m-d H:i:s"),
-            "price"=>$harga,
-            "estimated_time"=>$estimasi_waktu,
-            "notif_user"=>"Accepted by ".$this->m_get_repairman_name_by_repairman_id($repairman_id)
-        );
-        $this->db->insert("sc_post_accepted",$array);
-        $post_accepted_id = $this->db->insert_id();
+        $my_user_id = $this->m_get_user_id_by_repairman_id($repairman_id);
+        $res = $this->db->where("user_post_id",$post_id)
+        ->where("user_id",$my_user_id)
+        ->count_all_results();
+        if($res>0){
+            $array=array(
+                "repairman_id"=>$repairman_id,
+                "user_post_id"=>$post_id,
+                "date_accept"=>date("Y-m-d H:i:s"),
+                "price"=>$harga,
+                "estimated_time"=>$estimasi_waktu,
+                "notif_user"=>"Accepted by ".$this->m_get_repairman_name_by_repairman_id($repairman_id)
+            );
+            $this->db->insert("sc_post_accepted",$array);
+            $post_accepted_id = $this->db->insert_id();    
+        }
+        
     }
     function m_edit_user_post($repairman_id,$post_id,$harga,$estimasi_waktu){
         $array=array(

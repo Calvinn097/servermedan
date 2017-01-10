@@ -287,7 +287,7 @@ class User_m extends CI_Model{
 
     function m_user_get_user_posting_by_user_post_id($user_post_id,$user_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
@@ -307,7 +307,7 @@ class User_m extends CI_Model{
 
     function m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
@@ -428,6 +428,43 @@ class User_m extends CI_Model{
         ->from("sc_repairman t1")
         ->join("sc_user t2","t2.user_level=t1.repairman_id")
         ->get()->result_array();
+    }
+    function m_get_user_notification_by_user_id($user_id){
+        $user_post= $this->db
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        c.category_name,
+        st.service_type,st.called,
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name,
+        p_acc.date_accept,p_acc.date_dealed,p_acc.user_dealed,p_acc.price,p_acc.estimated_time,p_acc.notif_user,p_acc.repairman_id as repairman_accepter_id"
+
+        )
+        ->where("up.user_id",$user_id)
+        ->from("sc_user_post up")
+        ->join("sc_user u","u.user_id=up.user_id")
+        ->join("sc_category c","up.category_id=c.category_id")
+        ->join("sc_sub_category","sc_sub_category.category_id=c.category_id")
+        ->join("sc_service_type st","st.service_type_id = up.service_type_id")
+        ->join("sc_post_accepted p_acc","p_acc.user_post_id=up.user_post_id")
+        ->where("notif_user!=","")
+        ->order_by("date_posted","desc")
+        ->get()->result_array();
+        // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        foreach($user_post as $key=>$row){
+            $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
+            // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
+            $user_post[$key]["repairman_accepter_name"]=$this->m_get_repairman_name_by_repairman_id($user_post[$key]["repairman_accepter_id"]);
+        }
+        return $user_post;
+    }
+    function m_get_repairman_name_by_repairman_id($repairman_id){
+        $this->db->where("repairman_id",$repairman_id)
+        ->select("fname,lname");
+        $res=$this->db->from("sc_repairman")
+        ->join("sc_user","sc_user.user_id=sc_repairman.user_id")
+        ->get()->row_array();
+        return $res["fname"]." ".$res["lname"];
+        
     }
 }
 //asdn

@@ -94,12 +94,11 @@
                                             <?php foreach($this->category_list as $row){ ?>
                                                 <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
                                             <?php } ?>
-                                            <!-- <option>Gadget</option> -->
-                                            <!-- 
-                                            <option>Kendaraan</option>
-                                            <option>Listrik</option>
-                                            <option>Bangunan</option>
-                                            <option>Saluran Air</option> -->
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <select name="sub_category_id" class="btn btn-info" required>
+                                        
                                         </select>
                                     </li>
                                 </ul>
@@ -164,7 +163,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        Kategory: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
+                                        Kategori: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
+                                        Sub Kategori: <?=isset($row["sub_category_name"])?$row["sub_category_name"]:""?><br>
                                         <?php if($row["image"]!=null){?>
                                         Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
                                         <?php } ?>
@@ -313,15 +313,26 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        <?php if(count($user_notification)>0){ ?>
+                            <?php foreach($user_notification as $key=>$row) { ?>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <?=$row["post_title"]?>
+                                        <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
+                                        <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
+                                        </span>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                        <?php }else{ ?>
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Request
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
+                                    No Notifications
                                 </a>
                             </div>
+                        <?php } ?>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                            <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -384,6 +395,20 @@ $(".like").click(function(){
         }
     })
 })
+$("select[name='category_id']").change(function() {
+  var cat_id = $(this).val();
+  $.ajax({
+      type:"POST",
+      url:"<?=base_url('/Category/sub_category_list/')?>",
+      dataType:"html",
+      data:{
+          category_id:cat_id
+      },
+      success:function(res){
+          $("select[name='sub_category_id']").html("<option value='' disabled selected>Pilih sub-kategori anda</option>"+res);
+      }
+  });
+});
 $("document").ready(function(){
     initMap();
 })

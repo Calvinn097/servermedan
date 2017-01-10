@@ -13,5 +13,9 @@ class News_m extends CI_Model{
         return $this->db->order_by("date_created","desc")->get("sc_news")
         ->result_array();
     }
+    function m_get_news_by_id($news_id){
+    	return $this->db->where("news_id",$news_id)
+    	->get("sc_news")->row_array();	
+    }
 }
 //asdn

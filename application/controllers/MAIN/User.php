@@ -147,7 +147,8 @@ class User extends MY_Controller {
         $user_id=user_login_info()["user_id"];
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
         $data["user_posting"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
-        // vd("data",$data);
+        $data["user_notification"]=$this->User_m->m_get_user_notification_by_user_id($user_id);
+        // vd("data",$data["user_notification"],true); //param 3 true to make program stop, dont include param 3 to show data without stopping program
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){

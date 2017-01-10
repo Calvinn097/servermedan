@@ -39,16 +39,24 @@ class Post extends REST_Controller {
             $this->response(["status"=>false,"data"=>"bukan repairman"]);
             return;
         }
+
         $data["timeline"]=$this->Repairman_m->m_get_user_posting_by_repairman_id($repairman_id);
+        foreach($data["timeline"] as $key=>$row){
+            $data["timeline"][$key]["image"]=base_url($data["timeline"][$key]["image"]);
+        }
         $this->response(["status"=>true,"data"=>$data]);
     }
 
     public function user_get(){
         $user_id=$this->get("user_id");
         $data["timeline"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
+
         if(count($data["timeline"])==0){
             $this->response(["status"=>false,"data"=>$data]);
             return;
+        }
+        foreach($data["timeline"] as $key=>$row){
+            $data["timeline"][$key]["image"]=base_url($data["timeline"][$key]["image"]);
         }
         $this->response(["status"=>true,"data"=>$data]);
     }

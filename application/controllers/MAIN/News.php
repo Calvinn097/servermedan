@@ -32,4 +32,8 @@ class News extends MY_Controller {
 		$this->load->view('MAIN/news',$data);
 
 	}
+	public function complete_news($news_id){
+		$data["news"]=$this->News_m->m_get_news_by_id($news_id);
+		$this->load->view("MAIN/complete_news",$data);
+	}
 }
