@@ -41,8 +41,21 @@
                                     <div class="col-md-6">
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
+                                            <?php
+                                            $status="Belum ada yang accept";
+                                            if($row["accepted_by_repairman"]>0){
+                                                $status="Ada repairman yang accept";
+                                            }
+                                            if(is_array($row["accepted_by_me"])&&count($row["accepted_by_me"])>0){
+                                                if($row["accepted_by_me"]["user_dealed"]>0){
+                                                    $status="sudah Deal";
+                                                }else{
+                                                    $status="Diterima saya";
+                                                }
+                                            }
+                                            ?>
                                             Posted by: <?=$row["fname"]." ".$row["lname"]?>
-                                                <h4 class="timeline-title"><?=$row["post_title"]?></h4>
+                                                <h4 class="timeline-title"><?=$row["post_title"]?></h4><?=$status?>
                                                 <p><small class="text-muted"><i class="fa fa-clock-o"></i><?=$row["date_posted"]?></small>
                                                 </p>
                                             </div>
@@ -61,8 +74,13 @@
                                             <ul>
                                                 <?php foreach ($row["comment"] as $key => $value): ?>
                                                     <li>
+                                                    <?php 
+                                                    if($value["user_level"]>0){$linkprofile=base_url("repairman/profile/".$value["user_id"]);}
+                                                    else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                                    ?>
+
                                                     At <?=$value["date"]?>
-                                                    <?=hsc($value["fname"])?> is
+                                                    <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
                                                     <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
                                                     <?=hsc($value["comment"])?>"
                                                         

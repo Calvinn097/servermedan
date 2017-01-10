@@ -50,9 +50,22 @@ class Repairman_m extends CI_Model{
         foreach($user_post as $key=>$row){
             $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
             $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
-            $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
+            // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
+            $user_post[$key]["accepted_by_me"]=$this->m_get_post_accepted_status($row["user_post_id"],$repairman_id);
+            $user_post[$key]["accepted_by_repairman"]=$this->m_post_is_accepted($row["user_post_id"]);
         }
         return $user_post;
+    }
+
+    function m_post_is_accepted($user_post_id){
+        return $this->db->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_post_accepted");
+    }
+
+    function m_get_post_accepted_status($user_post_id,$repairman_id){
+        return  $this->db->where("repairman_id",$repairman_id)
+        ->where("user_post_id",$user_post_id)
+        ->get("sc_post_accepted")->row_array();
     }
 
     function m_get_post_comment_by_post_id($post_id){ // duplicated from user.php
@@ -221,6 +234,31 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
         $this->db->where("user_post_id",$post_id)
         ->where("repairman_id",$repairman_id)
         ->delete("sc_post_accepted");
+    }
+    function m_get_accepted_post_by_repairman_id($repairman_id){
+        $user_id=$this->m_get_user_id_by_repairman_id($repairman_id);
+        $user_post= $this->db
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        c.category_name,
+        st.service_type,st.called,
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,
+        post_acc.post_accepted_id,post_acc.date_accept,post_acc.date_dealed,post_acc.user_dealed,post_acc.price,post_acc.estimated_time,post_acc.notif_user,post_acc.notif_repairman,post_acc.repairman_id"
+        )
+        ->where("post_acc.repairman_id",$repairman_id)
+        // ->where("up.user_id",$user_id)
+        ->from("sc_user_post up")
+        ->join("sc_user u","u.user_id=up.user_id")
+        ->join("sc_category c","up.category_id=c.category_id")
+        ->join("sc_service_type st","st.service_type_id = up.service_type_id")
+        ->join("sc_post_accepted post_acc","post_acc.user_post_id=up.user_post_id")
+        ->order_by("date_posted","desc")
+        ->get()->result_array();
+        // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        foreach($user_post as $key=>$row){
+            $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
+        }
+        return $user_post;
     }
 }
 //asdn

@@ -104,6 +104,11 @@ not found
 		<?=$repairman["keahlian"]?>
 		</div>
 	</div>
+
+	<?php if($my_repairman_id==$repairman["repairman_id"]){ ?>
+
 	<a href="<?=base_url("repairman/edit_profile_form")?>">Edit</a>
+	
+	<?php } ?>
 </div>
 <?php } ?>

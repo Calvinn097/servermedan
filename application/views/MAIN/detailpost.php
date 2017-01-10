@@ -1,4 +1,5 @@
 <?php
+
     $header_data = array(
             "title"=>"Welcome to Servermedan",
             "css"=>array(
@@ -80,7 +81,12 @@
                             <?php foreach ($detail_post["comment"] as $key => $value): ?>
                                 <li>
                                 At <?=$value["date"]?>
-                                <?=hsc($value["fname"])?> is
+                                <?php 
+                                if($value["user_level"]>0){$linkprofile=base_url("repairman/profile/".$value["user_id"]);}
+                                else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                ?>
+                                <a href="<?=$linkprofile?>">
+                                <?=hsc($value["fname"])?> </a> is
                                 <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
                                 <?=hsc($value["comment"])?>"
                                     

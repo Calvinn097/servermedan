@@ -59,6 +59,8 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+		<?php $pesan= debug_backtrace();
+		echo $pesan[4]["file"]." on line ".$pesan[4]["line"] ?>
 	</div>
 </body>
 </html>

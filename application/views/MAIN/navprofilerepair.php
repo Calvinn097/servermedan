@@ -27,6 +27,9 @@
                 <a href="<?=base_url("repairman/lihat_banner")?>">Lihat Promo Banner</a>
                 </li>
                 <li>
+                <a href="<?=base_url("repairman/job_repository")?>">Kumpulan Job</a>
+                </li>
+                <li>
                     <a href="tables.html"><i class="fa fa-table fa-fw"></i>Username</a>
                     <!--nama pengguna-->
                 </li>

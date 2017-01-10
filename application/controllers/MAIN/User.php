@@ -233,11 +233,17 @@ class User extends MY_Controller {
         $user_id = user_login_info()["user_id"];
         $this->User_m->m_become_repairman($user_id);
         set_global_noti("Success Become Repairman","warning");
+        redirect("user/logout");
         redirect(base_url("user/user_login_repair"));
     }
 
-    public function profile(){
-        $user_id = user_login_info()["user_id"];
+    public function profile($user_id=null){
+        if($user_id==null){
+            $user_id = user_login_info()["user_id"];    
+        }
+        // die($user_id);
+        $data["my_user_id"]= user_login_info()["user_id"];
+        $data["is_repairman"]=$this->User_m->m_check_repairman_exist_by_user_id($data["my_user_id"]);
         $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
         $this->load->view("MAIN/user_profile",$data);
     }

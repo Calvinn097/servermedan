@@ -80,6 +80,8 @@ Not found
 		<?=$user["postal"]?>
 		</div>
 	</div>
-	<a href="<?=base_url("user/edit_profile_form")?>">Edit</a>
+	<?php if($user["user_id"]==$my_user_id && ($is_repairman==0)){ ?>
+		<a href="<?=base_url("user/edit_profile_form")?>">Edit</a>
+	<?php } ?>
 </div>
 <?php } ?>

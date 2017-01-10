@@ -80,6 +80,8 @@ class Repairman extends MY_Controller {
             $user_id = user_login_info()["user_id"];
             $repairman_id = $this->get_repairman_id($user_id);
         }
+        $user_id = user_login_info()["user_id"];
+        $data["my_repairman_id"]=$this->get_repairman_id($user_id);
     	
     	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
     	$this->load->view("MAIN/repairman_profile",$data);
@@ -120,5 +122,13 @@ class Repairman extends MY_Controller {
         $repairman_id = $this->get_repairman_id($user_id);
         $this->Repairman_m->m_reject_user_post($user_post_id,$repairman_id);
         redirect(base_url("/user/detail_post/$post_id"));   
+    }
+    public function job_repository(){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id = $this->get_repairman_id($user_id);
+        $data["my_repairman_id"]=$repairman_id;
+        $data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
+        vd("daata",$data);
+        $this->load->view("MAIN/job_repository",$data);
     }
 }
