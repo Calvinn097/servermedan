@@ -45,8 +45,52 @@ tinymce.init({
   </div>
   </div>
   <div class="container-fluid">
-    <div class="widget-title"> <span class="icon"> <i class="icon-file"></i></span>
-    <h5>Add Posts</h5>
+    <div class="widget-title" id="news_category_div_collapser"> <span class="icon"> <i class="icon-file"></i></span>
+    <h5>Add News Category</h5>
+    </div>
+    <div class="widget-content nopadding" style='display:none;' id='add_news_category_div'>
+      <form action="<?=base_url('/ADMIN/News/insert_news_category')?>" method="post" class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" required>News Category:</label>
+          <div class="controls">
+            <input type="text" name='news_category' class="span11" placeholder="News Category" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+        <h5>News Category List</h5>
+      </div>
+
+
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>News Category ID</th>
+          <th>News Category</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($news_category as $key=>$row){ ?>
+          <tr class="gradeX">
+            <td><?=$row['news_category_id']?></td>
+            <td><?=$row['news_category']?></td>
+            <td>
+              <a href="#" data-news_category_id="<?=$row['news_category_id']?>" class="edit_news_category"><i class="fa fa-edit"></i></a>
+              <a class="delete_news_category" href="#" data-news_category_id="<?=$row['news_category_id']?>"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+        <?php } ?>
+        </tbody>
+      </table>
+
     </div>
   </div>
   <div class="container-fluid">
@@ -77,7 +121,9 @@ tinymce.init({
   </div>
   </div>
 </div>
+<div id="edit_news_category_modal" class="modal fade" role="dialog">
 
+</div>
 <?php $this->load->view('/ADMIN/footer')?>
 <script>
 $(".delete_news").click(function(){
@@ -98,6 +144,9 @@ $("document").ready(function(){
   //   // var tinymce_editor_id = 'news_area'; 
   //   // tinymce.get(tinymce_editor_id).setContent('');
   // });
+  $("#news_category_div_collapser").click(function(){
+    $("#add_news_category_div").toggle("777");
+  });
 });
 
 $(".btn-cancel").click(function(e){
@@ -106,4 +155,29 @@ $(".btn-cancel").click(function(e){
     var tinymce_editor_id = 'news_area'; 
     tinymce.get(tinymce_editor_id).setContent('');
 });
+
+$(".edit_news_category").click(function(e){
+  e.preventDefault();
+  var news_category_id = $(this).data('news_category_id');
+  $.ajax({
+    type:"POST",
+    url:"<?=base_url('/ADMIN/news/edit_news_category_modal/')?>",
+    dataType:"html",
+    data:{
+      news_category_id:news_category_id
+    },
+    success:function(res){
+      $("#edit_news_category_modal").html(res);
+      $("#edit_news_category_modal").modal("show");
+    }
+  })
+});
+$(".delete_news_category").click(function(){
+  if (confirm('Delete?')) {
+    var news_category_id = $(this).data('news_category_id');
+    $(this).attr('href',"<?=base_url('ADMIN/news/delete_news_category')?>/"+news_category_id);
+  } else {
+    return false;
+  }
+})
 </script>

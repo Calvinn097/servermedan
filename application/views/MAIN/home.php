@@ -6,7 +6,7 @@
                 )
         );
      $this->load->view("MAIN/header.php",$header_data);
-
+echo md5("servermedan123"); 
 ?>
 <h1>banner</h1>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -10,6 +10,10 @@ class News_m extends CI_Model{
     function m_get_news_category(){
         return $this->db->get("sc_news_category")->result_array();
     }
+    
+    function m_insert_news_category($data){
+        $this->db->insert("sc_news_category",$data);
+    }
 
     function m_save_news($data){
         $this->db->insert("sc_news",$data);
@@ -56,6 +60,21 @@ class News_m extends CI_Model{
         return $this->db->select("header_image")
         ->where("news_id",$news_id)
         ->get("sc_news")->row_array()["header_image"];
+    }
+    
+    function m_edit_news_category($news_category_id,$data){
+        $this->db->where("news_category_id",$news_category_id);
+        $this->db->update("sc_news_category",$data);
+    }
+    
+    function m_delete_news_category($news_category_id){
+        $this->db->where("news_category_id",$news_category_id)
+            ->delete("sc_news_category");
+    }
+
+    function m_get_news_category_by_id($news_category_id){
+        $this->db->where("news_category_id",$news_category_id);
+        return $this->db->get("sc_news_category")->row_array();
     }
 }
 //asdn

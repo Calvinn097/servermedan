@@ -9,10 +9,13 @@
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/fullcalendar.css')?>" />
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/matrix-style.css')?>" />
 <link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/matrix-media.css')?>" />
+<link rel="stylesheet" href="<?=base_url("/asset/matrix-admin-package/css/select2.css")?>" />
+<link rel="stylesheet" href="<?=base_url("/asset/matrix-admin-package/css/bootstrap-wysihtml5.css")?>" />
+<link rel="stylesheet" href="<?=base_url("/asset/matrix-admin-package/css/uniform.css")?>" />
 <link href="<?=base_url('/asset/font-awesome/css/font-awesome.css')?>" rel="stylesheet" />
 <link href="<?=base_url('/asset/matrix_admin_package/font-awesome/css/font-awesome.css')?>" rel="stylesheet" />
 
-<link rel="stylesheet" href="<?=base_url('/asset/matrix_admin_package/css/jquery.gritter.css')?>" />
+<!--<link rel="stylesheet" href="--><?//=base_url('/asset/matrix_admin_package/css/jquery.gritter.css')?><!--" />-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?=base_url('/asset/css/admin.css')?>" />
 </head>

@@ -122,4 +122,36 @@ class News extends ADMIN_Controller {
         }
         redirect("ADMIN/News");
     }
+
+    function insert_news_category(){
+//        vd("psot",$_POST,true);
+        $news_category=$this->input->post("news_category",true);
+        $data=array(
+            "news_category"=>$news_category
+        );
+        $this->News_m->m_insert_news_category($data);
+        redirect(base_url("ADMIN/news"));
+    }
+
+    function edit_news_category_modal(){
+        $news_category_id = $this->input->post("news_category_id",true);
+        $data["news_category"]=$this->News_m->m_get_news_category_by_id($news_category_id);
+        $this->load->view("ADMIN/edit_news_category_modal",$data);
+    }
+
+    function edit_news_category()
+    {
+        $news_category_id=$this->input->post("news_category_id",true);
+        $news_category=$this->input->post("news_category", true);
+        $data = array(
+            "news_category"=>$news_category
+        );
+        $this->News_m->m_edit_news_category($news_category_id,$data);
+        redirect(base_url("ADMIN/news"));
+    }
+    
+    function delete_news_category($news_category_id){
+        $this->News_m->m_delete_news_category($news_category_id);
+        redirect(base_url("ADMIN/news"));
+    }
 }
