@@ -37,7 +37,7 @@ class Repairman extends REST_Controller {
         $repairman_id = $this->get("repairman_id");
         $repairman = $this->Repairman_m->m_get_repairman($email);
         if($email==null){
-            $repairman = $this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id)
+            $repairman = $this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
         }
         if($repairman==null){
             $this->response(["status"=>false,"data"=>$repairman], REST_Controller::HTTP_OK);    

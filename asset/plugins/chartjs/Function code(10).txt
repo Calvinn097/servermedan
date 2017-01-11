@@ -1,0 +1,3 @@
+function anonymous(obj) {
+var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push('',value,'');}return p.join('');
+}
