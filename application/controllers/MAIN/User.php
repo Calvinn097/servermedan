@@ -227,9 +227,6 @@ class User extends MY_Controller {
         //vd("data",$data);
         $this->load->view("MAIN/detailpost",$data);
     }
-<<<<<<< HEAD
-    
-=======
     public function profile_user_id($user_id=null){
         if($user_id ==null){
             $user_id = user_login_info()["user_id"];
@@ -244,7 +241,6 @@ class User extends MY_Controller {
     public function chat(){
         $this->load->view("Main/chatting");   
     }
->>>>>>> e7330d4db05e63a2657c7b636f5a15393f12627f
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
         vd("data",$data);
