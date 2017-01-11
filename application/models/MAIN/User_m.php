@@ -61,6 +61,10 @@ class User_m extends CI_Model{
     function m_login_user(){
     	$email = $this->input->post("email",true);
     	$password = $this->input->post("password",true);
+        // $email="calvinwangxz@gmail.com";
+        // $password="calvin123";
+        // $email="repairman@gmail.com";
+        // $password="calvin123";
     	$user = $this->db
     	->where("email",$email)
     	->get("sc_user")->row_array();
@@ -624,6 +628,136 @@ class User_m extends CI_Model{
         ->from("sc_post_accepted")
         ->join("sc_user_post","sc_user_post.user_post_id=sc_post_accepted.user_post_id")
         ->get()->row_array()["user_post_id"];
+    }
+    function m_clear_notification($user_post_id,$user_id){
+        if($user_post_id!=null && $user_id !=null){
+            $res = $this->db->where("p_acc.user_post_id",$user_post_id)
+            ->where("up.user_id",$user_id)
+            ->from("sc_post_accepted p_acc")
+            ->join("sc_user_post up","up.user_post_id=p_acc.user_post_id")
+            ->count_all_results();
+            if($res>0){
+                if(user_login_info()["is_repairman"]!=null){
+                    $data=array(
+                        "notif_repairman"=>""
+                    );
+                }else{
+                    $data=array(
+                        "notif_user"=>""
+                    );
+                }
+                
+                $this->db->where("user_post_id",$user_post_id)
+                ->update("sc_post_accepted",$data);
+            }
+        }
+    }
+
+    function m_is_author_of_post($user_id,$user_post_id){
+        $res=$this->db->where("user_id",$user_id)   
+        ->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_user_post");
+        if($res>0){
+            return true;
+        }
+        return false;
+    }
+    function m_deal_accepted_post_by_post_id($post_accepted_id,$user_post_id,$user_id){
+        $data=array(
+            "user_dealed"=>$user_id,
+            "date_dealed"=>date("Y-m-d H:i:s"),
+            "notif_repairman"=>"Dealed"
+        );
+        $this->db->where("user_post_id",$user_post_id)
+        ->where("post_accepted_id",$post_accepted_id)
+        ->update("sc_post_accepted",$data);
+        $rejected=$this->db->where("user_post_id",$user_post_id)
+        ->where("user_dealed",0)
+        ->get("sc_post_accepted")->result_array();
+        foreach($rejected as $key=>$row){
+            $data=array(
+                "user_post_id"=>$row["user_post_id"],
+                "user_id"=>$user_id
+            );
+            $this->m_reject_accepted_post($data);
+        }
+        $this->db->where("user_post_id",$user_post_id)
+        ->where("user_dealed",0)
+        ->delete("sc_post_accepted");
+
+    }
+
+    function m_reject_accepted_post($data){
+        $this->db->insert("sc_post_rejected",$data);
+    }
+
+    function m_reject_accepted_post_by_post_id($post_accepted_id,$user_post_id,$user_id){
+        $rejected=$this->db->where("post_accepted_id",$post_accepted_id)
+        ->get("sc_post_accepted")->row_array();
+        $data=array(
+            "user_post_id"=>$rejected["user_post_id"],
+            "user_id"=>$user_id
+        );
+        $this->db->where("post_accepted_id",$post_accepted_id)
+        ->where("user_dealed",0);
+        $this->db->delete("sc_post_accepted");
+    }
+    function m_finish_post($post_accepted_id,$user_post_id,$user_id,$review,$rate){
+        $finished=$this->db->where("post_accepted_id",$post_accepted_id)
+        ->where("user_dealed>",0)
+        ->get("sc_post_accepted")->row_array();
+        $finished["review"]=$review;
+        $finished["rate"]=$rate;
+        $finished["date_finished"]=date("Y-m-d H:i:s");
+        $repairman_id = $finished["repairman_id"];
+        $score=$this->m_get_repairman_score($repairman_id);
+        $score+=$finished["rate"];
+        $this->m_set_repairman_score($score,$repairman_id);
+        $this->m_update_number_job($repairman_id);
+        unset($finished["post_accepted_id"]);
+        $this->db->insert("sc_post_finished",$finished);
+        $this->db->where("post_accepted_id",$post_accepted_id)
+        ->where("user_dealed>",0)
+        ->delete("sc_post_accepted");
+    }
+    function m_get_repairman_score($repairman_id){
+        return $this->db->select("score")
+        ->where("repairman_id")
+        ->get("sc_repairman")->row_array()["score"];
+    }
+    function m_set_repairman_score($score,$repairman_id){
+        $data=array(
+            "score"=>$score);
+        $this->db->where("repairman_id",$repairman_id)
+        ->update("sc_repairman",$data);
+    }
+    function m_update_number_job($repairman_id){
+        $res=$this->db->where("repairman_id",$repairman_id)
+        ->count_all_results("sc_post_finished");
+        $data=array(
+            "number_job"=>$res);
+        $this->db->where("repairman_id",$repairman_id)
+        ->update("sc_repairman",$data);
+    }
+    function m_get_finished($user_post_id){
+        return $this->db->where("user_post_id",$user_post_id)
+        ->get("sc_post_finished")->row_array();
+    }
+    function m_is_finisher($post_finished_id,$repairman_id){
+        $res = $this->db->where("repairman_id",$repairman_id)
+        ->where("post_finished_id",$post_finished_id)
+        ->count_all_results("sc_post_finished");
+        if($res>0){
+            return true;
+        }
+        return false;
+    }
+    function m_mark_lunas($post_finished_id){
+        $data=array(
+            "lunas"=>1
+        );
+        $this->db->where("post_finished_id",$post_finished_id)
+        ->update("sc_post_finished",$data);
     }
 }
 //asdn

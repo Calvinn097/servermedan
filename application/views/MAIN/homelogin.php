@@ -319,10 +319,11 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+
                         <?php if(count($user_notification)>0){ ?>
                             <?php foreach($user_notification as $key=>$row) { ?>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item">
+                                    <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
                                         <?=$row["post_title"]?>
                                         <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
                                         <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>

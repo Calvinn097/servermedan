@@ -191,23 +191,27 @@ class User extends MY_Controller {
             }
             
             $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id);
+            $data["finished"]=$this->User_m->m_get_finished($user_post_id);
             $data["repairman"]=false;
-
+            // vd("data",$data,true);
         }else if($repairman_id!=null){
             $data["detail_post"]=$this->User_m->m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id);
             $data["accepted"]=$this->User_m->m_get_post_accepted_by_repairman_id_post_id($user_post_id,$repairman_id);
             $data["repairman"]=true;
+            $data["finished"]=$this->User_m->m_get_finished($user_post_id);
             $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id);
+
             if($data["detail_post"]==null){
                 set_global_noti("Not found","warning");
                 redirect(base_url());    
             }
             
             $data["i_accept_comment"]=$this->User_m->m_get_post_accepted_comment_by_post_id_repairman_id($data["accepted"]["post_accepted_id"],$repairman_id);
+            // vd("data",$data,true);
         }else{
             redirect(base_url());
         }
-        
+        $this->User_m->m_clear_notification($user_post_id,$user_id);
         //vd("data",$data);
         $this->load->view("MAIN/detailpost",$data);
     }
@@ -217,7 +221,7 @@ class User extends MY_Controller {
             
         }
         $repairman_id = $this->get_repairman_id($user_id);
-        $data["my_repairman_id"]=$this->get_repairman_id($user_id);
+        $data["my_repairman_id"]=$this->get_repairman_id(user_login_info()["user_id"]);
         
         $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
         $this->load->view("MAIN/repairman_profile",$data);
@@ -312,7 +316,7 @@ class User extends MY_Controller {
         $data["my_user_id"]= user_login_info()["user_id"];
         $data["is_repairman"]=$this->User_m->m_check_repairman_exist_by_user_id($data["my_user_id"]);
         if($data["is_repairman"]){
-            $data["my_repairman_id"]=$this->Repairman_m->get_repairman_id($user_id);
+            $data["my_repairman_id"]=$this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
             $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
             $this->load->view("MAIN/repairman_profile",$data);
             
@@ -395,5 +399,69 @@ class User extends MY_Controller {
             set_global_noti("Password fail to change","warning");   
         }
         redirect(base_url());
+    }
+
+    function deal_post($user_post_id,$post_accepted_id){
+        $user_id = user_login_info()["user_id"];
+        $is_author_of_post = $this->User_m->m_is_author_of_post($user_id,$user_post_id);
+        // vd("is",$is_author_of_post);
+        if($is_author_of_post){
+            $this->User_m->m_deal_accepted_post_by_post_id($post_accepted_id,$user_post_id,$user_id);
+            redirect(base_url("user/detail_post/".$user_post_id));
+        }else{
+            set_global_noti("unauthorized action");
+            redirect(base_url());
+        }
+    }
+
+    function user_reject_repairman($user_post_id,$post_accepted_id){
+        $user_id = user_login_info()["user_id"];
+        $is_author_of_post = $this->User_m->m_is_author_of_post($user_id,$user_post_id);
+        // vd("is",$is_author_of_post);
+        if($is_author_of_post){
+            $this->User_m->m_reject_accepted_post_by_post_id($post_accepted_id,$user_post_id,$user_id);
+            redirect(base_url("user/detail_post/".$user_post_id));
+        }else{
+            set_global_noti("unauthorized action");
+            redirect(base_url());
+        }
+    }
+
+    function user_finished($user_post_id,$post_accepted_id){
+        $user_id = user_login_info()["user_id"];
+        $is_author_of_post = $this->User_m->m_is_author_of_post($user_id,$user_post_id);
+        if($is_author_of_post){
+            $review = $this->input->post("review",true);
+            $rate = $this->input->post("rate",true);
+            $this->User_m->m_finish_post($post_accepted_id,$user_post_id,$user_id,$review,$rate);
+            redirect(base_url("user/detail_post/".$user_post_id));
+        }else{
+            set_global_noti("unauthorized action");
+            redirect(base_url());
+        }
+    }
+
+    function lunas($post_finished_id){
+        $user_id = user_login_info()["user_id"];
+        $repairman_id=$this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+
+        if($repairman_id==null){
+            redirect(base_url());
+            set_global_noti("unauthorized access","warning");
+        }
+        $is_finished = $this->User_m->m_is_finisher($post_finished_id,$repairman_id);
+        // vd("is_fin",$is_finished);
+        if($is_finished){
+            // die("we");
+            $this->User_m->m_mark_lunas($post_finished_id);
+            // die("asd");
+            $link = $this->agent->referrer();
+            redirect($link);
+            // redirect(base_url("user/detail_post/".$user_post_id));
+        }else{
+            // die("yolo");
+            set_global_noti("unauthorized action");
+            redirect(base_url());
+        }
     }
 }
