@@ -91,7 +91,7 @@
                         } ?> 
                         <h3>
                             <?php
-                                $newsTitle = $row["news_title"] ?? "Tidak ada judul";
+                                $newsTitle = isset($row["news_title"]) ?: "Tidak ada judul";
                                 if(strlen($newsTitle) > 70)
                                 {
                                     echo substr($newsTitle, 0, 67) . "...";
@@ -103,7 +103,7 @@
                             ?>
                         </h3>
                         <hr>
-                        <span class="news_time"><?=date('l, j/n/Y H:i A', strtotime($row['date_created'])) ?? "No created Date" ?></span>
+                        <span class="news_time"><?=date('l, j/n/Y H:i A', isset($row['date_created'])?strtotime($row['date_created']) : "No created Date") ?></span>
                     </div>
                     </a>
                 </div>

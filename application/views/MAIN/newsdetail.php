@@ -21,7 +21,7 @@
         <h1>
             <?php
                 echo $news["news_category"] . " - ";
-                echo $news["news_title"] ?? "Tidak Ada Judul"; 
+                echo isset($news["news_title"])?$news["news_title"]: "Tidak Ada Judul"; 
              ?>
         </h1>
     </div>
