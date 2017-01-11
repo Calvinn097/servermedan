@@ -1,11 +1,21 @@
 <style>
     .image-news
     {
-        width: 90%;
-        height: 60%;
+        width: 70%;
+        height: 70%;
         margin-left: auto;
         margin-right: auto;
         display: block;
+    }
+    .news-conf
+    {
+        color: darkgray;
+    }
+    hr.separator
+    {
+        background-color: black;
+        height: 1px;
+        width: 90%;
     }
 </style>
 
@@ -28,6 +38,12 @@
     <section id="main-content" class="animated fadeInUp">
         <div class="container-fluid">
             <?php
+                echo "
+                <div class='news-conf'>
+                    Penulis : " . $news["author"] . "<br>"
+                    . date('l, j/n/Y H:i A', isset($news['date_created'])?strtotime($news['date_created']) : "-") .
+                "</div><br>
+                ";
                 if($news["header_image"] != null)
                 {
                     echo "<img class='image-news' src='" . base_url($news["header_image"]) . "'>";
@@ -36,7 +52,9 @@
                 {
                     echo "<img class='image-news' src='" . base_url("asset/images/image-not-found.jpg") . "'><br>";
                 }
-                print_r($news);
+                echo "<br><hr class='separator'><br>";
+                echo $news["content"];
+                echo "<br><br><br>";
             ?>
         </div>
     </section>
