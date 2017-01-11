@@ -63,8 +63,8 @@ class User_m extends CI_Model{
     	$password = $this->input->post("password",true);
         // $email="calvinwangxz@gmail.com";
         // $password="calvin123";
-        // $email="repairman@gmail.com";
-        // $password="calvin123";
+        $email="repairman@gmail.com";
+        $password="calvin123";
     	$user = $this->db
     	->where("email",$email)
     	->get("sc_user")->row_array();
@@ -695,6 +695,7 @@ class User_m extends CI_Model{
         $rejected=$this->db->where("post_accepted_id",$post_accepted_id)
         ->get("sc_post_accepted")->row_array();
         $data=array(
+            "repairman_id"=>$rejected["repairman_id"],
             "user_post_id"=>$rejected["user_post_id"],
             "user_id"=>$user_id
         );

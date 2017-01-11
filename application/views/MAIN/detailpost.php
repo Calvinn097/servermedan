@@ -227,8 +227,10 @@
                 <?php } ?>
             <?php } ?>
             <h3>end of Repairman yang menerima order dari sang user akan nampak oleh author detail post ini.</h3>
+
             <?php if($repairman){ ?>
             <h3>Repairman 1 on 1 comment with user</h3>
+
             <?php foreach ($i_accept_comment as $key2=>$row2){ ?>
             <?php $post_accepted_id=$row2["post_accepted_id"]?>
                 <li>
@@ -237,11 +239,14 @@
                 comment: <?=$row2["comment"]?><br>
                 </li>
             <?php } ?>  
+            
+            <?php if(isset($post_accepted_id)){ ?>
             <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
             <input type="hidden" name="post_accepted_id" value="<?=$post_accepted_id?>">
                 <textarea name="comment"></textarea>
                 <input type="submit">
             </form>
+            <?php } ?>
             <h3>end Repairman 1 on 1 comment with user</h3>
             <?php } ?>
             <!-- /.row -->
