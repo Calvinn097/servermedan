@@ -140,7 +140,7 @@
                                 <li>
                                 At <?=$value["date"]?>
                                 <?php 
-                                if($value["user_level"]>0){$linkprofile=base_url("repairman/profile/".$value["user_id"]);}
+                                if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
                                 else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
                                 ?>
                                 <a href="<?=$linkprofile?>">
@@ -163,6 +163,54 @@
                 <!-- /.col-lg-8 -->
                 <!-- /.col-lg-4 -->
             </div>
+            <h3>Repairman yang menerima order dari sang user akan nampak oleh author detail post ini.</h3>
+            <?php if(count($accepted_repairman_list)>0){ ?>
+                <?php foreach($accepted_repairman_list as $key=>$row){ ?>
+                <div style="border:1px solid black">
+                Accepted by<br>
+                Repairman name=<a href="<?=base_url("repairman/profile/".$row["repairman_accepter_id"])?>"><?=$row["repairman_accepter_name"]?></a><br>
+                Time accepted = <?=$row["date_accept"]?><br>
+                price = <?=toMoney($row["price"])?><br>
+                estimated repair time = <?=$row["estimated_time"]?><br>
+                comment:<br>
+                <ul stlye="border:1px solid black;">
+                <?php if(count($row["comment"])>0){?>
+                <?php foreach ($row["comment"] as $key2=>$row2){ ?>
+                <li>
+                comment time: <?=$row2["date"]?><br>
+                name: <a href="<?=base_url("user/profile_hybrid/".$row2["user_id"])?>"><?=$row2["fname"]?> <?=$row2["lname"]?></a><br>
+                comment: <?=$row2["comment"]?><br>
+                </li>
+                <?php } ?>
+                <?php } ?>
+                Comment here:<br>
+                <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
+                <input type="hidden" name="post_accepted_id" value="<?=$row["post_accepted_id"]?>">
+                    <textarea name="comment"></textarea>
+                    <input type="submit">
+                </form>
+                </div>
+                </ul>
+                <?php } ?>
+            <?php } ?>
+            <h3>end of Repairman yang menerima order dari sang user akan nampak oleh author detail post ini.</h3>
+            <?php if($repairman){ ?>
+            <h3>Repairman 1 on 1 comment with user</h3>
+            <?php foreach ($i_accept_comment as $key2=>$row2){ ?>
+            <?php $post_accepted_id=$row2["post_accepted_id"]?>
+                <li>
+                comment time: <?=$row2["date"]?><br>
+                name: <a href="<?=base_url("user/profile_hybrid/".$row2["user_id"])?>"><?=$row2["fname"]?> <?=$row2["lname"]?></a><br>
+                comment: <?=$row2["comment"]?><br>
+                </li>
+            <?php } ?>  
+            <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
+            <input type="hidden" name="post_accepted_id" value="<?=$post_accepted_id?>">
+                <textarea name="comment"></textarea>
+                <input type="submit">
+            </form>
+            <h3>end Repairman 1 on 1 comment with user</h3>
+            <?php } ?>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -212,7 +260,7 @@
     <!-- <script src="../dist/js/sb-admin-2.js"></script> -->
 
 </body>
-<!-- <?php vd("asd",$detail_post) ?> -->
+<?php vd("asd",$detail_post) ?> 
 <?php vd("accepted_repairman_list",$accepted_repairman_list)?>
-
+<?php vd("i_accept_comment",$i_accept_comment);
 

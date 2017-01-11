@@ -204,8 +204,8 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
         $my_user_id = $this->m_get_user_id_by_repairman_id($repairman_id);
         $res = $this->db->where("user_post_id",$post_id)
         ->where("user_id",$my_user_id)
-        ->count_all_results();
-        if($res>0){
+        ->count_all_results("sc_user_post");
+        if($res==0){
             $array=array(
                 "repairman_id"=>$repairman_id,
                 "user_post_id"=>$post_id,
