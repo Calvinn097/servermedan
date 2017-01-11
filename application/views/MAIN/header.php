@@ -55,7 +55,7 @@ if($this->session->flashdata("signup_err")!==null){
         <link href="<?=base_url($row)?>" rel="stylesheet">
     <?php } ?>
     
-    
+    <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
 
     <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
 
@@ -154,7 +154,7 @@ if($this->session->flashdata("signup_err")!==null){
         <nav id="nav">
             <ul>
                 <li><a href="<?=base_url()?>">Beranda</a></li>
-                <li><a href="blog.html">Masuk/Daftar</a></li>
+                <li><a href="<?=base_url("user/viewlogin")?>">Masuk/Daftar</a></li>
                 <li class="a"><a accesskey="5" href="https://itunes.apple.com/sg/genre/ios-business/id6000?mt=8">Download App</a></li>
             </ul>
         </nav>

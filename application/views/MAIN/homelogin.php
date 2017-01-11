@@ -58,7 +58,6 @@
 
 </style>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
-
     <div id="wrapper">
 
         <!-- Navigation -->

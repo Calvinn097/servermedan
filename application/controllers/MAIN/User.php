@@ -34,12 +34,20 @@ class User extends MY_Controller {
 
 	}
 
+    public function viewregister(){
+        $this->load->view("Main/register");   
+    }
+    
 	public function register(){
 		// print_r($_POST);
 		//vd("post",$_POST,true);
 		$this->User_m->m_insert_user();
 	}
 
+    public function ViewLogin(){
+        $this->load->view("Main/login.php");  
+    }
+    
 	public function login(){
 		// print_r($_POST);
 		$status=$this->User_m->m_login_user();
@@ -140,6 +148,10 @@ class User extends MY_Controller {
         redirect($this->agent->referrer(),"refresh");
 	}
     
+    public function viewhome(){
+        $this->load->view("Main/homelogin");   
+    }
+    
     public function user_login_customer(){
         if(!isset($_COOKIE["sm_login"])){
             redirect(base_url());
@@ -215,6 +227,9 @@ class User extends MY_Controller {
         //vd("data",$data);
         $this->load->view("MAIN/detailpost",$data);
     }
+<<<<<<< HEAD
+    
+=======
     public function profile_user_id($user_id=null){
         if($user_id ==null){
             $user_id = user_login_info()["user_id"];
@@ -229,6 +244,7 @@ class User extends MY_Controller {
     public function chat(){
         $this->load->view("Main/chatting");   
     }
+>>>>>>> e7330d4db05e63a2657c7b636f5a15393f12627f
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
         vd("data",$data);
@@ -239,9 +255,8 @@ class User extends MY_Controller {
         vd("data",$data);
         $this->load->view("Main/detailrepair",$data);   
     } 
-    public function accept(){
-        $this->load->view("Main/accept");   
-    }
+     
+    
     public function user_posting(){
         $this->User_m->m_insert_user_posting();
         redirect(base_url("user/user_login_customer"));
