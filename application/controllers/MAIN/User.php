@@ -34,12 +34,20 @@ class User extends MY_Controller {
 
 	}
 
+    public function viewregister(){
+        $this->load->view("Main/register");   
+    }
+    
 	public function register(){
 		// print_r($_POST);
 		//vd("post",$_POST,true);
 		$this->User_m->m_insert_user();
 	}
 
+    public function ViewLogin(){
+        $this->load->view("Main/login.php");  
+    }
+    
 	public function login(){
 		// print_r($_POST);
 		$status=$this->User_m->m_login_user();
@@ -192,9 +200,7 @@ class User extends MY_Controller {
         //vd("data",$data);
         $this->load->view("MAIN/detailpost",$data);
     }
-    public function chat(){
-        $this->load->view("Main/chatting");   
-    }
+    
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
         vd("data",$data);
@@ -205,9 +211,8 @@ class User extends MY_Controller {
         vd("data",$data);
         $this->load->view("Main/detailrepair",$data);   
     } 
-    public function accept(){
-        $this->load->view("Main/accept");   
-    }
+     
+    
     public function user_posting(){
         $this->User_m->m_insert_user_posting();
         redirect(base_url("user/user_login_customer"));
