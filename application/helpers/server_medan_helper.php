@@ -212,6 +212,7 @@ function get_image_folder_path($path){
 
 function user_login_info(){
     $CI =& get_instance();
+    $CI->load->model("MAIN/Repairman_m");
     if(isset($_COOKIE["sm_login"])){
         $cookie = json_decode($CI->input->cookie("sm_login"),true);
         if(isset($cookie["user_id"]) && $cookie["user_id"]!==null){
@@ -232,7 +233,8 @@ function user_login_info(){
         $data = array(
             "user_id"=>$user_id,
             "fb_id"=>$fb_id,
-            "fb_access_token"=>$fb_access_token
+            "fb_access_token"=>$fb_access_token,
+            "is_repairman"=>$CI->Repairman_m->m_get_repairman_id_by_user_id($user_id)
 
         );
         return $data;

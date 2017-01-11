@@ -32,6 +32,9 @@
     <script src="assets/js/vendor/html5shiv.js"></script>
     <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
     <script src="<?=base_url("asset/js/vendor/jquery-1.11.1.min.js")?>"></script>
     <script src="<?=base_url("asset/plugins/bootstrap/js/bootstrap.min.js")?>"></script>
     <script src="<?=base_url("asset/plugins/navgoco/jquery.navgoco.min.js")?>"></script>
@@ -84,7 +87,7 @@ if (self==top) {
         <header id="header">
             <!--logo start-->
             <div class="brand">
-                <a href="index.html" class="logo">
+                <a href="<?=base_url("")?>" class="logo">
                     <i class="icon-layers"></i>
                     <span>SERVER</span>Medan</a>
             </div>
@@ -119,20 +122,7 @@ if (self==top) {
                     <i class="on border-dark animated bounceIn"></i>
                 </div>
                 <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman<span class="caret"></span></h4></a>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
+                    <a href="javascript:void(0);" class="dropdown-toggle"><h4>Nama Repairman</h4></a>
                 </div>
             </div>
             <nav>
@@ -143,30 +133,27 @@ if (self==top) {
                             <i class="fa  fa-fw fa-desktop"></i> Beranda
                         </a>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Progress dan Riwayat Perbaikan">
-                            <i class="fa  fa-fw fa-cogs"></i> Perbaikan Barang
+                    <li>
+                        <a href="<?=base_url("")?>" title="Progress and History">
+                            <i class="fa  fa-fw fa-desktop"></i> Progress and History
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Progress">
-                                    Dalam Progress
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="History">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="<?=base_url("news")?>" title="UI Elements">
                             <i class="fa  fa-fw fa-cogs"></i> Berita
                         </a>
                     </li>
+                    <li>
+                        <a href="<?=base_url('user/logout')?>" title="Keluar">
+                            <i class="fa  fa-fw fa-desktop"></i> Logout
+                        </a>
+                    </li>
                 </ul>
             </nav>
+            <?php
+                if(user_login_info()["is_repairman"] != null)
+                {
+            ?>
             <nav>
                 <h5 class="sidebar-header">Repairman</h5>
                 <ul class="nav nav-pills nav-stacked">
@@ -180,22 +167,10 @@ if (self==top) {
                             <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
                         </a>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="UI Elements">
-                            <i class="fa  fa-fw fa-cogs"></i> Pekerjaan
+                    <li>
+                        <a href="<?=base_url("repairman/job_repository")?>" title="Profil Repairman">
+                            <i class="fa  fa-fw fa-desktop"></i> List Pekerjaan
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Pekerjaan yang sedang dikerjakan">
-                                    Sedang Dikerjakan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="Pekerjaan yang telah selesai">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#" title="Keluar">
@@ -204,5 +179,8 @@ if (self==top) {
                     </li>
                 </ul>
             </nav>
+            <?php
+                }
+            ?>
         </aside>
         <!--sidebar left end-->
