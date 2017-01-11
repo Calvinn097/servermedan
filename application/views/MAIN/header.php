@@ -34,7 +34,10 @@ if($this->session->flashdata("signup_err")!==null){
     <meta name="author" content="">
 
     <title><?=$title?></title>
-
+    
+    <!--icon-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <!-- Bootstrap Core CSS -->
     <link href="<?=base_url("/asset/bootstrap/3.3.7/css/bootstrap.min.css")?>" rel="stylesheet">
 
@@ -145,41 +148,59 @@ if($this->session->flashdata("signup_err")!==null){
     </script>
     <!-- END Facebook SDK Login -->
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    Menu <i class="fa fa-bars"></i>
+    <?php if(!isset($_COOKIE["sm_login"])){ ?>
+    <header id="top" class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <h1><a class="logo1" href="<?=base_url()?>" accesskey="h">Server Medan</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="<?=base_url()?>">Beranda</a></li>
+                <li><a href="blog.html">Masuk/Daftar</a></li>
+                <li class="a"><a accesskey="5" href="https://itunes.apple.com/sg/genre/ios-business/id6000?mt=8">Download App</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <?php }else{ ?>
+    <header id="header">
+        <!--logo start-->
+        <div class="brand">
+            <a href="index.html" class="logo">
+                <i class="icon-layers"></i>
+                <span>SERVER</span>Medan</a>
+        </div>
+        <!--logo end-->
+        <ul class="nav navbar-nav navbar-left">
+            <li class="toggle-navigation toggle-left">
+                <button class="sidebar-toggle" id="toggle-left">
+                    <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="<?=base_url()?>">
-                    <i class="fa fa-play-circle"></i> <span class="light">Server</span> Medan
-                </a>
-            </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="toggle-fullscreen hidden-xs">
+                <button type="button" class="btn btn-default expand" id="toggle-fullscreen">
+                    <i class="fa fa-expand"></i>
+                </button>
+            </li>
+            <!--Note: Chatting
+
+                <li class="toggle-navigation toggle-right">
+                <button class="sidebar-toggle" id="toggle-right">
+                    <i class="fa fa-indent"></i>
+                </button>
+            </li>-->
+        </ul>
+    </header>
+    <?php } ?>
+    <!--<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+    -->        
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
+    <!--        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">-->
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#category" data-toggle="collapse">Kategori</a>
-                        <div id="category" class="collapse">
-                            <ul>
-                                <?php foreach($this->category_list as $row){ ?>
-                                <li><?=$row['category_name']?></li>
-                                <?php } ?>
-                                <!-- <li>Perabotan rumah tangga</li>
-                                <li>Gadget</li>
-                                <li>Kendaraan</li>
-                                <li>Listrik</li>
-                                <li>Bangunan</li>
-                                <li>Saluran Air</li> -->
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
+                    <!--<li>
                         <a class="page-scroll" href="<?=base_url("news")?>">Berita</a>
                     </li>
                     <li>
@@ -216,17 +237,16 @@ if($this->session->flashdata("signup_err")!==null){
                     </li>
                     <?php } ?>
                 </ul>
-            </div>
+            </div>-->
             <!-- /.navbar-collapse -->
-        </div>
+       <!-- </div>-->
         <!-- /.container -->
-    </nav>
+    <!--</nav>-->
 
     <!-- all Modal here -->
 <!-- Modal -->
 <div id="registerModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
