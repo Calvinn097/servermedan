@@ -330,6 +330,7 @@ class User_m extends CI_Model{
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
         )
         ->where("up.user_post_id",$user_post_id)
+        ->where("up.user_id",$user_id)
         ->from("sc_user_post up")
         ->join("sc_user u","u.user_id=up.user_id")
         ->join("sc_category c","up.category_id=c.category_id")
@@ -338,6 +339,9 @@ class User_m extends CI_Model{
         ->order_by("date_posted","desc")
         ->get()->row_array();
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        if($user_post==null){
+            return null;
+        }
         $user_post["comment"]=$this->m_get_post_comment_by_post_id($user_post["user_post_id"]);
         return $user_post;   
     }
@@ -357,6 +361,9 @@ class User_m extends CI_Model{
         ->join("sc_service_type st","st.service_type_id = up.service_type_id")
         ->order_by("date_posted","desc")
         ->get()->row_array();
+        if($user_post==null){
+            return null;
+        }
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
         $user_post["comment"]=$this->m_get_post_comment_by_post_id($user_post["user_post_id"]);
         return $user_post;   
@@ -384,12 +391,13 @@ class User_m extends CI_Model{
         }
     }
 
-    function m_get_post_accepted_comment_by_post_id($post_id){
+    function m_get_post_accepted_comment_by_post_id($post_accepted_id){
         $res = $this->db
             ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
-            pc.post_accepted_comment_id,pc.user_post_id,pc.comment,pc.date")
-            ->where("user_post_id",$post_id)
+            pc.post_accepted_comment_id,pc.post_accepted_id,pc.comment,pc.date")
+            ->where("p_acc.post_accepted_id",$post_accepted_id)
             ->from("sc_post_accepted_comment pc")
+            ->join("sc_post_accepted p_acc","p_acc.post_accepted_id=pc.post_accepted_id")
             ->join("sc_user u","pc.user_id=u.user_id")
             ->order_by("pc.date","asc")
             ->get()->result_array();
@@ -398,6 +406,24 @@ class User_m extends CI_Model{
         }else{
             return $res;
         }   
+    }
+
+    function m_get_post_accepted_comment_by_post_id_repairman_id($post_accepted_id,$repairman_id){
+        $res = $this->db
+            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            pc.post_accepted_comment_id,pc.post_accepted_id,pc.comment,pc.date")
+            ->where("p_acc.post_accepted_id",$post_accepted_id)
+            ->where("p_acc.repairman_id",$repairman_id)
+            ->from("sc_post_accepted_comment pc")
+            ->join("sc_post_accepted p_acc","p_acc.post_accepted_id=pc.post_accepted_id")
+            ->join("sc_user u","pc.user_id=u.user_id")
+            ->order_by("pc.date","asc")
+            ->get()->result_array();
+        if(count($res)==0){
+            return array();
+        }else{
+            return $res;
+        }      
     }
 
     function m_get_user_post_like_count($user_post_id){
@@ -513,13 +539,13 @@ class User_m extends CI_Model{
         }
         return $user_post;
     }
-    function m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id){
+    function m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id){
         $user_post= $this->db
         ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name,
-        p_acc.date_accept,p_acc.date_dealed,p_acc.user_dealed,p_acc.price,p_acc.estimated_time,p_acc.notif_user,p_acc.repairman_id as repairman_accepter_id"
+        p_acc.date_accept,p_acc.date_dealed,p_acc.user_dealed,p_acc.price,p_acc.estimated_time,p_acc.notif_user,p_acc.repairman_id as repairman_accepter_id,p_acc.post_accepted_id"
 
         )
         ->from("sc_user_post up")
@@ -529,6 +555,7 @@ class User_m extends CI_Model{
         ->join("sc_service_type st","st.service_type_id = up.service_type_id")
         ->join("sc_post_accepted p_acc","p_acc.user_post_id=up.user_post_id")
         ->where("p_acc.user_post_id",$user_post_id)
+        ->where("up.user_id",$user_id)
         ->order_by("date_posted","desc")
         ->get()->result_array();
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
@@ -536,7 +563,7 @@ class User_m extends CI_Model{
             return array();
         }
         foreach($user_post as $key=>$row){
-            $user_post[$key]["comment"]=$this->m_get_post_accepted_comment_by_post_id($row["user_post_id"]);
+            $user_post[$key]["comment"]=$this->m_get_post_accepted_comment_by_post_id($row["post_accepted_id"]);
             // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
             // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
             $user_post[$key]["repairman_accepter_name"]=$this->m_get_repairman_name_by_repairman_id($user_post[$key]["repairman_accepter_id"]);
@@ -551,6 +578,52 @@ class User_m extends CI_Model{
         ->get()->row_array();
         return $res["fname"]." ".$res["lname"];
         
+    }
+    function m_get_repairman_id_by_user_id($user_id){
+        return $this->db->select("repairman_id")
+        ->where("rp.user_id",$user_id)
+        ->from("sc_repairman rp")
+        ->join("sc_user u","u.user_id=rp.user_id")
+        ->get()->row_array()["repairman_id"];
+    }
+    function m_comment_post_accepted($data){
+        $post_accepted_id = $data["post_accepted_id"];
+        $user_id = $data["user_id"];
+        $repairman_id = $this->m_get_repairman_id_by_user_id($user_id);
+        if($repairman_id!=null){
+            $repairman_accepter_id = $this->db->where("post_accepted_id",$post_accepted_id)
+            ->where("repairman_id",$repairman_id)
+            ->select("repairman_id")
+            ->get("sc_post_accepted")->row_array()["repairman_id"];
+            if($repairman_id!=$repairman_accepter_id){
+                redirect(base_url());
+                set_global_noti("you cant comment on other user post");
+            }    
+            else{
+                $this->db->insert("sc_post_accepted_comment",$data);
+            }
+        }else if($user_id!=null){
+            $user_id_that_posted = $this->db->where("post_accepted_id",$post_accepted_id)
+            ->from("sc_post_accepted")
+            ->join("sc_user_post","sc_user_post.user_post_id=sc_post_accepted.user_post_id")
+            ->select("sc_user_post.user_id")
+            ->get()->row_array()["user_id"];
+            if($user_id_that_posted!=$user_id){
+                redirect(base_url());
+                set_global_noti("you cant comment on other user post");
+            }else{
+                $this->db->insert("sc_post_accepted_comment",$data);
+            }
+        }
+        
+
+    }
+    function m_get_post_id_by_post_accepted_id($post_accepted_id){
+        return $this->db->where("post_accepted_id",$post_accepted_id)
+        ->select("sc_post_accepted.user_post_id")
+        ->from("sc_post_accepted")
+        ->join("sc_user_post","sc_user_post.user_post_id=sc_post_accepted.user_post_id")
+        ->get()->row_array()["user_post_id"];
     }
 }
 //asdn

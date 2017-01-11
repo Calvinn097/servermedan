@@ -75,7 +75,7 @@
                                                 <?php foreach ($row["comment"] as $key => $value): ?>
                                                     <li>
                                                     <?php 
-                                                    if($value["user_level"]>0){$linkprofile=base_url("repairman/profile/".$value["user_id"]);}
+                                                    if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
                                                     else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
                                                     ?>
 

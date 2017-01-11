@@ -175,8 +175,13 @@
                                         <ul>
                                             <?php foreach ($row["comment"] as $key => $value): ?>
                                                 <li>
-                                                At <?=$value["date"]?>
-                                                <?=hsc($value["fname"])?> is
+                                                <?php 
+                                                    if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                                    else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                                    ?>
+
+                                                    At <?=$value["date"]?>
+                                                    <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
                                                 <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
                                                 <?=hsc($value["comment"])?>"
                                                     
