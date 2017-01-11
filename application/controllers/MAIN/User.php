@@ -148,6 +148,7 @@ class User extends MY_Controller {
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
         $data["user_posting"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
         $data["user_notification"]=$this->User_m->m_get_user_notification_by_user_id($user_id);
+
         // vd("data",$data["user_notification"],true); //param 3 true to make program stop, dont include param 3 to show data without stopping program
         $this->load->view("MAIN/homelogin",$data);
     }
@@ -161,7 +162,9 @@ class User extends MY_Controller {
         $data["repairman_id"]=$repairman_id;
         $data["user_id"]=$user_id;
         $data["timeline"]=$this->Repairman_m->m_get_user_posting_by_repairman_id($repairman_id);
+
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
+
         //vd("Data",$data);
         $this->load->view("MAIN/homeloginrepair",$data);
     }
@@ -178,6 +181,7 @@ class User extends MY_Controller {
         $repairman_id = $this->get_repairman_id($user_id);
         if($repairman_id==null){
             $data["detail_post"]=$this->User_m->m_user_get_user_posting_by_user_post_id($user_post_id,$user_id);
+            $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id);
             $data["repairman"]=false;
         }else if($repairman_id!=null){
             $data["detail_post"]=$this->User_m->m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id);
@@ -240,7 +244,10 @@ class User extends MY_Controller {
 
     public function profile($user_id=null){
         if($user_id==null){
-            $user_id = user_login_info()["user_id"];    
+            $user_id = user_login_info()["user_id"];
+            if($user_id==null){
+                redirect(base_url());
+            }
         }
         // die($user_id);
         $data["my_user_id"]= user_login_info()["user_id"];

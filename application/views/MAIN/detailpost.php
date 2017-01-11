@@ -212,6 +212,7 @@
     <!-- <script src="../dist/js/sb-admin-2.js"></script> -->
 
 </body>
-<?php vd("asd",$detail_post) ?>
+<!-- <?php vd("asd",$detail_post) ?> -->
+<?php vd("accepted_repairman_list",$accepted_repairman_list)?>
 
 

@@ -255,10 +255,47 @@ class User_m extends CI_Model{
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
         foreach($user_post as $key=>$row){
             $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            $user_post[$key]["progress"]=$this->m_post_is_dealed($row["user_post_id"]);
+
+            
+            if($user_post[$key]["progress"]==""){
+                $user_post[$key]["progress"]=$this->m_post_is_accepted($row["user_post_id"]);
+            }
+            if($user_post[$key]["progress"]==""){
+                $user_post[$key]["progress"]=$this->m_post_is_rejected($row["user_post_id"]);
+            }
+            if($user_post[$key]["progress"]==""){
+                $user_post[$key]["progress"]="open";
+            }
             // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
             // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
         }
         return $user_post;
+    }
+    function m_post_is_accepted($user_post_id){
+        $res= $this->db->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_post_accepted");
+        if($res>0){
+            return "Accepted";
+        }
+        return "";
+    }
+    function m_post_is_dealed($user_post_id){
+        if( $this->db->where("user_post_id",$user_post_id)
+        ->where("user_dealed>",0)
+        ->count_all_results("sc_post_accepted")>0){
+            return "Dealed";
+        }
+        return "";
+    }
+
+    function m_post_is_rejected($user_post_id){
+        $res = $this->db->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_post_rejected");
+        if($res>0){
+            return "rejected";
+        }
+        return "";
     }
 
     function m_get_accepted_post($user_post_id){
@@ -345,6 +382,22 @@ class User_m extends CI_Model{
         }else{
             return $res;
         }
+    }
+
+    function m_get_post_accepted_comment_by_post_id($post_id){
+        $res = $this->db
+            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            pc.post_accepted_comment_id,pc.user_post_id,pc.comment,pc.date")
+            ->where("user_post_id",$post_id)
+            ->from("sc_post_accepted_comment pc")
+            ->join("sc_user u","pc.user_id=u.user_id")
+            ->order_by("pc.date","asc")
+            ->get()->result_array();
+        if(count($res)==0){
+            return array();
+        }else{
+            return $res;
+        }   
     }
 
     function m_get_user_post_like_count($user_post_id){
@@ -449,8 +502,41 @@ class User_m extends CI_Model{
         ->order_by("date_posted","desc")
         ->get()->result_array();
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        if(is_array($user_post) && count($user_post)==0){
+            return array();
+        }
         foreach($user_post as $key=>$row){
             $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
+            // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
+            $user_post[$key]["repairman_accepter_name"]=$this->m_get_repairman_name_by_repairman_id($user_post[$key]["repairman_accepter_id"]);
+        }
+        return $user_post;
+    }
+    function m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id){
+        $user_post= $this->db
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        c.category_name,
+        st.service_type,st.called,
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name,
+        p_acc.date_accept,p_acc.date_dealed,p_acc.user_dealed,p_acc.price,p_acc.estimated_time,p_acc.notif_user,p_acc.repairman_id as repairman_accepter_id"
+
+        )
+        ->from("sc_user_post up")
+        ->join("sc_user u","u.user_id=up.user_id")
+        ->join("sc_category c","up.category_id=c.category_id")
+        ->join("sc_sub_category","sc_sub_category.category_id=c.category_id")
+        ->join("sc_service_type st","st.service_type_id = up.service_type_id")
+        ->join("sc_post_accepted p_acc","p_acc.user_post_id=up.user_post_id")
+        ->where("p_acc.user_post_id",$user_post_id)
+        ->order_by("date_posted","desc")
+        ->get()->result_array();
+        // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
+        if(is_array($user_post) && count($user_post)==0){
+            return array();
+        }
+        foreach($user_post as $key=>$row){
+            $user_post[$key]["comment"]=$this->m_get_post_accepted_comment_by_post_id($row["user_post_id"]);
             // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
             // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
             $user_post[$key]["repairman_accepter_name"]=$this->m_get_repairman_name_by_repairman_id($user_post[$key]["repairman_accepter_id"]);
