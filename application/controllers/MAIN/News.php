@@ -29,8 +29,14 @@ class News extends MY_Controller {
 	public function index()
 	{
         $data['news'] = $this->News_m->m_get_news();
+		$data['category'] = $this->News_m->m_get_category();
 		$this->load->view('MAIN/news',$data);
+	}
 
+	public function getDetail($news_id)
+	{
+		$data['news'] = $this->News_m->m_get_detail($news_id);
+		$this->load->view('MAIN/newsdetail',$data);
 	}
 	public function complete_news($news_id){
 		$data["news"]=$this->News_m->m_get_news_by_id($news_id);
