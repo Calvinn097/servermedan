@@ -149,7 +149,7 @@
                                 <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title"><?=hsc($row["post_title"])?></h4><!--post title-->
+                                            <h4 class="timeline-title"><?=hsc($row["post_title"])?></h4><!--post title--> status: <?=$row["progress"]?>
                                             <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?=$row["date_posted"]?></small>
                                             </p>
                                             <p></p>
@@ -163,6 +163,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <a class="btn btn-default" href="<?=base_url("user/detail_post/".$row["user_post_id"])?>">View Detail</a>
                                         Kategori: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
                                         Sub Kategori: <?=isset($row["sub_category_name"])?$row["sub_category_name"]:""?><br>
                                         <?php if($row["image"]!=null){?>
