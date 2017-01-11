@@ -18,6 +18,71 @@ if($this->session->flashdata("signup_err")!==null){
 
 
 ?>
+<script>
+
+        $("document").ready(function(){
+            <?php if($this->session->flashdata("signup_err")!=null){ ?>
+                $("#registerModal").modal("show");
+            <?php } ?>
+            <?php if($this->session->flashdata("global_notification")){ ?> 
+                notify("<?=$this->session->flashdata("global_notification")['message']?>","<?=$this->session->flashdata("global_notification")['type']?>");
+            <?php } ?>
+            $("#loginModal").appendTo("body");
+
+            $("#fblogin").click(function(){
+                FB.login(function(response){
+                    if(response.status==="connected"){
+                        $.ajax({
+                            type:"POST",
+                            url:"<?=base_url("/User/fb_login")?>",
+                            data:{data:response,fb_login:true},
+                            dataType:'html',
+                            success:function(res){
+                                location.reload();
+                            }
+
+                        });
+
+        //              console.log(response.authResponse.accessToken);
+                        }
+                        else if(response.status === 'not_authorized'){
+
+                        }
+                        else{
+
+                        }
+                    },{scope: 'public_profile,email,user_birthday'});
+                });
+            });
+
+        $("#login").click(function(){
+            $("#loginModal").modal("show");
+        });
+        $("document").ready(function(){
+            $("#registerModal").appendTo("body");
+        })
+        $("#register").click(function(){
+            $("#registerModal").modal("show"); 
+        })
+        $("#registerForm").submit(function(){
+            $(".pw-err").hide();
+            var password = $("#password").val();
+            var rpassword = $("#rpassword").val();
+            var valid = true;
+            if(password != rpassword){
+                valid = false;
+                $(".pw-err").html("Password pertama dan kedua harus cocok!");
+                $(".pw-err").show();
+            }
+            if(valid){
+                $(this).attr("action","user/register");
+                $(this).submit();
+            }
+            return false;
+        })
+    </script>
+
+
 
 <head>
     <link rel="stylesheet" href="<?=base_url("asset/plugins/bootstrap/css/bootstrap.min.css")?>">
@@ -131,68 +196,6 @@ if($this->session->flashdata("signup_err")!==null){
 
 
 
-    <script>
-
-        $("document").ready(function(){
-            <?php if($this->session->flashdata("signup_err")!=null){ ?>
-                $("#registerModal").modal("show");
-            <?php } ?>
-            <?php if($this->session->flashdata("global_notification")){ ?> 
-                notify("<?=$this->session->flashdata("global_notification")['message']?>","<?=$this->session->flashdata("global_notification")['type']?>");
-            <?php } ?>
-            $("#loginModal").appendTo("body");
-
-            $("#fblogin").click(function(){
-                FB.login(function(response){
-                    if(response.status==="connected"){
-                        $.ajax({
-                            type:"POST",
-                            url:"<?=base_url("/User/fb_login")?>",
-                            data:{data:response,fb_login:true},
-                            dataType:'html',
-                            success:function(res){
-                                location.reload();
-                            }
-
-                        });
-
-        //              console.log(response.authResponse.accessToken);
-                        }
-                        else if(response.status === 'not_authorized'){
-
-                        }
-                        else{
-
-                        }
-                    },{scope: 'public_profile,email,user_birthday'});
-                });
-            });
-
-        $("#login").click(function(){
-            $("#loginModal").modal("show");
-        });
-        $("document").ready(function(){
-            $("#registerModal").appendTo("body");
-        })
-        $("#register").click(function(){
-            $("#registerModal").modal("show"); 
-        })
-        $("#registerForm").submit(function(){
-            $(".pw-err").hide();
-            var password = $("#password").val();
-            var rpassword = $("#rpassword").val();
-            var valid = true;
-            if(password != rpassword){
-                valid = false;
-                $(".pw-err").html("Password pertama dan kedua harus cocok!");
-                $(".pw-err").show();
-            }
-            if(valid){
-                $(this).attr("action","user/register");
-                $(this).submit();
-            }
-            return false;
-        })
-    </script>
+    
 
 </html>

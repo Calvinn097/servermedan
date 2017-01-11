@@ -148,6 +148,10 @@ class User extends MY_Controller {
         redirect($this->agent->referrer(),"refresh");
 	}
     
+    public function viewhome(){
+        $this->load->view("Main/homelogin");   
+    }
+    
     public function user_login_customer(){
         if(!isset($_COOKIE["sm_login"])){
             redirect(base_url());
