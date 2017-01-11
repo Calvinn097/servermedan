@@ -82,7 +82,7 @@ hr {
   margin-bottom: 10px;
 }
 img {
-  max-width: 100%;
+  /*max-width: 100%;*/
 }
 ::selection {
   background: #fff7dd;
@@ -4372,4 +4372,36 @@ div.config h4 a:hover {
 }
 r {
   cursor: pointer;
+}
+#fblogin{
+    width: 210px;
+    background-color: #4a6ea8;
+}
+#glogin{
+    width: 210px;
+    background-color: #dc4a38;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+    height: 345px;
+}
+.posting textarea{
+    width: 70%;
+    height: 100px;
+}
+.posting select{
+    width: 15%;
+    display: inline-block;
+}
+.posting button{
+    margin-left: 145px;
+}
+.detailbanner,.detailbanner .banner,.detailbanner .keterangan{
+    margin-top: 20px;   
+}
+.detailbanner .keterangan ul{
+    list-style-type: none;
+    padding: 0px;
 }
