@@ -21,7 +21,7 @@ class Migration_Create_sc_post_accepted_comment extends CI_Migration{
                 'constraint' => 11,
                 'auto_increment' => TRUE
             ),
-            'user_post_id' => array(
+            'post_accepted_id' => array(
                 'type' => 'int',
                 'constraint' => 11
             ),

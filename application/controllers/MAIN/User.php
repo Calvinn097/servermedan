@@ -168,9 +168,13 @@ class User extends MY_Controller {
         //vd("Data",$data);
         $this->load->view("MAIN/homeloginrepair",$data);
     }
-    private function get_repairman_id($user_id){
-        $user_id=user_login_info()["user_id"];
+    private function get_repairman_id($user_id=null){
+        if($user_id==null){
+            $user_id=user_login_info()["user_id"];    
+        }
+        
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
+
         return $repairman_id;
     }
     public function maps(){
@@ -179,18 +183,44 @@ class User extends MY_Controller {
     public function detail_post($user_post_id){
         $user_id = user_login_info()["user_id"];
         $repairman_id = $this->get_repairman_id($user_id);
-        if($repairman_id==null){
+        if($repairman_id==null && $user_id!=null){
             $data["detail_post"]=$this->User_m->m_user_get_user_posting_by_user_post_id($user_post_id,$user_id);
-            $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id);
+            if($data["detail_post"]==null){
+                set_global_noti("Not found","warning");
+                redirect(base_url());    
+            }
+            
+            $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id);
             $data["repairman"]=false;
+
         }else if($repairman_id!=null){
             $data["detail_post"]=$this->User_m->m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id);
             $data["accepted"]=$this->User_m->m_get_post_accepted_by_repairman_id_post_id($user_post_id,$repairman_id);
             $data["repairman"]=true;
+            $data["accepted_repairman_list"]=$this->User_m->m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id);
+            if($data["detail_post"]==null){
+                set_global_noti("Not found","warning");
+                redirect(base_url());    
+            }
+            
+            $data["i_accept_comment"]=$this->User_m->m_get_post_accepted_comment_by_post_id_repairman_id($data["accepted"]["post_accepted_id"],$repairman_id);
+        }else{
+            redirect(base_url());
         }
         
         //vd("data",$data);
         $this->load->view("MAIN/detailpost",$data);
+    }
+    public function profile_user_id($user_id=null){
+        if($user_id ==null){
+            $user_id = user_login_info()["user_id"];
+            
+        }
+        $repairman_id = $this->get_repairman_id($user_id);
+        $data["my_repairman_id"]=$this->get_repairman_id($user_id);
+        
+        $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
+        $this->load->view("MAIN/repairman_profile",$data);
     }
     public function chat(){
         $this->load->view("Main/chatting");   
@@ -220,6 +250,22 @@ class User extends MY_Controller {
         $this->User_m->m_user_comment($user_id);
 
         redirect($link);
+    }
+
+    public function comment_post_accepted(){
+        $post_accepted_id = $this->input->post("post_accepted_id",true);
+        $post_id=$this->User_m->m_get_post_id_by_post_accepted_id($post_accepted_id);
+        $comment = $this->input->post("comment",true);
+        $date = date("Y-m-d H:i:s");
+        $array = array(
+            "post_accepted_id"=>$post_accepted_id,
+            "comment"=>$comment,
+            "date"=>$date,
+            "user_id"=>user_login_info()["user_id"]
+        );
+        $this->User_m->m_comment_post_accepted($array);
+        redirect(base_url("user/detail_post/".$post_id));
+
     }
 
     public function user_post_like_action(){
@@ -254,6 +300,29 @@ class User extends MY_Controller {
         $data["is_repairman"]=$this->User_m->m_check_repairman_exist_by_user_id($data["my_user_id"]);
         $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
         $this->load->view("MAIN/user_profile",$data);
+    }
+    public function profile_hybrid($user_id=null){
+        if($user_id==null){
+            $user_id = user_login_info()["user_id"];
+            if($user_id==null){
+                redirect(base_url());
+            }
+        }
+        // die($user_id);
+        $data["my_user_id"]= user_login_info()["user_id"];
+        $data["is_repairman"]=$this->User_m->m_check_repairman_exist_by_user_id($data["my_user_id"]);
+        if($data["is_repairman"]){
+            $data["my_repairman_id"]=$this->Repairman_m->get_repairman_id($user_id);
+            $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
+            $this->load->view("MAIN/repairman_profile",$data);
+            
+        }else{
+            $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+            $this->load->view("MAIN/user_profile",$data);    
+        }
+
+        
+        
     }
 
     public function edit_profile_form(){

@@ -169,7 +169,7 @@ function toMoney($val,$symbol='S$',$r=0){
     $no_decimal = array(
         "ID"
     );
-    if(in_array(country_code,$no_decimal)) {
+    if(in_array("ID",$no_decimal)) {
         $decimal=0;
         $n = $val;
     }else{
@@ -185,14 +185,14 @@ function toMoney($val,$symbol='S$',$r=0){
     $i=number_format(abs($n),$decimal,$d,$t);
     $j = (($j = strlen($i)) > 3) ? $j % 2 : 0;
 
-    return  $sign.$symbol_arr[country_code] .($j ? substr($i,0, $j) + $t : '').preg_replace('/(\d{3})(?=\d)/',"$1" + $t,substr($i,$j)) ;
+    return  $sign.$symbol_arr["ID"] .($j ? substr($i,0, $j) + $t : '').preg_replace('/(\d{3})(?=\d)/',"$1" + $t,substr($i,$j)) ;
 }
 
 function money_form($val){
     $no_decimal = array(
         "ID"
     );
-    if(in_array(country_code,$no_decimal)) {
+    if(in_array("ID",$no_decimal)) {
         return $val;
     }else{
 
@@ -212,6 +212,7 @@ function get_image_folder_path($path){
 
 function user_login_info(){
     $CI =& get_instance();
+    $CI->load->model("MAIN/Repairman_m");
     if(isset($_COOKIE["sm_login"])){
         $cookie = json_decode($CI->input->cookie("sm_login"),true);
         if(isset($cookie["user_id"]) && $cookie["user_id"]!==null){
@@ -232,7 +233,8 @@ function user_login_info(){
         $data = array(
             "user_id"=>$user_id,
             "fb_id"=>$fb_id,
-            "fb_access_token"=>$fb_access_token
+            "fb_access_token"=>$fb_access_token,
+            "is_repairman"=>$CI->Repairman_m->m_get_repairman_id_by_user_id($user_id)
 
         );
         return $data;

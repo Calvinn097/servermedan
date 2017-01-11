@@ -86,6 +86,7 @@ class Repairman extends MY_Controller {
     	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
     	$this->load->view("MAIN/repairman_profile",$data);
     }
+    
     public function edit_profile_form(){
     	$user_id = user_login_info()["user_id"];
     	$repairman_id = $this->get_repairman_id($user_id);
