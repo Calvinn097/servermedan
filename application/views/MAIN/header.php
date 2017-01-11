@@ -247,7 +247,6 @@ if($this->session->flashdata("signup_err")!==null){
 <!-- Modal -->
 <div id="registerModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
