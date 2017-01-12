@@ -119,50 +119,30 @@ if (self==top) {
                     <i class="on border-dark animated bounceIn"></i>
                 </div>
                 <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman<span class="caret"></span></h4></a>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman</h4></a>
                 </div>
             </div>
             <nav>
                 <h5 class="sidebar-header">Menu</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="<?=base_url("")?>" title="Beranda">
+                        <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Beranda
                         </a>
                     </li>
                     <li class="nav-dropdown">
-                        <a href="#" title="Progress dan Riwayat Perbaikan">
-                            <i class="fa  fa-fw fa-cogs"></i> Perbaikan Barang
+                        <a href="<?=base_url("")?>" title="Progresss and History">
+                            <i class="fa  fa-fw fa-desktop"></i> Progress and History
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Progress">
-                                    Dalam Progress
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="History">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="<?=base_url("news")?>" title="UI Elements">
                             <i class="fa  fa-fw fa-cogs"></i> Berita
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url("user/logout")?>" title="Keluar">
+                            <i class="fa  fa-fw fa-cogs"></i> Logout
                         </a>
                     </li>
                 </ul>
@@ -171,7 +151,7 @@ if (self==top) {
                 <h5 class="sidebar-header">Repairman</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="../Frontend/" title="Beranda Repairman">
+                        <a href="<?=base_url("user/user_login_repair")?>" title="Beranda Repairman">
                             <i class="fa  fa-fw fa-desktop"></i> Beranda Repairman
                         </a>
                     </li>
@@ -196,11 +176,6 @@ if (self==top) {
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="Keluar">
-                            <i class="fa  fa-fw fa-cogs"></i> Logout
-                        </a>
                     </li>
                 </ul>
             </nav>

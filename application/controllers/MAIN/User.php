@@ -76,7 +76,8 @@ class User extends MY_Controller {
 		}else{
 			set_global_noti("Email/Password salah!","Warning");
 		}
-		redirect();
+		//redirect();
+        redirect("user/user_login_customer");
 
 	}
 
