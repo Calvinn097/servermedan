@@ -119,6 +119,12 @@ class User_m extends CI_Model{
         return true;
     }
 
+    function m_get_user_image($user_id){
+        return $this->db->select("user_image")
+        ->where("user_id",$user_id)
+        ->get("sc_user")->row_array()["user_image"];
+    }
+
     function m_insert_fb_user($data){
         $fb_exist = $this->m_check_fb_exist($data['fb_id']);
         if(!$fb_exist){
@@ -640,13 +646,14 @@ class User_m extends CI_Model{
     }
     function m_clear_notification($user_post_id,$user_id){
         if($user_post_id!=null && $user_id !=null){
+            $is_author=$this->m_is_author_of_post($user_id,$user_post_id);
             $res = $this->db->where("p_acc.user_post_id",$user_post_id)
             ->where("up.user_id",$user_id)
             ->from("sc_post_accepted p_acc")
             ->join("sc_user_post up","up.user_post_id=p_acc.user_post_id")
             ->count_all_results();
             if($res>0){
-                if(user_login_info()["is_repairman"]!=null){
+                if(!$is_author){
                     $data=array(
                         "notif_repairman"=>""
                     );

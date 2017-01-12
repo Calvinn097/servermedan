@@ -13,7 +13,15 @@
 
 ?>
 <div class="container" style="width:50%;">
-<form action="<?=base_url("user/edit_profile")?>" method="post">
+<form action="<?=base_url("user/edit_profile")?>" method="post" enctype="multipart/form-data" >
+	<div class="row">
+		<div class="col-md-3">
+		Profile Picture:
+		</div>
+		<div class="col-md-3">
+		<input type="file" name="userfile">
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-3">
 		First Name:

@@ -25,6 +25,7 @@ class User extends MY_Controller {
 		$this->load->model("MAIN/User_m");
         $this->load->model("MAIN/Service_type_m");
         $this->load->model("MAIN/Repairman_m");
+        $this->load->model("MAIN/Image_m");
 //		vd("asd",$this->page);
 //		echo $this->meta_key;
 	}
@@ -234,6 +235,11 @@ class User extends MY_Controller {
         }
         $repairman_id = $this->get_repairman_id($user_id);
         $data["my_repairman_id"]=$this->get_repairman_id(user_login_info()["user_id"]);
+        $data["my_repairman_id"]=$repairman_id;
+        $data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
+        $data["finished_post"]=$this->Repairman_m->m_get_finished_post_by_repairman_id($repairman_id);
+        $data["open_post"]=$this->Repairman_m->m_get_open_by_repairman_id($repairman_id);
+        $data["rejected_post"]=$this->Repairman_m->m_get_rejected_by_repairman_id($repairman_id);
         
         $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
         $this->load->view("MAIN/repairman_profile",$data);
@@ -329,10 +335,16 @@ class User extends MY_Controller {
         if($data["is_repairman"]){
             $data["my_repairman_id"]=$this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
             $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
+            $data["my_repairman_id"]=$repairman_id;
+            $data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
+            $data["finished_post"]=$this->Repairman_m->m_get_finished_post_by_repairman_id($repairman_id);
+            $data["open_post"]=$this->Repairman_m->m_get_open_by_repairman_id($repairman_id);
+            $data["rejected_post"]=$this->Repairman_m->m_get_rejected_by_repairman_id($repairman_id);
             $this->load->view("MAIN/repairman_profile",$data);
             
         }else{
             $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+
             $this->load->view("MAIN/user_profile",$data);    
         }
 
@@ -343,12 +355,24 @@ class User extends MY_Controller {
     public function edit_profile_form(){
         $user_id = user_login_info()["user_id"];
         $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
-        $this->load->view("MAIN/user_profile_form",$data);
+        
+        
     }
 
     public function edit_profile(){
         $user_id = user_login_info()["user_id"];
         $this->User_m->m_edit_user_profile($user_id);
+        $path = "/asset/images/user/$user_id";
+        
+        $image_path = $this->User_m->m_get_user_image($user_id);
+        $image_path = storage_path((get_image_folder_path($image_path)));
+        if($_FILES['userfile']['name']!=''){
+            if(file_exists($image_path)){
+                delete_folder($image_path);
+            }
+            $path = "/asset/images/profile/$user_id";
+            $this->Image_m->m_upload_pic($path,$user_id,"user_id","user_image","sc_user");
+        }
         redirect(base_url("user/profile"));
     }
 
@@ -381,6 +405,7 @@ class User extends MY_Controller {
 
         $this->load->library('user_agent');
         redirect($this->agent->referrer());
+
     }
 
     function password_recovery()

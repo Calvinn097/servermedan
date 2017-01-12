@@ -15,6 +15,7 @@
 <?php if(count($user)==0){ ?>
 Not found
 <?php }else{ ?>
+<img src="<?=base_url($user['user_image'])?>" width="400" height="300">
 <div class="container" style="width:50%;">
 	<div class="row">
 		<div class="col-md-3">

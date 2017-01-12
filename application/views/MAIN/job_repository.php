@@ -63,7 +63,7 @@
       <td><?=$row["category_name"]?></td>
       <td><?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>
       <td><?=$row["service_type"]?></td>
-      <td><?=$row["fname"]." ".$row["lname"]?></td>
+      <td><a href="<?=base_url("user/profile/".$row["user_id"])?>"><?=$row["fname"]." ".$row["lname"]?></a></td>
       <td>
         <?php 
           $status="Accepted by me";
@@ -116,7 +116,7 @@
       <td><?=$row["category_name"]?></td>
       <td><?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>
       <td><?=$row["service_type"]?></td>
-      <td><?=$row["fname"]." ".$row["lname"]?></td>
+      <td><a href="<?=base_url("user/profile/".$row["user_id"])?>"><?=$row["fname"]." ".$row["lname"]?></a></td>
       <td>
         <?php 
         $status="Belum Lunas";
@@ -169,7 +169,7 @@
       <td><?=$row["category_name"]?></td>
       <td><?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>
       <td><?=$row["service_type"]?></td>
-      <td><?=$row["fname"]." ".$row["lname"]?></td>
+      <td><a href="<?=base_url("user/profile/".$row["user_id"])?>"><?=$row["fname"]." ".$row["lname"]?></a></td>
       <td>
         <?php 
           echo "open";
@@ -219,7 +219,7 @@
       <td><?=$row["category_name"]?></td>
       <td><?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>
       <td><?=$row["service_type"]?></td>
-      <td><?=$row["fname"]." ".$row["lname"]?></td>
+      <td><a href="<?=base_url("user/profile/".$row["user_id"])?>"><?=$row["fname"]." ".$row["lname"]?></a></td>
       <td>
         <?php 
           if($row["rejected_user_id"]==null){

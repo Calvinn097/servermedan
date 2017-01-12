@@ -9,7 +9,7 @@ class Image_m extends CI_Model{
     function m_upload_pic($filepath,$id,$id_name,$column,$table){
         $this->load->library('upload');
         $file_name=$id.'_'.$this->upload->generate_name_token();
-
+        
         $upload_config=array(
             'upload_path' =>storage_path($filepath),
             'allowed_types' => 'jpg|png|jpeg|gif',

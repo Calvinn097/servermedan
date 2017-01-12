@@ -2,3 +2,4 @@
 $config['header_image_size']=array(860);
 $config['image_size']=array(860);
 $config['path_size']=array(1200); //banner promo
+$config['user_image_size']=array(600); //banner promo

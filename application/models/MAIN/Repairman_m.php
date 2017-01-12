@@ -279,7 +279,7 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
         sc.sub_category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,
-        post_acc.post_finished_id,post_acc.date_accept,post_acc.date_dealed,post_acc.user_dealed,post_acc.price,post_acc.estimated_time,post_acc.notif_user,post_acc.notif_repairman,post_acc.repairman_id,post_acc.lunas"
+        post_acc.post_finished_id,post_acc.date_accept,post_acc.date_dealed,post_acc.user_dealed,post_acc.price,post_acc.estimated_time,post_acc.notif_user,post_acc.notif_repairman,post_acc.repairman_id,post_acc.lunas,post_acc.review,post_acc.rate"
         )
         ->where("post_acc.repairman_id",$repairman_id)
         // ->where("up.user_id",$user_id)
