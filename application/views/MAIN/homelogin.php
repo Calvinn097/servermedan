@@ -492,7 +492,6 @@
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
-                        <?php } ?>-->
                             <!-- /.list-group -->
                             <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
                         <!--</div>-->
