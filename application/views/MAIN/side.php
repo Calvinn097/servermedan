@@ -156,26 +156,14 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
-                        <a href="../Frontend/" title="Profil Repairman">
+                        <a href="<?=base_url("repairman/profile")?>" title="Profil Repairman">
                             <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
                         </a>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="UI Elements">
+                    <li>
+                        <a href="<?=base_url("repairman/job_repository")?>" title="Pekerjaan">
                             <i class="fa  fa-fw fa-cogs"></i> Pekerjaan
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Pekerjaan yang sedang dikerjakan">
-                                    Sedang Dikerjakan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="Pekerjaan yang telah selesai">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </nav>
