@@ -85,7 +85,24 @@
                             </div>
 
                             <div class="col-md-6">
-                                <h4><?=$detail_post["post_title"]?></h4>
+                            <?php 
+                            if(count($finished)>0){
+                                echo "Date Finished = ".$finished["date_finished"]."<br>";
+                                echo "Review: ".$finished["review"]."<br>";
+                                echo "Rate: ".$finished["rate"]."<br>";
+                                $status="Finished";
+                                if($finished["lunas"]){
+                                    $status="lunas";
+                                }else{
+                                    if($repairman){
+                                        echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
+                                    }
+                                }
+                                echo "<h5>Status: ".$status."</h5>";
+                            }
+                            ?>
+                                
+                                <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
                                 <p><?=$detail_post["content"]?></p>
                                 <p>Service :<?=$detail_post["service_type"]?></p>
                                 <p>Category :<?=isset($detail_post["category_name"])?$detail_post["category_name"]:""?></p>
@@ -104,30 +121,33 @@
                                     </div>
                                 </div>
                                 <?php if($repairman){ ?>
-                                <div class="agree">
-                                    <ul>
-                                        <li>
-                                        <?php if(!empty($accepted)){ ?>
-                                        <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
-                                        ?>" method="post">
-                                        <?php }else{ ?>
-                                        <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
-                                        ?>" method="post">
-                                        <?php } ?>
-                                        Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
-                                        Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
-                                        <?php if(!empty($accepted)){ ?>
-                                        <input class="btn btn-info" type="submit" value="Edit">
-                                        <?php }else{ ?>
-                                        <input class="btn btn-info" type="submit" value="Terima">
-                                        <?php } ?>
-                                        </form>
-                                        </li>
-                                        <li>
-                                            <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
+                                    <div class="agree">
+                                        <ul>
+                                            <li>
+                                            <?php if(!empty($accepted)){ ?>
+                                            <?php $post_accepted_id=$accepted["post_accepted_id"]?>
+                                            <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
+                                            ?>" method="post">
+                                            <?php }else{ ?>
+                                            <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
+                                            ?>" method="post">
+                                            <?php } ?>
+                                            Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
+                                            Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
+                                            <?php if(!empty($accepted) ){ ?>
+                                            <input class="btn btn-info" type="submit" value="Edit">
+                                            <?php }else{ ?>
+                                            <input class="btn btn-info" type="submit" value="Terima">
+                                            <?php } ?>
+                                            </form>
+                                            </li>
+                                            <li>
+                                                <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <?php } ?>
                                 <?php } ?>
                             </div>
                         </div>
@@ -140,7 +160,7 @@
                                 <li>
                                 At <?=$value["date"]?>
                                 <?php 
-                                if($value["user_level"]>0){$linkprofile=base_url("repairman/profile/".$value["user_id"]);}
+                                if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
                                 else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
                                 ?>
                                 <a href="<?=$linkprofile?>">
@@ -163,6 +183,73 @@
                 <!-- /.col-lg-8 -->
                 <!-- /.col-lg-4 -->
             </div>
+            <h3>Repairman yang menerima order dari sang user akan nampak oleh author detail post ini.</h3>
+            <?php if(count($accepted_repairman_list)>0){ ?>
+                <?php foreach($accepted_repairman_list as $key=>$row){ ?>
+                <div style="border:1px solid black">
+                Accepted by<br>
+                Repairman name=<a href="<?=base_url("repairman/profile/".$row["repairman_accepter_id"])?>"><?=$row["repairman_accepter_name"]?></a><br>
+                Time accepted = <?=$row["date_accept"]?><br>
+                price = <?=toMoney($row["price"])?><br>
+                estimated repair time = <?=$row["estimated_time"]?><br>
+                <?php if($row["user_dealed"]>0){ ?>
+                <strong>Dealed at: </strong><?=$row["date_dealed"]?>
+                <!-- RATEEEEEEEEEEEEEEEEEEEEEE -->
+                <h3>RATE</h3>
+                <form action="<?=base_url("user/user_finished/".$row["user_post_id"]."/".$row["post_accepted_id"])?>" method="post">
+                    Rate : 1-5 <input type="number" name="rate" min="1" max="5" required><br>
+                    Review : <textarea name="review" required></textarea><br>
+                    <input type="submit" value="Finish">
+                </form>
+                <h3>End rate</h3>
+<!-- TOMBOL ACCEPT ATAU REJECTTTTTTTTTTTTTTTT UNTUK USERRRRRRRRRRRRRRR -->
+                <?php }else{ ?>
+                <a href="<?=base_url("user/deal_post/".$row["user_post_id"]."/".$row["post_accepted_id"])?>" class="btn btn-default">Accept</a>
+                <a href="<?=base_url("user/user_reject_repairman/".$row["user_post_id"]."/".$row["post_accepted_id"])?>" class="btn btn-default">Reject</a>
+                <?php } ?>
+                comment:<br>
+                <ul stlye="border:1px solid black;">
+                <?php if(count($row["comment"])>0){?>
+                <?php foreach ($row["comment"] as $key2=>$row2){ ?>
+                <li>
+                comment time: <?=$row2["date"]?><br>
+                name: <a href="<?=base_url("user/profile_hybrid/".$row2["user_id"])?>"><?=$row2["fname"]?> <?=$row2["lname"]?></a><br>
+                comment: <?=$row2["comment"]?><br>
+                </li>
+                <?php } ?>
+                <?php } ?>
+                Comment here:<br>
+                <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
+                <input type="hidden" name="post_accepted_id" value="<?=$row["post_accepted_id"]?>">
+                    <textarea name="comment"></textarea>
+                    <input type="submit">
+                </form>
+                </div>
+                </ul>
+                <?php } ?>
+            <?php } ?>
+            <h3>end of Repairman yang menerima order dari sang user akan nampak oleh author detail post ini.</h3>
+
+            <?php if($repairman){ ?>
+            <h3>Repairman 1 on 1 comment with user</h3>
+
+            <?php foreach ($i_accept_comment as $key2=>$row2){ ?>
+            <?php $post_accepted_id=$row2["post_accepted_id"]?>
+                <li>
+                comment time: <?=$row2["date"]?><br>
+                name: <a href="<?=base_url("user/profile_hybrid/".$row2["user_id"])?>"><?=$row2["fname"]?> <?=$row2["lname"]?></a><br>
+                comment: <?=$row2["comment"]?><br>
+                </li>
+            <?php } ?>  
+            <?php if(isset($post_accepted_id)){ ?>
+            <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
+            <input type="hidden" name="post_accepted_id" value="<?=$post_accepted_id?>">
+                <textarea name="comment"></textarea>
+                <input type="submit">
+            </form>
+            <?php } ?>
+            <h3>end Repairman 1 on 1 comment with user</h3>
+            <?php } ?>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -212,7 +299,7 @@
     <!-- <script src="../dist/js/sb-admin-2.js"></script> -->
 
 </body>
-<!-- <?php vd("asd",$detail_post) ?> -->
+<?php vd("asd",$detail_post) ?> 
 <?php vd("accepted_repairman_list",$accepted_repairman_list)?>
-
+<?php vd("i_accept_comment",$i_accept_comment);
 

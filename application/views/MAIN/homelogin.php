@@ -58,7 +58,6 @@
 
 </style>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -175,8 +174,13 @@
                                         <ul>
                                             <?php foreach ($row["comment"] as $key => $value): ?>
                                                 <li>
-                                                At <?=$value["date"]?>
-                                                <?=hsc($value["fname"])?> is
+                                                <?php 
+                                                    if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                                    else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                                    ?>
+
+                                                    At <?=$value["date"]?>
+                                                    <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
                                                 <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
                                                 <?=hsc($value["comment"])?>"
                                                     
@@ -314,10 +318,11 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+
                         <?php if(count($user_notification)>0){ ?>
                             <?php foreach($user_notification as $key=>$row) { ?>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item">
+                                    <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
                                         <?=$row["post_title"]?>
                                         <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
                                         <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>

@@ -82,10 +82,14 @@ class Repairman extends MY_Controller {
         }
         $user_id = user_login_info()["user_id"];
         $data["my_repairman_id"]=$this->get_repairman_id($user_id);
-    	
+    	$data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
+        $data["finished_post"]=$this->Repairman_m->m_get_finished_post_by_repairman_id($repairman_id);
+        $data["open_post"]=$this->Repairman_m->m_get_open_by_repairman_id($repairman_id);
+        $data["rejected_post"]=$this->Repairman_m->m_get_rejected_by_repairman_id($repairman_id);
     	$data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
     	$this->load->view("MAIN/repairman_profile",$data);
     }
+    
     public function edit_profile_form(){
     	$user_id = user_login_info()["user_id"];
     	$repairman_id = $this->get_repairman_id($user_id);
@@ -97,6 +101,15 @@ class Repairman extends MY_Controller {
     	$user_id = user_login_info()["user_id"];
     	//die();
     	$this->Repairman_m->m_edit_profile_repairman($user_id);
+        $image_path = $this->User_m->m_get_user_image($user_id);
+        $image_path = storage_path(get_image_folder_path($image_path));
+        if($_FILES['userfile']['name']!=''){
+            if(file_exists($image_path)){
+                delete_folder($image_path);
+            }
+            $path = "/asset/images/profile/$user_id";
+            $this->Image_m->m_upload_pic($path,$user_id,"user_id","user_image","sc_user");
+        }
     	redirect(base_url("/repairman/profile"));
     }
     public function accept_post($post_id){
@@ -128,6 +141,9 @@ class Repairman extends MY_Controller {
         $repairman_id = $this->get_repairman_id($user_id);
         $data["my_repairman_id"]=$repairman_id;
         $data["accepted_post"]=$this->Repairman_m->m_get_accepted_post_by_repairman_id($repairman_id);
+        $data["finished_post"]=$this->Repairman_m->m_get_finished_post_by_repairman_id($repairman_id);
+        $data["open_post"]=$this->Repairman_m->m_get_open_by_repairman_id($repairman_id);
+        $data["rejected_post"]=$this->Repairman_m->m_get_rejected_by_repairman_id($repairman_id);
         // vd("daata",$data);
         $this->load->view("MAIN/job_repository",$data);
     }
