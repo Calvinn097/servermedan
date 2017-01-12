@@ -144,7 +144,7 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url('user/logout')?>" title="Keluar">
+                        <a href="<?=base_url("user/logout")?>" title="Keluar">
                             <i class="fa  fa-fw fa-desktop"></i> Logout
                         </a>
                     </li>

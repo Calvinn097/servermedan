@@ -45,14 +45,14 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="index.html" class="btn btn-primary btn-block">Sign in</a>
-                                        <a href="" class="btn" id="fblogin">
+                                        <a href="<?=base_url("user/login")?>" class="btn btn-primary btn-block">Sign in</a>
+                                        <a href="<?=base_url("user/fb_login")?>" class="btn" id="fblogin">
                                             <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login</a>
                                     
                                         <a href="" class="btn" id="glogin">
                                             <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login</a>
                                         <hr />
-                                        <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Not a member? Sign Up</a>
+                                        <a href="<?=base_url("user/viewregister")?>" class="btn btn-default btn-block">Not a member? Sign Up</a>
                                     </div>
                                 </div>
                             </form>
