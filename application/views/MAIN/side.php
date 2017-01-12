@@ -14,6 +14,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
+    <!-- Custom Fonts -->
+    <link href="<?=base_url("/asset/font-awesome/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
+
+    <!-- Animate CSS by Daniel Eden-->
+    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
+    <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=base_url("asset/bootstrap/3.3.7/js/bootstrap.min.js")?>"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?=base_url("asset/img/favicon.ico")?>" type="image/x-icon">
     <!-- Bootstrap core CSS -->
@@ -96,6 +105,13 @@ if (self==top) {
     {
         height: 80%;
         margin: 10%;
+    }
+    .logout-nav
+    {
+        position: absolute;
+        left: 0;
+        bottom: 15px;
+        right: 0;
     }
 </style>
 
@@ -210,5 +226,14 @@ if (self==top) {
             <?php
                 }
             ?>
+            <nav class="logout-nav">
+                <ul class="nav nav-pills nav-stacked">
+                    <li>
+                        <a href="<?=base_url("user/logout")?>" title="Keluar">
+                            <i class="fa  fa-fw fa-desktop"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </aside>
         <!--sidebar left end-->
