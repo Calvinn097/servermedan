@@ -1,15 +1,5 @@
 <?php
-    $header_data = array(
-            "title"=>"Welcome to Servermedan",
-            "css"=>array(
-                "asset/css/grayscale.css",
-                "asset/css/nav.css",
-                "asset/css/homeloginrepair.css",
-                "asset/css/detailrepair.css"
-                )
-        );
-     $this->load->view("MAIN/header.php",$header_data) 
-
+     $this->load->view("MAIN/side.php",array("title"=>"Welcome to Servermedan"));
 ?>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
 

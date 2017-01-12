@@ -230,22 +230,22 @@ if (self==top) {
                         </a>
                         <ul class="nav-sub">
                             <li>
-                                <a href="<?=base_url("repairman/job_repository")?>">
+                                <a href="<?=base_url("repairman/job_repository?id=0")?>">
                                     <i class="fa fa-fw fa-cogs"></i> Dalam Progress
                                 </a>
                             </li>
                             <li>
-                                <a href="<?=base_url("repairman/job_repository")?>">
+                                <a href="<?=base_url("repairman/job_repository?id=1")?>">
                                     <i class="fa fa-fw fa-cogs"></i> Selesai
                                 </a>
                             </li>
                             <li>
-                                <a href="<?=base_url("repairman/job_repository")?>">
+                                <a href="<?=base_url("repairman/job_repository?id=2")?>">
                                     <i class="fa fa-fw fa-cogs"></i> Open
                                 </a>
                             </li>
                             <li>
-                                <a href="<?=base_url("repairman/job_repository")?>">
+                                <a href="<?=base_url("repairman/job_repository?id=3")?>">
                                     <i class="fa fa-fw fa-cogs"></i> Ditolak
                                 </a>
                             </li>

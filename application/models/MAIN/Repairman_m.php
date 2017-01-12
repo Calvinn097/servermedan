@@ -300,12 +300,14 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
 
     function m_get_open_by_repairman_id($repairman_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select(
+        "u.user_id, 
+        up.content, up.user_post_id, up.service_type_id, up.category_id, up.sub_category_id, up.post_title, up.location_lat, up.location_lng, up.date_posted, up.image,
         c.category_name,
         sc.sub_category_name,
         st.service_type,st.called,
-        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender"
-        )
+        u.email, u.fname, u.lname, u.user_level, u.phone_number, u.state, u.address, u.postal, u.lat, u.lng, u.status, u.fb_id, u.google_id, u.gender
+        ")
         // ->where("post_acc.repairman_id",$repairman_id)
         // ->where("up.user_id",$user_id)
         ->from("sc_user_post up")

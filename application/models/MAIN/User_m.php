@@ -26,10 +26,10 @@ class User_m extends CI_Model{
                 $populate = array(
                     "fname"=>$fname,
                     "lname"=>$lname,
-                    "email"=>$email,
+                    "email"=>$email
                 );
                 $this->session->set_flashdata("signup_form_populate",$populate);
-                redirect();
+                redirect("user/ViewRegister");
             }else{
                 $response=array(
                     'status'=>false,
@@ -44,7 +44,7 @@ class User_m extends CI_Model{
             //$this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
             if(!$api){
                 set_global_noti("Hi $fname, Terima kasih sudah bergabung di Servermedan!","Info");
-                redirect();
+                redirect("user/ViewLogin");
             }else{
                 $data=$this->db->where("email",$email)
                     ->get("sc_user")->row_array();

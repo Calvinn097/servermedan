@@ -114,7 +114,7 @@ if($this->session->flashdata("signup_err")!==null){
                     </div>
                     <div class="panel-body">
                         <p>Already a member? <a href="<?=base_url("user/viewlogin")?>"><strong>Sign In</strong></a></p>
-                        <form role="form" method="post" id="registerform">
+                        <form role="form" method="post" id="registerform" action="<?=base_url("user/register")?>">
                             <div class="form-group">
                                 <label for="fname">Name</label>
                                 <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter your name" value="<?=isset($signup_form_populate)?($signup_form_populate["fname"]):'';?>" required><?=$fname_err?>
@@ -132,7 +132,7 @@ if($this->session->flashdata("signup_err")!==null){
                                 <input type="password" class="form-control" id="rpassword" name="rpassword" placeholder="Retype your password"><?=$rpassword_err?>
                             </div>
                        
-                           <input type="submit" class="btn btn-success btn-block" value="Register">
+                           <input type="submit" name="signup" class="btn btn-success btn-block" value="Register">
                         </form>
 
                     </div>
@@ -140,7 +140,6 @@ if($this->session->flashdata("signup_err")!==null){
                 </div>
             </div>
         </div>
-
     </section>
     <script>
     function notify(message,type){
