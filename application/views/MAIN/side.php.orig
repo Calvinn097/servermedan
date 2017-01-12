@@ -104,7 +104,11 @@ if (self==top) {
         <header id="header">
             <!--logo start-->
             <div class="brand">
+<<<<<<< HEAD
+                <a href="<?=base_url("")?>" class="logo">
+=======
                 <a href="<?=base_url("user/viewhome")?>" class="logo">
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                     <i class="icon-layers"></i>
                     <span>SERVER</span>Medan</a>
             </div>
@@ -143,6 +147,18 @@ if (self==top) {
         </header>
         <!--sidebar left start-->
         <aside class="sidebar sidebar-left sidebar-fixed-position">
+<<<<<<< HEAD
+            <div class="sidebar-profile">
+                <div class="avatar">
+                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
+                    <i class="on border-dark animated bounceIn"></i>
+                </div>
+                <div class="profile-body dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle"><h4>Nama Repairman</h4></a>
+                </div>
+            </div>
+=======
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
             <nav>
                 <h5 class="sidebar-header">Menu</h5>
                 <ul class="nav nav-pills nav-stacked">
@@ -152,12 +168,16 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
+<<<<<<< HEAD
+                        <a href="<?=base_url("")?>" title="Progress and History">
+=======
                         <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Profil
                         </a>
                     </li>
                     <li class="nav-dropdown">
                         <a href="<?=base_url("")?>" title="Progresss and History">
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                             <i class="fa  fa-fw fa-desktop"></i> Progress and History
                         </a>
                     </li>
@@ -168,13 +188,21 @@ if (self==top) {
                     </li>
                     <li>
                         <a href="<?=base_url("user/logout")?>" title="Keluar">
+<<<<<<< HEAD
                             <i class="fa  fa-fw fa-desktop"></i> Logout
+=======
+                            <i class="fa  fa-fw fa-cogs"></i> Logout
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                         </a>
                     </li>
                 </ul>
             </nav>
             <?php
+<<<<<<< HEAD
                 if(user_login_info()["is_repairman"] != null)
+=======
+                if(user_login_info()["is_repairman"])
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                 {
             ?>
             <nav>
@@ -191,13 +219,13 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="<?=base_url("repairman/job_repository")?>" title="Profil Repairman">
                             <i class="fa  fa-fw fa-desktop"></i> List Pekerjaan
-                        </a>
-                    </li>
-					<li>
+=======
                         <a href="<?=base_url("repairman/pasang_banner")?>" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Konfigurasi Banner
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                         </a>
                     </li>
                     <li>
@@ -207,8 +235,12 @@ if (self==top) {
                     </li>
                 </ul>
             </nav>
+<<<<<<< HEAD
             <?php
                 }
             ?>
+=======
+                <?php } ?>
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
         </aside>
         <!--sidebar left end-->

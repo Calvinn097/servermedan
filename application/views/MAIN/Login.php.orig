@@ -44,10 +44,16 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-										<input type="submit" class="btn btn-primary btn-block" value="Sign in">
+<<<<<<< HEAD
+                                        <a href="<?=base_url("user/login")?>" class="btn btn-primary btn-block">Sign in</a>
+                                        <a href="<?=base_url("user/fb_login")?>" class="btn" id="fblogin">
+                                            <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login</a>
+=======
+                                        <input type="submit" class="btn btn-primary btn-block" value="Sign in">
                                         <a href="" class="btn" id="fblogin">
                                             <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login
                                         </a>
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                                     
                                         <a href="" class="btn" id="glogin">
                                             <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login

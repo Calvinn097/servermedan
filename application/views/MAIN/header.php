@@ -54,6 +54,10 @@ if($this->session->flashdata("signup_err")!==null){
     foreach($css as $row){ ?>
         <link href="<?=base_url($row)?>" rel="stylesheet">
     <?php } ?>
+
+    <link href="<?=base_url("asset/css/screen.css")?>" rel="stylesheet">
+    <link href="<?=base_url("asset/css/main.css")?>" rel="stylesheet">
+
     
     <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
 

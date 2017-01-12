@@ -154,7 +154,12 @@ class User extends MY_Controller {
         setcookie('sm_login', '', time() - 3600, '/');
         $this->load->library('user_agent');
         set_global_noti("Anda berhasil melakukan logout","warning");
-		redirect(base_url(),"refresh");
+<<<<<<< HEAD
+        //redirect($this->agent->referrer(),"refresh");
+        redirect(base_url());
+=======
+        redirect(base_url(),"refresh");
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
 	}
     
     

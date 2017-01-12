@@ -1,17 +1,34 @@
+<script>
+$("#select_category_banner").change(function() {
+  var cat_id = $(this).val();
+  $.ajax({
+      type:"POST",
+      url:"<?=base_url('/Category/sub_category_list/')?>",
+      dataType:"html",
+      data:{
+          category_id:cat_id
+      },
+      success:function(res){
+          $("#select_sub_category_banner").html(res);
+      }
+  });
+});
+</script>
+
 <?php
     $header_data = array(
-            "title"=>"Welcome to Servermedan",
-            "css"=>array(
-                "asset/css/grayscale.css"
-                )
+            "title"=>"Welcome to Servermedan"
         );
-     $this->load->view("MAIN/header.php",$header_data);
-
+     $this->load->view("MAIN/side.php",$header_data);
 ?>
-<br><br><br>
-<br>
-<br> <!-- br hanya untuk enter aja hilangkan saja kalau tidak perlu!-->
-<div class="row">
+
+<section class="main-content-wrapper">
+    <div class="pageheader">
+        <h1 class="inline">Kategori Berita - </h1>
+    </div>
+    <section id="main-content" class="animated fadeInUp">
+        <div class="container-fluid">
+            <div class="row">
 <form action="<?=base_url("/repairman/pasang_banner")?>" method="post" enctype="multipart/form-data" role="form">
 
 Pilih Categgory
@@ -37,21 +54,6 @@ Gambar yang telah di approve admin akan ditampilkan di homepage (GRATIS)
 <input type="file" name="userfile" id="upload_promo_banner">
 <input type="submit" value="kirim">
 </form>
-
-<script>
-$("#select_category_banner").change(function() {
-  var cat_id = $(this).val();
-  $.ajax({
-      type:"POST",
-      url:"<?=base_url('/Category/sub_category_list/')?>",
-      dataType:"html",
-      data:{
-          category_id:cat_id
-      },
-      success:function(res){
-          $("#select_sub_category_banner").html(res);
-      }
-  });
-});
-</script>
 </div>
+</section>
+</section>

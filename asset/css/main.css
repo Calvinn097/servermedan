@@ -4387,6 +4387,9 @@ r {
     margin: auto;
     height: 345px;
 }
+.posting{
+    margin-top: 20px;   
+}
 .posting textarea{
     width: 70%;
     height: 100px;
@@ -4396,7 +4399,14 @@ r {
     display: inline-block;
 }
 .posting button{
-    margin-left: 145px;
+    margin-left: 190px;
+    display: inline !important;
+    float: none !important;
+    background-color: dodgerblue;
+    border: none;
+}
+.timeline textarea{
+    width: 400px;  
 }
 .detailbanner,.detailbanner .banner,.detailbanner .keterangan{
     margin-top: 20px;   
