@@ -207,15 +207,49 @@ if (self==top) {
                             <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
                         </a>
                     </li>
-					<li>
-                        <a href="<?=base_url("repairman/pasang_banner")?>" title="Beranda">
+					<li class="nav-dropdown">
+                        <a href="#" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Pengaturan Iklan
                         </a>
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="<?=base_url("repairman/pasang_banner")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Lihat Iklan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url("repairman/pasang_banner")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Pasang Iklan
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="<?=base_url("repairman/job_repository")?>" title="Pekerjaan">
+                    <li class="nav-dropdown">
+                        <a href="#" title="Pekerjaan">
                             <i class="fa  fa-fw fa-cogs"></i> Job Progress
                         </a>
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="<?=base_url("repairman/job_repository")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Dalam Progress
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url("repairman/job_repository")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Selesai
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url("repairman/job_repository")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Open
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url("repairman/job_repository")?>">
+                                    <i class="fa fa-fw fa-cogs"></i> Ditolak
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
