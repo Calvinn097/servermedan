@@ -168,7 +168,7 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
+                        <a href="<?=base_url("user/profile")?>" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Profil
                         </a>
                     </li>
