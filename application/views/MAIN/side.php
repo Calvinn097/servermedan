@@ -140,7 +140,7 @@ if (self==top) {
                 </li>
                 <li class="toggle-navigation toggle-right">
                     <div class="profile-body dropdown username">
-                        <a href="javascript:void(0);" class="dropdown-toggle username" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman</h4></a>
+                        <a href="<?=base_url("user/profile")?>" class="username"><h4>Nama Repairman</h4></a>
                     </div>
                 </li>
                 <li class="toggle-fullscreen hidden-xs">
@@ -178,13 +178,14 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("news")?>" title="UI Elements">
-                            <i class="fa  fa-fw fa-cogs"></i> Berita
+                        <a href="<?=base_url("user/rank")?>" title="Beranda">
+                            <i class="fa  fa-fw fa-desktop"></i> List Repairman
                         </a>
                     </li>
+                    
                     <li>
-                        <a href="<?=base_url("user/logout")?>" title="Keluar">
-                            <i class="fa  fa-fw fa-desktop"></i> Logout
+                        <a href="<?=base_url("news")?>" title="UI Elements">
+                            <i class="fa  fa-fw fa-cogs"></i> Berita
                         </a>
                     </li>
                 </ul>
