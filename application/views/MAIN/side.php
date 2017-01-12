@@ -13,7 +13,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=base_url("asset/bootstrap/3.3.7/js/bootstrap.min.js")?>"></script>
+    <!-- Custom Fonts -->
+    <link href="<?=base_url("/asset/font-awesome/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?=base_url("asset/img/favicon.ico")?>" type="image/x-icon">
     <!-- Bootstrap core CSS -->
@@ -29,11 +32,14 @@
     <link rel="stylesheet" href="<?=base_url("asset/css/main.css")?>">
     <!-- Feature detection -->
     <script src="<?=base_url("asset/js/vendor/modernizr-2.6.2.min.js")?>"></script>
+    <!-- Animate CSS by Daniel Eden-->
+    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="assets/js/vendor/html5shiv.js"></script>
     <script src="assets/js/vendor/respond.min.js"></script>
     <![endif]-->
+    <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
     <script src="<?=base_url("asset/js/vendor/jquery-1.11.1.min.js")?>"></script>
     <script src="<?=base_url("asset/plugins/bootstrap/js/bootstrap.min.js")?>"></script>
     <script src="<?=base_url("asset/plugins/navgoco/jquery.navgoco.min.js")?>"></script>
@@ -93,6 +99,13 @@ if (self==top) {
     {
         height: 80%;
         margin: 10%;
+    }
+    .logout-nav
+    {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 15px;
     }
 </style>
 
@@ -163,11 +176,6 @@ if (self==top) {
                             <i class="fa  fa-fw fa-cogs"></i> Berita
                         </a>
                     </li>
-                    <li>
-                        <a href="<?=base_url("user/logout")?>" title="Keluar">
-                            <i class="fa  fa-fw fa-cogs"></i> Logout
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <?php
@@ -200,5 +208,14 @@ if (self==top) {
                 </ul>
             </nav>
                 <?php } ?>
+                <nav class="logout-nav">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="<?=base_url("user/logout")?>" title="Keluar">
+                                <i class="fa  fa-fw fa-cogs"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
         </aside>
         <!--sidebar left end-->
