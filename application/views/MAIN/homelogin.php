@@ -1,129 +1,18 @@
+<style></style>
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
-            "css"=>array(
-                "asset/css/screen.css",
-                "asset/css/main.css"
-                )
         );
-     $this->load->view("MAIN/header.php",$header_data) 
+     $this->load->view("MAIN/side.php",$header_data) 
 
 ?>
-<body>
-        <section id="main-wrapper" class="theme-blue-full">
-        
-        <!--sidebar left start-->
-        <aside class="sidebar sidebar-left">
-            <div class="sidebar-profile">
-                <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/images/141112052.jpg" alt="profile">
-                    <i class="on border-dark animated bounceIn"></i>
-                </div>
-                <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman<span class="caret"></span></h4></a>
-                    <ul class="dropdown-menu animated fadeInRight" role="menu">
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-user"></i>
-                                </span>My Account</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span class="icon"><i class="fa fa-sign-out"></i>
-                                </span>Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <nav>
-                <h5 class="sidebar-header">Menu</h5>
-                <ul class="nav nav-pills nav-stacked">
-                    <li>
-                        <a href="../Frontend/" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> Beranda
-                        </a>
-                    </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Progress dan Riwayat Perbaikan">
-                            <i class="fa  fa-fw fa-cogs"></i> Perbaikan Barang
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Progress">
-                                    Dalam Progress
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="History">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="UI Elements">
-                            <i class="fa  fa-fw fa-cogs"></i> Berita
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Otomotif">
-                                        Otomotif
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="Gadget">
-                                        Gadget
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-modals-popus.html" title="Alat Elektronik">
-                                        Alat Elektronik
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <nav>
-                <h5 class="sidebar-header">Repairman</h5>
-                <ul class="nav nav-pills nav-stacked">
-                    <li>
-                        <a href="../Frontend/" title="Beranda Repairman">
-                            <i class="fa  fa-fw fa-desktop"></i> Beranda Repairman
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Frontend/" title="Profil Repairman">
-                            <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
-                        </a>
-                    </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="UI Elements">
-                            <i class="fa  fa-fw fa-cogs"></i> Pekerjaan
-                        </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="ui-buttons.html" title="Pekerjaan yang sedang dikerjakan">
-                                    Sedang Dikerjakan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-sliders-progress.html" title="Pekerjaan yang telah selesai">
-                                    Selesai
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" title="Keluar">
-                            <i class="fa  fa-fw fa-cogs"></i> Logout
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <!--sidebar left end-->
+<section class="main-content-wrapper">
+    <div class="pageheader">
+        <h1 class="inline">Kategori Berita - </h1>
+    </div>
+    <section id="main-content" class="animated fadeInUp">
+        <div class="container-fluid">
+            <section id="main-wrapper" class="theme-blue-full">
         
         <!--content-->
         <section class="main-content-wrapper">
@@ -507,8 +396,12 @@
         
     <!--</div>-->
     <!-- /#wrapper -->
-
+        </div>
+    </section>
+</section>
+        
 </body>
+</html>
 <script>
 $(".like").click(function(){
     var button = $(this);
