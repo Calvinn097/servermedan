@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?=base_url("asset/css/animate.css")?>">
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="<?=base_url("asset/css/main.css")?>">
-   
 </head>
 
 <body>
@@ -29,28 +28,30 @@
                         </div>
                         <div class="panel-body">
                             <p> Login to access your account.</p>
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" method="post"  role="form" action="<?=base_url("user/login")?>">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email">
                                         <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                                         <i class="fa fa-lock"></i>
                                         <a href="javascript:void(0)" class="help-block">Forgot Your Password?</a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="<?=base_url("user/login")?>" class="btn btn-primary btn-block">Sign in</a>
+                                        <input type="submit" class="btn btn-primary btn-block" value="Sign in">
                                         <a href="" class="btn" id="fblogin">
-                                            <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login</a>
+                                            <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login
+                                        </a>
                                     
                                         <a href="" class="btn" id="glogin">
-                                            <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login</a>
+                                            <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login
+                                        </a>
                                         <hr />
                                         <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Not a member? Sign Up</a>
                                     </div>

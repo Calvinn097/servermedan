@@ -43,8 +43,9 @@ class User extends MY_Controller {
     public function ViewLogin(){
         $this->load->view("Main/login.php");  
     }
+
     public function viewhome(){
-        $this->load->view("Main/homelogin");   
+        $this->load->view("Main/homelogin");
     }
 
     /*NOTE : HUUNGKAN KE CONTROLLER ASLI*/
@@ -58,6 +59,7 @@ class User extends MY_Controller {
 	public function login(){
 		// print_r($_POST);
 		$status=$this->User_m->m_login_user();
+        // vd("S",$status,true);
 		if($status!=false){
 			$this->load->library('user_agent');
             $link = $this->agent->referrer();
@@ -82,7 +84,6 @@ class User extends MY_Controller {
 		}else{
 			set_global_noti("Email/Password salah!","Warning");
 		}
-		//redirect();
         redirect("user/user_login_customer");
 
 	}
@@ -153,7 +154,7 @@ class User extends MY_Controller {
         setcookie('sm_login', '', time() - 3600, '/');
         $this->load->library('user_agent');
         set_global_noti("Anda berhasil melakukan logout","warning");
-        redirect($this->agent->referrer(),"refresh");
+        redirect(base_url(),"refresh");
 	}
     
     

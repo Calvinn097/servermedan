@@ -61,10 +61,6 @@ class User_m extends CI_Model{
     function m_login_user(){
     	$email = $this->input->post("email",true);
     	$password = $this->input->post("password",true);
-        $email="calvinwangxz@gmail.com";
-        $password="calvin123";
-        // $email="repairman@gmail.com";
-        // $password="calvin123";
     	$user = $this->db
     	->where("email",$email)
     	->get("sc_user")->row_array();

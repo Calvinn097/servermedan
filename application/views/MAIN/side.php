@@ -3,6 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
+
 <html class="no-js">
 <!--<![endif]-->
 
@@ -12,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?=base_url("asset/img/favicon.ico")?>" type="image/x-icon">
     <!-- Bootstrap core CSS -->
@@ -77,6 +79,21 @@ if (self==top) {
     {
         position: fixed;
     }
+    div.username
+    {
+        width: 200px;
+        text-align: center;
+    }
+    .username a
+    {
+        display: block;
+        padding: 21px 0;
+    }
+    .user-avatar img
+    {
+        height: 80%;
+        margin: 10%;
+    }
 </style>
 
 <body>
@@ -84,7 +101,7 @@ if (self==top) {
         <header id="header">
             <!--logo start-->
             <div class="brand">
-                <a href="index.html" class="logo">
+                <a href="<?=base_url("user/viewhome")?>" class="logo">
                     <i class="icon-layers"></i>
                     <span>SERVER</span>Medan</a>
             </div>
@@ -97,6 +114,16 @@ if (self==top) {
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="toggle-navigation toggle-right">
+                    <div class="user-avatar">
+                        <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
+                    </div>
+                </li>
+                <li class="toggle-navigation toggle-right">
+                    <div class="profile-body dropdown username">
+                        <a href="javascript:void(0);" class="dropdown-toggle username" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman</h4></a>
+                    </div>
+                </li>
                 <li class="toggle-fullscreen hidden-xs">
                     <button type="button" class="btn btn-default expand" id="toggle-fullscreen">
                         <i class="fa fa-expand"></i>
@@ -113,21 +140,17 @@ if (self==top) {
         </header>
         <!--sidebar left start-->
         <aside class="sidebar sidebar-left sidebar-fixed-position">
-            <div class="sidebar-profile">
-                <div class="avatar">
-                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
-                    <i class="on border-dark animated bounceIn"></i>
-                </div>
-                <div class="profile-body dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman</h4></a>
-                </div>
-            </div>
             <nav>
                 <h5 class="sidebar-header">Menu</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
                             <i class="fa  fa-fw fa-desktop"></i> Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
+                            <i class="fa  fa-fw fa-desktop"></i> Profil
                         </a>
                     </li>
                     <li class="nav-dropdown">
@@ -147,6 +170,10 @@ if (self==top) {
                     </li>
                 </ul>
             </nav>
+            <?php
+                if(user_login_info()["is_repairman"])
+                {
+            ?>
             <nav>
                 <h5 class="sidebar-header">Repairman</h5>
                 <ul class="nav nav-pills nav-stacked">
@@ -161,11 +188,17 @@ if (self==top) {
                         </a>
                     </li>
                     <li>
+                        <a href="<?=base_url("repairman/pasang_banner")?>" title="Beranda">
+                            <i class="fa  fa-fw fa-desktop"></i> Konfigurasi Banner
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?=base_url("repairman/job_repository")?>" title="Pekerjaan">
-                            <i class="fa  fa-fw fa-cogs"></i> Pekerjaan
+                            <i class="fa  fa-fw fa-cogs"></i> Job Progress
                         </a>
                     </li>
                 </ul>
             </nav>
+                <?php } ?>
         </aside>
         <!--sidebar left end-->

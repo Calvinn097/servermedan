@@ -1,25 +1,32 @@
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
 <?php
     $header_data = array(
-            "title"=>"Welcome to Servermedan",
-            "css"=>array(
-                "asset/css/grayscale.css",
-                "asset/css/nav.css",
-                "asset/css/homeloginrepair.css"
-                )
+            "title"=>"Beranda",
         );
-     $this->load->view("MAIN/header.php",$header_data) 
-
+     $this->load->view("MAIN/side.php",$header_data) 
 ?>
-<body data-spy="scroll" data-target="#side-menu" data-offset="20">
 
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <?php
-            $this->load->view("main/navprofilerepair")
-         ?>
-
-        <div id="page-wrapper">
+<section class="main-content-wrapper">
+    <div class="pageheader">
+        <h1 class="inline">Kategori Berita - </h1>
+    </div>
+    <section id="main-content" class="animated fadeInUp">
+        <div class="container-fluid">
+            <div id="page-wrapper">
             <!-- /.row -->
             <div class="row content">
                 <div class="col-lg-8 repair">
@@ -202,26 +209,10 @@
             </div>
             <!-- /.row -->
         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
     <!-- /#wrapper -->
-    <?php $this->load->view("MAIN/footer.php"); ?>
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+        </div>
+    </section>
+</section>
+    
 </body>
-
+</html>
