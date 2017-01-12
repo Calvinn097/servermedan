@@ -102,7 +102,7 @@ if($this->session->flashdata("signup_err")!==null){
                 <div id="login-wrapper">
                     <header>
                         <div class="brand">
-                            <a href="index.html" class="logo">
+                            <a href="<?=base_url()?>" class="logo">
                                 <span>Server</span> Medan</a>
                         </div>
                     </header>

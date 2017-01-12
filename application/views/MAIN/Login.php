@@ -1,7 +1,8 @@
 <head>
+    <link rel="stylesheet" href="<?=base_url("asset/bootstrap/3.3.7/css/bootstrap-social.css")?>">
     <link rel="stylesheet" href="<?=base_url("asset/plugins/bootstrap/css/bootstrap.min.css")?>">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="<?=base_url("asset/css/font-awesome.min.css")?>">
+    <link rel="stylesheet" href="<?=base_url("/asset/font-awesome/css/font-awesome.min.css")?>">
     <link rel="stylesheet" href="<?=base_url("asset/css/simple-line-icons.css")?>" >
     <!-- CSS Animate -->
     <link rel="stylesheet" href="<?=base_url("asset/css/animate.css")?>">
@@ -16,7 +17,7 @@
                 <div id="login-wrapper">
                     <header>
                         <div class="brand">
-                            <a href="index.html" class="logo">
+                            <a href="<?=base_url()?>" class="logo">
                                 <span>Server</span>Medan</a>
                         </div>
                     </header>
@@ -27,7 +28,7 @@
                         </h3>
                         </div>
                         <div class="panel-body">
-                            <p> Login to access your account.</p>
+                            <p> Masuk untuk mengakses akun anda.</p>
                             <form class="form-horizontal" method="post"  role="form" action="<?=base_url("user/login")?>">
                                 <div class="form-group">
                                     <div class="col-md-12">
@@ -39,21 +40,26 @@
                                     <div class="col-md-12">
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                                         <i class="fa fa-lock"></i>
-                                        <a href="javascript:void(0)" class="help-block">Forgot Your Password?</a>
+                                        <a href="<?=base_url("user/forgot_password")?>" class="help-block">Lupa Kata Sandi?</a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-primary btn-block" value="Sign in">
-                                        <a href="" class="btn" id="fblogin">
-                                            <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login
-                                        </a>
-                                    
-                                        <a href="" class="btn" id="glogin">
-                                            <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-block" value="Masuk">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a class="btn btn-block btn-social btn-google">
+                                                    <span class="fa fa-google"></span> Masuk Dengan Google
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a class="btn btn-block btn-social btn-facebook">
+                                                    <span class="fa fa-twitter"></span> Masuk Dengan Facebook
+                                                </a>
+                                            </div>
+                                        </div>
                                         <hr />
-                                        <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Not a member? Sign Up</a>
+                                        <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Belum mendaftar? <span style="color: #f50">Daftar Sekarang</span></a>
                                     </div>
                                 </div>
                             </form>
