@@ -207,14 +207,9 @@ if (self==top) {
                             <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
                         </a>
                     </li>
-                    <li>
-                        <a href="<?=base_url("repairman/job_repository")?>" title="Profil Repairman">
-                            <i class="fa  fa-fw fa-desktop"></i> List Pekerjaan
-                        </a>
-                    </li>
 					<li>
                         <a href="<?=base_url("repairman/pasang_banner")?>" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> Konfigurasi Banner
+                            <i class="fa  fa-fw fa-desktop"></i> Pengaturan Iklan
                         </a>
                     </li>
                     <li>
