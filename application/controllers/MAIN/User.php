@@ -34,10 +34,20 @@ class User extends MY_Controller {
 		$this->load->view('MAIN/home');
 
 	}
+    /*HANYA UNTUK PENGETESAN PENAMPILAN*/
 
     public function viewregister(){
         $this->load->view("Main/register");   
     }
+    
+    public function ViewLogin(){
+        $this->load->view("Main/login.php");  
+    }
+    public function viewhome(){
+        $this->load->view("Main/homelogin");   
+    }
+
+    /*NOTE : HUUNGKAN KE CONTROLLER ASLI*/
     
 	public function register(){
 		// print_r($_POST);
@@ -45,10 +55,6 @@ class User extends MY_Controller {
 		$this->User_m->m_insert_user();
 	}
 
-    public function ViewLogin(){
-        $this->load->view("Main/login.php");  
-    }
-    
 	public function login(){
 		// print_r($_POST);
 		$status=$this->User_m->m_login_user();
@@ -149,9 +155,6 @@ class User extends MY_Controller {
         redirect($this->agent->referrer(),"refresh");
 	}
     
-    public function viewhome(){
-        $this->load->view("Main/homelogin");   
-    }
     
     public function user_login_customer(){
         if(!isset($_COOKIE["sm_login"])){
@@ -190,9 +193,7 @@ class User extends MY_Controller {
 
         return $repairman_id;
     }
-    public function maps(){
-        $this->load->view("MAIN/maps");
-    }
+    
     public function detail_post($user_post_id){
         $user_id = user_login_info()["user_id"];
         $repairman_id = $this->get_repairman_id($user_id);
@@ -244,9 +245,7 @@ class User extends MY_Controller {
         $data["repairman"]=$this->Repairman_m->m_get_repairman_by_repairman_id($repairman_id);
         $this->load->view("MAIN/repairman_profile",$data);
     }
-    public function chat(){
-        $this->load->view("Main/chatting");   
-    }
+    
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
         vd("data",$data);
