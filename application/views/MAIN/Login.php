@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="index.html" class="btn btn-primary btn-block">Sign in</a>
+                                        <a href="<?=base_url("user/login")?>" class="btn btn-primary btn-block">Sign in</a>
                                         <a href="" class="btn" id="fblogin">
                                             <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login</a>
                                     
