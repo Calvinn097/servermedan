@@ -61,10 +61,10 @@ class User_m extends CI_Model{
     function m_login_user(){
     	$email = $this->input->post("email",true);
     	$password = $this->input->post("password",true);
-        // $email="calvinwangxz@gmail.com";
-        // $password="calvin123";
-        $email="repairman@gmail.com";
+        $email="calvinwangxz@gmail.com";
         $password="calvin123";
+        // $email="repairman@gmail.com";
+        // $password="calvin123";
     	$user = $this->db
     	->where("email",$email)
     	->get("sc_user")->row_array();
@@ -268,6 +268,7 @@ class User_m extends CI_Model{
             if($user_post[$key]["progress"]==""){
                 $user_post[$key]["progress"]=$this->m_post_is_rejected($row["user_post_id"]);
             }
+            $user_post[$key]["progress"]=$this->m_post_is_finished($row["user_post_id"]);
             if($user_post[$key]["progress"]==""){
                 $user_post[$key]["progress"]="open";
             }
@@ -275,6 +276,14 @@ class User_m extends CI_Model{
             // $user_post[$key]["like_by_me"]=$this->m_get_user_post_liked_by_me($row["user_post_id"],$user_id);
         }
         return $user_post;
+    }
+    function m_post_is_finished($user_post_id){
+        $res = $this->db->where("user_post_id",$user_post_id)
+        ->count_all_results("sc_post_finished");
+        if($res>0){
+            return "Finished";
+        }
+        return "";
     }
     function m_post_is_accepted($user_post_id){
         $res= $this->db->where("user_post_id",$user_post_id)
@@ -714,16 +723,17 @@ class User_m extends CI_Model{
         $score=$this->m_get_repairman_score($repairman_id);
         $score+=$finished["rate"];
         $this->m_set_repairman_score($score,$repairman_id);
-        $this->m_update_number_job($repairman_id);
+        
         unset($finished["post_accepted_id"]);
         $this->db->insert("sc_post_finished",$finished);
+        $this->m_update_number_job($repairman_id);
         $this->db->where("post_accepted_id",$post_accepted_id)
         ->where("user_dealed>",0)
         ->delete("sc_post_accepted");
     }
     function m_get_repairman_score($repairman_id){
         return $this->db->select("score")
-        ->where("repairman_id")
+        ->where("repairman_id",$repairman_id)
         ->get("sc_repairman")->row_array()["score"];
     }
     function m_set_repairman_score($score,$repairman_id){

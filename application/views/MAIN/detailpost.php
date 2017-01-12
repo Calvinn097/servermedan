@@ -98,9 +98,10 @@
                                         echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
                                     }
                                 }
+                                echo "<h5>Status: ".$status."</h5>";
                             }
                             ?>
-                                <h5>Status: <?=$status?></h5>
+                                
                                 <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
                                 <p><?=$detail_post["content"]?></p>
                                 <p>Service :<?=$detail_post["service_type"]?></p>
@@ -125,6 +126,7 @@
                                         <ul>
                                             <li>
                                             <?php if(!empty($accepted)){ ?>
+                                            <?php $post_accepted_id=$accepted["post_accepted_id"]?>
                                             <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
                                             ?>" method="post">
                                             <?php }else{ ?>
@@ -239,7 +241,6 @@
                 comment: <?=$row2["comment"]?><br>
                 </li>
             <?php } ?>  
-            
             <?php if(isset($post_accepted_id)){ ?>
             <form method="post" action="<?=base_url("user/comment_post_accepted/")?>">
             <input type="hidden" name="post_accepted_id" value="<?=$post_accepted_id?>">
