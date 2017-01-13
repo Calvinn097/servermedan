@@ -174,8 +174,9 @@ class User extends MY_Controller {
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
         $data["user_posting"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
         $data["user_notification"]=$this->User_m->m_get_user_notification_by_user_id($user_id);
-
+        $data["home_banner"]=$this->Repairman_m->m_get_request_banner_approved();
         // vd("data",$data["user_notification"],true); //param 3 true to make program stop, dont include param 3 to show data without stopping program
+        //vd("Data",$data["home_banner"]);
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){

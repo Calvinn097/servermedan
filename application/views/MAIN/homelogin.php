@@ -6,36 +6,61 @@
      $this->load->view("MAIN/side.php",$header_data) 
 
 ?>
+
 <section class="main-content-wrapper">
+
     <div class="pageheader">
         <h1 class="inline">Beranda</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
+        <div class="row">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+        </div>
+        <div class="panel-body">
+
+            <?php if(count($user_notification)>0){ ?>
+                <?php foreach($user_notification as $key=>$row) { ?>
+                    <div class="list-group">
+                        <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
+                            <?=$row["post_title"]?>
+                            <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
+                            <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
+                            </span>
+                        </a>
+                    </div>
+                <?php } ?>
+            <?php }else{ ?>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        No Notifications
+                    </a>
+                </div>
+            <?php } ?>
+            </div>
+        </div>
+        </div>
         <div class="container-fluid">
             <section id="main-wrapper" class="theme-blue-full">
         
         <!--content-->
         <section class="main-content-wrapper">
             <!--banner-->
+            <?php if(count($home_banner)>0){?>
             <div id="myCarousel" class="carousel slide">
-
+                <ol class="carousel-indicators">
+                    <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                    <li data-target="#myCarousel" data-slide-to="<?=$i++?>" class="<?php if($i==1){echo'active';} ?>"></li>
+                    <?php } ?>
+                </ol>
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="img_chania.jpg" alt="Chania" width="460" height="345">
+                <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                    <div class="item <?php if($i==0){echo'active';} $i++; ?>">
+                        <img src="<?=$row["path"]?>"  width="460" height="345">
                     </div>
-
-                    <div class="item">
-                        <img src="img_chania2.jpg" alt="Chania" width="460" height="345">
-                    </div>
-                    
-                    <div class="item">
-                        <img src="img_flower.jpg" alt="Flower" width="460" height="345">
-                    </div>
-
-                    <div class="item">  
-                        <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
-                    </div>
+                <?php } ?>
                 </div>
 					
 
@@ -45,96 +70,105 @@
                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                 </a>
             </div>
+            <?php }?>
             <div class="container">
                 <article>
+                <form id="post_order" class="tab-content posting" method="post" enctype="multipart/form-data" role="form" action="<?=base_url("User/user_posting")?>">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#posting">Posting</a></li>
-                        <li><a href="#tambah">Tambah Gambar</a></li>
-                        <li><a href="#edit">Edit Lokasi</a></li>
+                        <li><a href="#tambah"><input type="file" name="userfile" class="btn btn-default"></a></li>
                     </ul>
-                    
-                    <form class="tab-content posting">
-                        <div id="posting" class="tab-pane fade in active">
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div id="tambah" class="tab-pane fade">
-                            <!--ISIKAN TAMBAH GAMBAR-->
-                        </div>
-                        <div id="edit" class="tab-pane fade">
-                            <!--ISIKAN MAP-->
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Kategori</option>
-                            </select>
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Subkategori</option>
-                            </select>
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Jenis Servis</option>
-                            </select>
-                            <button type="submit">Post</button>
+                            <div id="posting" class="tab-pane fade in active">
+                                <textarea class="form-control" name="content"></textarea>
+                            </div>
+                            <div id="tambah" class="tab-pane fade">
+                                <!--not needed but dont delete leave it be-->
+                            </div>
+                            <div id="edit" class="tab-pane fade">
+                                <!--not needed but dont delete leave it be-->
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="category_id">
+                                    <option selected disabled>Kategori</option>
+                                    <?php foreach($this->category_list as $row){ ?>
+                                        <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
+                                    <?php } ?>
+                                </select>
+                                <select name="sub_category_id" class="form-control" id="sel1">
+                                    <option selected disabled>Subkategori</option>
+                                </select>
+                                <select class="form-control" id="sel1" name="service_type_id">
+                                    <option selected disabled>Jenis Servis</option>
+                                    <?php foreach($service_type as $key=>$row){ ?>
+                                        <option value="<?=$row["service_type_id"]?>"><?=$row["service_type"]?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div id="locate_map">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="map" style="width:100%; height: 400px;"></div>
+                                        </div>
+                                    </div>
+                                    <label for="address">Alamat:</label>
+                                    <input type="text" name="address" id="address">
+                                <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
+                            </div>
                         </div>
                     </form>
                 </article>
-                <?php
-                
-                foreach($user_posting as $key=>$row) {
-                ?>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                        <div class="col-lg-8 repair">
-                            <div class="media posting">
-                                <div class="media-left media-top">
-                                    <?php
-                                        $img = (isset($row["user_image"]) ? $row["user_image"] : base_url("/asset/images/user.png"));
-                                        echo $img;
-                                    ?>
-                                    <img src="<?=$img?>" class="media-object user-avatar">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading posting-head">
-                                        <a href="<?=base_url("user/profile/".$row["user_id"])?>">
-                                            <?=$row["fname"]." ".$row["lname"]?>
-                                        </a>
-                                    </h4>
-                                    <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
-                                </div>
-                                <div class="post-block">
-                                    <a href="" class="posting-map post-block">
-                                        <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
-                                    </a>
-                                    <p class="title">
-                                        <?=$row["post_title"]?>
-                                    </p>
-                                    <p class="content">
-                                        <?=$row["content"]?>
-                                    </p>
-                                    <p class="type">
-                                        <span class="first">
-                                            #<?=$row["service_type"]?>&nbsp;
-                                        </span>
-                                        <span class="second">
-                                            #<?=$row["category_name"]?>&nbsp;
-                                        </span>
-                                        <span class="third">
-                                            #<?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>&nbsp;
-                                        </span>
-                                    </p>
-                                    <hr>
-                                    <div class="posting-end">
-                                        <i class="fa fa-users"></i><span class="value"><?=$row["accepted_by_repairman"]?></span>
-                                        <i class="fa fa-comments-o"></i><span class="value"><?=count($row["comment"])?></span>
-                                        <a href="<?=base_url('user/detail_post/'.$row['user_post_id'])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
-                                    </div>
-                                </div>
-                            </div>
+                <article class="timeline">
+                    <?php foreach($user_posting as $key=>$row){ ?>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="<?=base_url($row["user_image"])?>" class="media-object" style="width:60px">
+                        </div>
+                        
+                        <div class="media-body">
+                            <h4 class="media-heading"><?=$row["fname"]?> <?=$row["lname"]?></h4>
+                            <?=hsc($row["post_title"])?> status: <?=$row["progress"]?>
+                            <p><?=hsc($row["content"])?></p>
+                            <a class="btn btn-default" href="<?=base_url("user/detail_post/".$row["user_post_id"])?>">View Detail</a>
+                            Kategori: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
+                            Sub Kategori: <?=isset($row["sub_category_name"])?$row["sub_category_name"]:""?><br>
+                            <?php if($row["image"]!=null){?>
+                            Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
+                            <?php } ?>
+                            <p>Tanggal & Waktu</p>
+                            <?php foreach ($row["comment"] as $key => $value): ?>
+                                <li>
+                                <?php 
+                                if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                ?>
+
+                                    At <?=$value["date"]?>
+                                    <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
+                                <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                <?=hsc($value["comment"])?>"
+                                    
+                                </li>
+                                    
+                            <?php endforeach ?>
+                            <form action="<?=base_url("user/user_comment")?>" method="post">
+                                <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
+                                <textarea name="comment"></textarea>
+                                <input type="submit" value="Submit comment"></input>
+                            </form>
                         </div>
                     </div>
-                <?php } ?>
-            </div>
-        </section>
+                    <?php } ?>
+                    
+                </article>
+                
+        </div>
     </section>
+</section>
         
 </body>
 </html>
@@ -263,4 +297,5 @@ $("document").ready(function(){
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7DAYC5xAZ2cARU_7olhRhRtVgcV3jeWc&signed_in=true&libraries=places&callback=initMap"
-        async defer></script>
+        ></script>
+
