@@ -368,6 +368,7 @@ class User extends MY_Controller {
     public function edit_profile_form(){
         $user_id = user_login_info()["user_id"];
         $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+        $this->load->view("MAIN/user_profile_form",$data);
         
         
     }
