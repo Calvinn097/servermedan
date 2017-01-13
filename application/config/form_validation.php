@@ -15,7 +15,7 @@ $config=array(
                 array(
                         'field' => 'lname',
                         'label' => 'LastName',
-                        'rules' => 'trim|required|alpha|max_length[20]',
+                        'rules' => 'trim|alpha|max_length[20]',
                         'errors'=>array(
                                 'required'=>"%s harus diisi.",
                                 'alpha'=>"%s hanya boleh alphabet",

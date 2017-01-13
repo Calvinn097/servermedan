@@ -164,38 +164,8 @@ if($this->session->flashdata("signup_err")!==null){
         </nav>
     </header>
     
-    <?php }else{ ?>
-    <header id="header">
-        <!--logo start-->
-        <div class="brand">
-            <a href="index.html" class="logo">
-                <i class="icon-layers"></i>
-                <span>SERVER</span>Medan</a>
-        </div>
-        <!--logo end-->
-        <ul class="nav navbar-nav navbar-left">
-            <li class="toggle-navigation toggle-left">
-                <button class="sidebar-toggle" id="toggle-left">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="toggle-fullscreen hidden-xs">
-                <button type="button" class="btn btn-default expand" id="toggle-fullscreen">
-                    <i class="fa fa-expand"></i>
-                </button>
-            </li>
-            <!--Note: Chatting
-
-                <li class="toggle-navigation toggle-right">
-                <button class="sidebar-toggle" id="toggle-right">
-                    <i class="fa fa-indent"></i>
-                </button>
-            </li>-->
-        </ul>
+    <?php }?>
     </header>
-    <?php } ?>
     <!--<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
     -->        

@@ -26,10 +26,10 @@ class User_m extends CI_Model{
                 $populate = array(
                     "fname"=>$fname,
                     "lname"=>$lname,
-                    "email"=>$email,
+                    "email"=>$email
                 );
                 $this->session->set_flashdata("signup_form_populate",$populate);
-                redirect();
+                redirect("user/ViewRegister");
             }else{
                 $response=array(
                     'status'=>false,
@@ -44,7 +44,7 @@ class User_m extends CI_Model{
             //$this->session->set_flashdata("global_notification",array("message"=>,"type"=>"Info"));
             if(!$api){
                 set_global_noti("Hi $fname, Terima kasih sudah bergabung di Servermedan!","Info");
-                redirect();
+                redirect("user/ViewLogin");
             }else{
                 $data=$this->db->where("email",$email)
                     ->get("sc_user")->row_array();
@@ -78,7 +78,7 @@ class User_m extends CI_Model{
 
     function m_get_user_id_by_fb_id($fb_id){
         return $this->db->where("fb_id",$fb_id)
-        ->get()->row_array()["fb_id"];
+        ->get("sc_user")->row_array()["user_id"];
     }
 
     function m_check_email_exist($email){
