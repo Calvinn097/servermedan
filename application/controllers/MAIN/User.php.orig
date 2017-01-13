@@ -105,7 +105,13 @@ class User extends MY_Controller {
 
         $fb_exist = $this->User_m->m_check_fb_exist($fb_id);
         if($fb_exist){
-            
+             $birthday= $user->getProperty('birthday');
+            $name = $user->getProperty('name');
+            $explode_name = explode(' ',$name);
+            $first_name = $explode_name[0];
+            $last_name = $explode_name[1];
+            $gender = $user->getProperty('gender');
+            $email = $user->getProperty('email');
         }else{
             $birthday= $user->getProperty('birthday');
             $name = $user->getProperty('name');
@@ -120,6 +126,8 @@ class User extends MY_Controller {
                 "lname"=>$last_name,
                 "fb_id"=>$fb_id,"gender"=>$gender
             );
+
+            // vd("asd",$data,true);
 
             $this->User_m->m_insert_fb_user($data);
         }
@@ -154,12 +162,7 @@ class User extends MY_Controller {
         setcookie('sm_login', '', time() - 3600, '/');
         $this->load->library('user_agent');
         set_global_noti("Anda berhasil melakukan logout","warning");
-<<<<<<< HEAD
-        //redirect($this->agent->referrer(),"refresh");
-        redirect(base_url());
-=======
-        redirect(base_url(),"refresh");
->>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
+		redirect(base_url(),"refresh");
 	}
     
     
@@ -180,7 +183,7 @@ class User extends MY_Controller {
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){
             set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
-            redirect();
+            redirect(base_url("user/viewhome"));
         }
         $data["repairman_id"]=$repairman_id;
         $data["user_id"]=$user_id;
@@ -255,8 +258,12 @@ class User extends MY_Controller {
     
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
-        vd("data",$data);
-        $this->load->view("Main/ranking");   
+<<<<<<< HEAD
+        
+        $this->load->view("Main/ranking",$data);   
+=======
+        $this->load->view("Main/ranking", $data);   
+>>>>>>> 225a2d189bbdf57397ac1938e6a474dc6199dc87
     }
     public function detail_repair($user_post_id){
         $data["detail_repair"]=$this->User_m->m_get_user_posting_by_user_post_id($user_post_id);

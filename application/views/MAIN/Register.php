@@ -93,7 +93,11 @@ if($this->session->flashdata("signup_err")!==null){
     <link rel="stylesheet" href="<?=base_url("asset/css/animate.css")?>">
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="<?=base_url("asset/css/main.css")?>">
-   
+    <style>
+        #fname,#rpassword{
+            padding-left : 32px;   
+        }
+    </style>
 </head>
 <body>
     <section class="container animated fadeInUp">

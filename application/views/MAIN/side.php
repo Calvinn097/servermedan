@@ -122,7 +122,7 @@ if (self==top) {
         <header id="header">
             <!--logo start-->
             <div class="brand">
-                <a href="<?=base_url("user/viewhome")?>" class="logo">
+                <a href="<?=base_url()?>" class="logo">
                     <span>SERVER</span>Medan</a>
             </div>
             <!--logo end-->
