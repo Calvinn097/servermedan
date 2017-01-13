@@ -49,8 +49,8 @@
                 <article>
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#posting">Posting</a></li>
-                        <li><a data-toggle="tab" href="#tambah">Tambah Gambar</a></li>
-                        <li><a data-toggle="tab" href="#edit">Edit Lokasi</a></li>
+                        <li><a href="#tambah">Tambah Gambar</a></li>
+                        <li><a href="#edit">Edit Lokasi</a></li>
                     </ul>
                     
                     <form class="tab-content posting">
