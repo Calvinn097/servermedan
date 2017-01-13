@@ -105,7 +105,13 @@ class User extends MY_Controller {
 
         $fb_exist = $this->User_m->m_check_fb_exist($fb_id);
         if($fb_exist){
-            
+             $birthday= $user->getProperty('birthday');
+            $name = $user->getProperty('name');
+            $explode_name = explode(' ',$name);
+            $first_name = $explode_name[0];
+            $last_name = $explode_name[1];
+            $gender = $user->getProperty('gender');
+            $email = $user->getProperty('email');
         }else{
             $birthday= $user->getProperty('birthday');
             $name = $user->getProperty('name');
@@ -120,6 +126,8 @@ class User extends MY_Controller {
                 "lname"=>$last_name,
                 "fb_id"=>$fb_id,"gender"=>$gender
             );
+
+            // vd("asd",$data,true);
 
             $this->User_m->m_insert_fb_user($data);
         }

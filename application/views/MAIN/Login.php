@@ -1,15 +1,70 @@
 <head>
-    <link rel="stylesheet" href="<?=base_url("asset/bootstrap/3.3.7/css/bootstrap-social.css")?>">
+	<link rel="stylesheet" href="<?=base_url("asset/bootstrap/3.3.7/css/bootstrap-social.css")?>">
     <link rel="stylesheet" href="<?=base_url("asset/plugins/bootstrap/css/bootstrap.min.css")?>">
     <!-- Fonts  -->
-    <link rel="stylesheet" href="<?=base_url("/asset/font-awesome/css/font-awesome.min.css")?>">
+    <link rel="stylesheet" href="<?=base_url("asset/css/font-awesome.min.css")?>">
     <link rel="stylesheet" href="<?=base_url("asset/css/simple-line-icons.css")?>" >
     <!-- CSS Animate -->
     <link rel="stylesheet" href="<?=base_url("asset/css/animate.css")?>">
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="<?=base_url("asset/css/main.css")?>">
+    <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
+   
 </head>
+<!-- Facebook SDK Login -->
+    <script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '<?=fb_i?>',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+        });
+    };
+
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+            'into this app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log '   +
+                'into Facebook.';
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
+    
+    </script>
 <body>
     <section class="container animated fadeInUp">
         <div class="row">
@@ -17,7 +72,7 @@
                 <div id="login-wrapper">
                     <header>
                         <div class="brand">
-                            <a href="<?=base_url()?>" class="logo">
+                            <a href="index.html" class="logo">
                                 <span>Server</span>Medan</a>
                         </div>
                     </header>
@@ -28,38 +83,31 @@
                         </h3>
                         </div>
                         <div class="panel-body">
-                            <p> Masuk untuk mengakses akun anda.</p>
-                            <form class="form-horizontal" method="post"  role="form" action="<?=base_url("user/login")?>">
+                            <p> Login to access your account.</p>
+                            <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
                                         <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" id="password" placeholder="Password">
                                         <i class="fa fa-lock"></i>
-                                        <a href="<?=base_url("user/forgot_password")?>" class="help-block">Lupa Kata Sandi?</a>
+                                        <a href="javascript:void(0)" class="help-block">Forgot Your Password?</a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-primary btn-block" value="Masuk">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <a class="btn btn-block btn-social btn-google">
-                                                    <span class="fa fa-google"></span> Masuk Dengan Google
-                                                </a>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a class="btn btn-block btn-social btn-facebook">
-                                                    <span class="fa fa-twitter"></span> Masuk Dengan Facebook
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <a href="index.html" class="btn btn-primary btn-block">Sign in</a>
+                                        <a href="" class="btn" id="fblogin">
+                                            <img src="<?=base_url("asset/images/homepage/Facebook-icon-1.png")?>" width="25" height="25"/>Facebook Login</a>
+                                    
+                                        <a href="" class="btn" id="glogin">
+                                            <img src="<?=base_url("asset/images/homepage/Google_plus.png")?>" width="25" height="25"/>Google+ Login</a>
                                         <hr />
-                                        <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Belum mendaftar? <span style="color: #f50">Daftar Sekarang</span></a>
+                                        <a href="<?=base_url("user/viewregister ")?>" class="btn btn-default btn-block">Not a member? Sign Up</a>
                                     </div>
                                 </div>
                             </form>
@@ -136,7 +184,8 @@
             <?php } ?>
             $("#loginModal").appendTo("body");
 
-            $("#fblogin").click(function(){
+            $("#fblogin").click(function(e){
+                e.preventDefault();
                 FB.login(function(response){
                     if(response.status==="connected"){
                         $.ajax({
@@ -145,7 +194,7 @@
                             data:{data:response,fb_login:true},
                             dataType:'html',
                             success:function(res){
-                                location.reload();
+                                window.location="<?=base_url()?>";
                             }
 
                         });
