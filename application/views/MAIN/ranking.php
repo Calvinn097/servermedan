@@ -1,170 +1,52 @@
+
+<style></style>
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
-            "css"=>array(
-                "asset/css/grayscale.css",
-                "asset/css/nav.css",
-                "asset/css/homeloginrepair.css",
-                "asset/css/ranking.css"
-                )
         );
-     $this->load->view("MAIN/header.php",$header_data) 
+     $this->load->view("MAIN/side.php",$header_data) 
 
 ?>
-<body data-spy="scroll" data-target="#side-menu" data-offset="20">
-
-    <div id="wrapper">
-        <div class="container ranking">
-
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Tingkat Skill
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Saroha</a>
-                </h3>
-                <p>Mempunyai kemampuan lebih dalam mengatasi kerusakan-kerusakan yang jarang terjadi</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Hellen</a>
-                </h3>
-                <p>Memiliki respon yang sangat tinggi dan cepat dalam menemukan masalah</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Steffi</a>
-                </h3>
-                <p>Memiliki kemampuan menggambarkan objek tiga dimensi di dalam kepala</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Hadi</a>
-                </h3>
-                <p>Sangat memperhitungkan segala kejadian yang mungkin terjadi dan memberikan saran dengan cepat</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Winson</a>
-                </h3>
-                <p>Memiliki pengalaman yang sangat tinggi dibidang komputer dan perabotan rumah tangga</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Erwin</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
+<section class="main-content-wrapper">
+    <div class="pageheader">
+        <h1 class="inline">Ranking</h1>
     </div>
-
-    </div>
-    <!-- /#wrapper -->
-<?php $this->load->view("MAIN/footer.php"); ?>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Phone Number</th>
+                <th>State</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Skill</th>
+                <th>Score</th>
+                <th>Point</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            
+            <?php $i=1?>
+            <?php foreach($rank as $key=>$row){?>
+            <tr>
+                <td><?php echo $i?></td>
+                <td><?=$row["fname"]?></td>
+                <td><?=$row["phone_number"]?></td>
+                <td><?=$row["state"]?></td>
+                <td><?=$row["address"]?></td>
+                <td><?=$row["gender"]?></td>
+                <td><?=$row["keahlian"]?></td>
+                <td><?=$row["score"]?></td>
+                <td><?=$row["point"]?></td>
+            </tr>
+            <?php $i++?>
+            <?php }?>
+        </tbody>
+    </table>
+         
+</section>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
