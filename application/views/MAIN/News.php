@@ -74,7 +74,7 @@
                         <li><a href='" . base_url("news?id=" . $value["news_category_id"] . "&category=" . $value["news_category"]) . "'>" . $value["news_category"] . "</a></li>
                         ";
                     }
-                ?>
+                ?>  
             </ul>
         </div>
     </div>

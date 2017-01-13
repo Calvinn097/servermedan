@@ -184,7 +184,7 @@ class User extends MY_Controller {
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){
             set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
-            redirect();
+            redirect(base_url("user/viewhome"));
         }
         $data["repairman_id"]=$repairman_id;
         $data["user_id"]=$user_id;
@@ -259,8 +259,7 @@ class User extends MY_Controller {
     
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
-        vd("data",$data);
-        $this->load->view("Main/ranking");   
+        $this->load->view("Main/ranking", $data);   
     }
     public function detail_repair($user_post_id){
         $data["detail_repair"]=$this->User_m->m_get_user_posting_by_user_post_id($user_post_id);

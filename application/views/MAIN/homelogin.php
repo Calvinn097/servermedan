@@ -1,4 +1,4 @@
-<style></style>
+<link href="<?=base_url("/asset/css/posting.css")?>" rel="stylesheet" type="text/css">
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
@@ -10,7 +10,7 @@
 <section class="main-content-wrapper">
 
     <div class="pageheader">
-        <h1 class="inline">Kategori Berita - </h1>
+        <h1 class="inline">Beranda</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
         <div class="row">

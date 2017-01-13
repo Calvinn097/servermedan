@@ -2877,7 +2877,9 @@ label.valid {
   top: 11px;
 }
 #login-wrapper #email,
-#login-wrapper #password {
+#login-wrapper #password, 
+#login-wrapper #fname,
+#login-wrapper #rpassword{
   padding-left: 32px;
 }
 #login-wrapper #locked-screen .profile-pic {

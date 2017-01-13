@@ -37,7 +37,7 @@ class Repairman_m extends CI_Model{
         ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
-        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,
+        u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_image,
         sub_cat.sub_category_name,sub_cat.service,sub_cat.reparation,sub_cat.jasa"
         )
         // ->where("up.user_id",$user_id)
