@@ -1,0 +1,85 @@
+.repair{
+    margin-top: 30px;
+}
+.posting
+{
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    background-color: white;
+    padding: 20px 10px 5px;
+}
+.posting-head
+{
+    padding-top: 4px;
+}
+.posting-time
+{
+    font-size: 12px;
+    color: #90949c;
+}
+.user-avatar
+{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.post-block
+{
+    display: block;
+}
+.posting-map
+{
+    font-size: 14px;
+    color:#90949c;
+}
+.posting-end
+{
+    font-size: 18px;
+    margin-left: 8px;
+    height: 37px;
+    position: relative;
+    padding-top: 5px;
+}
+.posting-end .value
+{
+    margin-right: 10px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+.posting-detail
+{
+    width: 30%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.title
+{
+    font-size: 18px;
+    font-weight: bold;
+}
+.content
+{
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.38;
+    word-wrap: break-word;
+}
+.type
+{
+    font-size: 13px;
+}
+.type .first
+{
+    color: #3c763d;
+}
+.type .second
+{
+    color: #31708f;
+}
+.type .third
+{
+    color: #8a6d3b;
+}

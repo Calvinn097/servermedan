@@ -1,109 +1,12 @@
-<!--<script src="../vendor/jquery/jquery.min.js"></script>-->
+<link href="<?=base_url("/asset/css/posting.css")?>" rel="stylesheet" type="text/css">
 
-<!-- Bootstrap Core JavaScript -->
-<!--<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>-->
-
-<!-- Metis Menu Plugin JavaScript -->
-<!--<script src="../vendor/metisMenu/metisMenu.min.js"></script>-->
-
-<!-- Morris Charts JavaScript -->
-<!--<script src="../vendor/raphael/raphael.min.js"></script>-->
-<!--<script src="../vendor/morrisjs/morris.min.js"></script>-->
-<!--<script src="../data/morris-data.js"></script>-->
-
-<!-- Custom Theme JavaScript -->
-<!--<script src="../dist/js/sb-admin-2.js"></script>-->
 <style>
-    .repair{
-        margin-top: 30px;
-    }
-    .posting
-    {
-        border: 1px solid;
-        border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-        border-radius: 3px;
-        background-color: white;
-        padding: 20px 10px 5px;
-    }
-    .posting-head
-    {
-        padding-top: 4px;
-    }
-    .posting-time
-    {
-        font-size: 12px;
-        color: #90949c;
-    }
-    .user-avatar
-    {
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-    }
-    .post-block
-    {
-        display: block;
-    }
-    .posting-map
-    {
-        font-size: 14px;
-        color:#90949c;
-    }
-    .posting-end
-    {
-        font-size: 18px;
-        margin-left: 8px;
-        height: 37px;
-        position: relative;
-        padding-top: 5px;
-    }
-    .posting-end .value
-    {
-        margin-right: 10px;
-        margin-left: 5px;
-        font-size: 13px;
-    }
-    .posting-detail
-    {
-        width: 30%;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
     .notif-abs
     {
-        position: absoulte;
-    }
-    .title
-    {
-        font-size: 18px;
-        font-weight: bold;
-    }
-    .content
-    {
-        margin-top: 8px;
-        font-size: 14px;
-        font-weight: normal;
-        line-height: 1.38;
-        word-wrap: break-word;
-    }
-    .type
-    {
-        font-size: 13px;
-    }
-    .type .first
-    {
-        color: #3c763d;
-    }
-    .type .second
-    {
-        color: #31708f;
-    }
-    .type .third
-    {
-        color: #8a6d3b;
+        
     }
 </style>
+
 <?php
     $header_data = array(
             "title"=>"Beranda",
@@ -113,12 +16,16 @@
 
 <section class="main-content-wrapper">
     <div class="pageheader">
-        <h1 class="inline">Kategori Berita - </h1>
+        <h1 class="inline">Beranda Repairman</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
         <div class="container-fluid">
             <div id="page-wrapper">
+            <!-- /.col-lg-8 -->
             <div class="row">
+                <?php
+                    foreach($timeline as $key=>$row) {
+                ?>
                 <div class="col-lg-8 repair">
                     <div class="col-lg-12">
                         <div class="media posting">
@@ -128,65 +35,65 @@
                             <div class="media-body">
                                 <h4 class="media-heading posting-head">
                                     <a href="">
-                                        Dicky Christian
+                                        <?=$row["fname"]." ".$row["lname"]?>
                                     </a>
                                 </h4>
-                                <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i>39 mins</p>
+                                <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
                             </div>
                             <div class="post-block">
                                 <a href="" class="posting-map post-block">
                                     <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
                                 </a>
                                 <p class="title">
-                                    TITLE
+                                    <?=$row["post_title"]?>
                                 </p>
                                 <p class="content">
-                                    CONTENT
+                                    <?=$row["content"]?>
                                 </p>
                                 <p class="type">
                                     <span class="first">
-                                        #Jenis Servis&nbsp;
+                                        #<?=$row["service_type"]?>&nbsp;
                                     </span>
                                     <span class="second">
-                                        #Kategori&nbsp;
+                                        #<?=$row["category_name"]?>&nbsp;
                                     </span>
                                     <span class="third">
-                                        #Subkategori&nbsp;
+                                        #<?=$row["sub_category_name"]?>&nbsp;
                                     </span>
                                 </p>
                                 <hr>
                                 <div class="posting-end">
-                                    <i class="fa fa-users"></i><span class="value">12</span>
-                                    <i class="fa fa-comments-o"></i><span class="value">9+</span>
-                                    <a href="" class="btn btn-primary posting-detail">Lihat Detail</a>
+                                    <i class="fa fa-users"></i><span class="value"><?=$row["accepted_by_repairman"]?></span>
+                                    <i class="fa fa-comments-o"></i><span class="value"><?=count($row["comment"])?></span>
+                                    <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.col-lg-8 -->
+                <?php } ?>
                 <div class="col-lg-4 notif-abs">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Request
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-comment fa-fw"></i> Request
+                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                </span>
+                            </a>
+                        </div>
+                        <!-- /.list-group -->
+                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                    </div>
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.col-lg-4 -->
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
         </div>
