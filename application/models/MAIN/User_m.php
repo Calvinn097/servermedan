@@ -82,7 +82,7 @@ class User_m extends CI_Model{
 
     function m_get_user_id_by_fb_id($fb_id){
         return $this->db->where("fb_id",$fb_id)
-        ->get()->row_array()["fb_id"];
+        ->get("sc_user")->row_array()["user_id"];
     }
 
     function m_check_email_exist($email){

@@ -1,3 +1,4 @@
+<?php vd("asd",$_COOKIE)?>
 <?=vd("at",$user)?>nih line 1 di view/user_profile for information ya karno hapus aja kalau sudah siap pakai
 <?php
     $header_data = array(
