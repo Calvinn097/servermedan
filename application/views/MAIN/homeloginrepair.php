@@ -3,7 +3,8 @@
 <style>
     .notif-abs
     {
-        
+        position: fixed !important;
+        right: 30px;
     }
 </style>
 
@@ -19,85 +20,86 @@
         <h1 class="inline">Beranda Repairman</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
-        <div class="container-fluid">
+        <div class="container-fluid posting-field">
             <div id="page-wrapper">
-            <!-- /.col-lg-8 -->
-            <div class="row">
+
+                <!--Notif panel-->
+                <div class="col-lg-3 notif-abs">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> Request
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
                 <?php
                     foreach($timeline as $key=>$row) {
                 ?>
-                <div class="col-lg-8 repair">
-                    <div class="col-lg-12">
-                        <div class="media posting">
-                            <div class="media-left media-top">
-                                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object user-avatar">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading posting-head">
-                                    <a href="">
-                                        <?=$row["fname"]." ".$row["lname"]?>
+                <div class="row">
+                    <div class="col-lg-8 repair">
+                        <div class="col-lg-12">
+                            <div class="media posting">
+                                <div class="media-left media-top">
+                                    <?php
+                                         $img = (isset($row["user_image"]) ? $row["user_image"] : base_url("/asset/images/user.png"));
+                                    ?>
+                                    <img src="<?=$img?>" class="media-object user-avatar">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading posting-head">
+                                        <a href="">
+                                            <?=$row["fname"]." ".$row["lname"]?>
+                                        </a>
+                                    </h4>
+                                    <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
+                                </div>
+                                <div class="post-block">
+                                    <a href="" class="posting-map post-block">
+                                        <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
                                     </a>
-                                </h4>
-                                <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
-                            </div>
-                            <div class="post-block">
-                                <a href="" class="posting-map post-block">
-                                    <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
-                                </a>
-                                <p class="title">
-                                    <?=$row["post_title"]?>
-                                </p>
-                                <p class="content">
-                                    <?=$row["content"]?>
-                                </p>
-                                <p class="type">
-                                    <span class="first">
-                                        #<?=$row["service_type"]?>&nbsp;
-                                    </span>
-                                    <span class="second">
-                                        #<?=$row["category_name"]?>&nbsp;
-                                    </span>
-                                    <span class="third">
-                                        #<?=$row["sub_category_name"]?>&nbsp;
-                                    </span>
-                                </p>
-                                <hr>
-                                <div class="posting-end">
-                                    <i class="fa fa-users"></i><span class="value"><?=$row["accepted_by_repairman"]?></span>
-                                    <i class="fa fa-comments-o"></i><span class="value"><?=count($row["comment"])?></span>
-                                    <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
+                                    <p class="title">
+                                        <?=$row["post_title"]?>
+                                    </p>
+                                    <p class="content">
+                                        <?=$row["content"]?>
+                                    </p>
+                                    <p class="type">
+                                        <span class="first">
+                                            #<?=$row["service_type"]?>&nbsp;
+                                        </span>
+                                        <span class="second">
+                                            #<?=$row["category_name"]?>&nbsp;
+                                        </span>
+                                        <span class="third">
+                                            #<?=$row["sub_category_name"]?>&nbsp;
+                                        </span>
+                                    </p>
+                                    <hr>
+                                    <div class="posting-end">
+                                        <i class="fa fa-users"></i><span class="value"><?=$row["accepted_by_repairman"]?></span>
+                                        <i class="fa fa-comments-o"></i><span class="value"><?=count($row["comment"])?></span>
+                                        <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php } ?>
-                <div class="col-lg-4 notif-abs">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> Request
-                                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                </span>
-                            </a>
-                        </div>
-                        <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
             </div>
-            <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-        </div>
-    <!-- /#wrapper -->
         </div>
     </section>
 </section>

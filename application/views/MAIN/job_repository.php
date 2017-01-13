@@ -25,55 +25,67 @@
         <h1 class="inline"> <?=$ttl?> </h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
-        <div class="container-fluid mid-posting">
+        <div class="container-fluid mid-posting posting-field">
           <?php
           foreach($data as $key=>$row) {
           ?>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8 repair">
-                <div class="media posting">
-                    <div class="media-left media-top">
-                        <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object user-avatar">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading posting-head">
-                            <a href="<?=base_url("user/profile/".$row["user_id"])?>">
-                                <?=$row["fname"]." ".$row["lname"]?>
+          <div class="row">
+              <div class="col-lg-2"></div>
+                <div class="col-lg-8 repair">
+                    <div class="media posting">
+                        <div class="media-left media-top">
+                            <?php
+                                $img = (isset($row["user_image"]) ? $row["user_image"] : base_url("/asset/images/user.png"));
+                            ?>
+                            <img src="<?=$img?>" class="media-object user-avatar">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading posting-head">
+                                <a href="<?=base_url("user/profile/".$row["user_id"])?>">
+                                    <?=$row["fname"]." ".$row["lname"]?>
+                                </a>
+                            </h4>
+                            <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
+                        </div>
+                        <div class="post-block">
+                            <a href="" class="posting-map post-block">
+                                <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
                             </a>
-                        </h4>
-                        <p class="posting-time"><i class="fa fa fa-clock-o fa-fw"></i><?=date('l, j F Y - H:i A', strtotime($row["date_posted"]))?></p>
-                    </div>
-                    <div class="post-block">
-                        <a href="" class="posting-map post-block">
-                            <i class="fa fa-map-marker fa-fw"></i> NAMA LOKASI
-                        </a>
-                        <p class="title">
-                            <?=$row["post_title"]?>
-                        </p>
-                        <p class="content">
-                            <?=$row["content"]?>
-                        </p>
-                        <p class="type">
-                            <span class="first">
-                                #<?=$row["service_type"]?>&nbsp;
-                            </span>
-                            <span class="second">
-                                #<?=$row["category_name"]?>&nbsp;
-                            </span>
-                            <span class="third">
-                                #<?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>&nbsp;
-                            </span>
-                        </p>
-                        <hr>
-                        <div class="posting-end">
-                            <i class="fa fa-users"></i><span class="value">12</span>
-                            <i class="fa fa-comments-o"></i><span class="value">9+</span>
-                            <a href="<?=base_url('user/detail_post/'.$row['user_post_id'])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
+                            <p class="title">
+                                <?=$row["post_title"]?>
+                            </p>
+                            <p class="content">
+                                <?=$row["content"]?>
+                            </p>
+                            <p class="type">
+                                <span class="first">
+                                    #<?=$row["service_type"]?>&nbsp;
+                                </span>
+                                <span class="second">
+                                    #<?=$row["category_name"]?>&nbsp;
+                                </span>
+                                <span class="third">
+                                    #<?=isset($row["sub_category_name"])?$row["sub_category_name"]:"";?>&nbsp;
+                                </span>
+                            </p>
+                            <hr>
+                            <div class="posting-end">
+                                <i class="fa fa-users"></i>
+                                <span class="value">
+                                  <?php echo (isset($row["accepted_by_repairman"]) ? $row["accepted_by_repairman"] : "0"); ?>
+                                </span>
+                                <i class="fa fa-comments-o"></i>
+                                <span class="value">
+                                  <?=count($row["comment"])?>
+                                </span>
+                                <a href="<?=base_url('user/detail_post/'.$row['user_post_id'])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+              </div>
+              <?php } ?>
             </div>
-          <?php } ?>
         </div>
     </section>
 </section>

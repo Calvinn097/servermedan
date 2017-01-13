@@ -8,7 +8,7 @@
                 "asset/css/ranking.css"
                 )
         );
-     $this->load->view("MAIN/header.php",$header_data) 
+     $this->load->view("MAIN/header.php",$header_data);
 
 ?>
 <body data-spy="scroll" data-target="#side-menu" data-offset="20">
