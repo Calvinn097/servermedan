@@ -6,36 +6,61 @@
      $this->load->view("MAIN/side.php",$header_data) 
 
 ?>
+
 <section class="main-content-wrapper">
+
     <div class="pageheader">
         <h1 class="inline">Kategori Berita - </h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
+        <div class="row">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+        </div>
+        <div class="panel-body">
+
+            <?php if(count($user_notification)>0){ ?>
+                <?php foreach($user_notification as $key=>$row) { ?>
+                    <div class="list-group">
+                        <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
+                            <?=$row["post_title"]?>
+                            <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
+                            <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
+                            </span>
+                        </a>
+                    </div>
+                <?php } ?>
+            <?php }else{ ?>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        No Notifications
+                    </a>
+                </div>
+            <?php } ?>
+            </div>
+        </div>
+        </div>
         <div class="container-fluid">
             <section id="main-wrapper" class="theme-blue-full">
         
         <!--content-->
         <section class="main-content-wrapper">
             <!--banner-->
+            <?php if(count($home_banner)>0){?>
             <div id="myCarousel" class="carousel slide">
-
+                <ol class="carousel-indicators">
+                    <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                    <li data-target="#myCarousel" data-slide-to="<?=$i++?>" class="<?php if($i==1){echo'active';} ?>"></li>
+                    <?php } ?>
+                </ol>
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="img_chania.jpg" alt="Chania" width="460" height="345">
+                <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                    <div class="item <?php if($i==0){echo'active';} $i++; ?>">
+                        <img src="<?=$row["path"]?>"  width="460" height="345">
                     </div>
-
-                    <div class="item">
-                        <img src="img_chania2.jpg" alt="Chania" width="460" height="345">
-                    </div>
-                    
-                    <div class="item">
-                        <img src="img_flower.jpg" alt="Flower" width="460" height="345">
-                    </div>
-
-                    <div class="item">  
-                        <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
-                    </div>
+                <?php } ?>
                 </div>
 					
 
@@ -45,357 +70,102 @@
                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                 </a>
             </div>
+            <?php }?>
             <div class="container">
                 <article>
+                <form id="post_order" class="tab-content posting" method="post" enctype="multipart/form-data" role="form" action="<?=base_url("User/user_posting")?>">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#posting">Posting</a></li>
-                        <li><a href="#tambah">Tambah Gambar</a></li>
-                        <li><a href="#edit">Edit Lokasi</a></li>
+                        <li><a href="#tambah"><input type="file" name="userfile" class="btn btn-default"></a></li>
                     </ul>
-                    
-                    <form class="tab-content posting">
-                        <div id="posting" class="tab-pane fade in active">
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div id="tambah" class="tab-pane fade">
-                            <!--ISIKAN TAMBAH GAMBAR-->
-                        </div>
-                        <div id="edit" class="tab-pane fade">
-                            <!--ISIKAN MAP-->
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Kategori</option>
-                            </select>
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Subkategori</option>
-                            </select>
-                            <select class="form-control" id="sel1">
-                                <option selected disabled>Jenis Servis</option>
-                            </select>
-                            <button type="submit">Post</button>
-                        </div>
-                    </form>
-                </article>
-                <article class="timeline">
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="<?=base_url("asset/images/homepage/image.png")?>" class="media-object" style="width:60px">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">John Doe</h4>
-                            <p>Tanggal & Waktu</p>
-                        </div>
-                    </div>
-                    
-                </article>
-            </div>
-        </section>
-    </section>
-        <!-- Navigation -->
-        
-<!--
-        <div id="page-wrapper">
-            <div class="row posting">
-                <div class="col-lg-8">
-                    <div class="button-bar">-->
-                        <!--form postingan-->
-                        <!--<form id="post_order" method="post" enctype="multipart/form-data" role="form" action="<?=base_url("User/user_posting")?>">
+                            <div id="posting" class="tab-pane fade in active">
+                                <textarea class="form-control" name="content"></textarea>
+                            </div>
+                            <div id="tambah" class="tab-pane fade">
+                                <!--not needed but dont delete leave it be-->
+                            </div>
+                            <div id="edit" class="tab-pane fade">
+                                <!--not needed but dont delete leave it be-->
+                            </div>
                             <div class="form-group">
-                                <ul class="nav navbar-nav">
-                                    <li>-->
-                                        <!-- <input type="submit" class="btn btn-info" value="locate"> -->
-                                        
-                                <!--    </li>
-                                    <li>
-                                        <input type="file" name="userfile">
-                                    </li>
-                                    <li>
-                                        <select class="btn btn-info" name="service_type_id">
-                                            <?php foreach($service_type as $key=>$row){ ?>
-                                            <option value="<?=$row["service_type_id"]?>"><?=$row["service_type"]?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <select name="category_id" class="btn btn-info" required>
-                                        <option value="" disabled selected>Pilih kategori anda</option>
-                                            <?php foreach($this->category_list as $row){ ?>
-                                                <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <select name="sub_category_id" class="btn btn-info" required>
-                                        
-                                        </select>
-                                    </li>
-                                </ul>
-                                
-                                <textarea class="form-control" rows="5" name="content" id="posting"></textarea>-->
-                                <!-- select location on map -->
-              <!--                 <input type="hidden" name="user_lat" id="user_lat">
-                                <input type="hidden" name="user_lng" id="user_lng">
-                                <label for="post_title_input">Post Title:</label> <input id="post_title_input" type="text" name="post_title">
-                                <div class="box-tools pull-right">
-                                    <a type="button" class="btn btn-info" title="locate map" data-toggle="collapse" data-target="#locate_map">Pilih lokasi di peta</a>
-                                </div>
-                                <div id="locate_map" class="collapse">
+                                <select class="form-control" id="sel1" name="category_id">
+                                    <option selected disabled>Kategori</option>
+                                    <?php foreach($this->category_list as $row){ ?>
+                                        <option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
+                                    <?php } ?>
+                                </select>
+                                <select name="sub_category_id" class="form-control" id="sel1">
+                                    <option selected disabled>Subkategori</option>
+                                </select>
+                                <select class="form-control" id="sel1" name="service_type_id">
+                                    <option selected disabled>Jenis Servis</option>
+                                    <?php foreach($service_type as $key=>$row){ ?>
+                                        <option value="<?=$row["service_type_id"]?>"><?=$row["service_type"]?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div id="locate_map">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
                                         </div>
-                                        <div id="locate_map" class="collapse">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="map"></div>
-                                                </div>
-                                            </div>
-                                            <label for="address">Alamat:</label>
-                                            <input type="text" name="address" id="address">
-                                        </div>
-                                        <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
                                     </div>
-                                </form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="map" style="width:100%; height: 400px;"></div>
+                                        </div>
+                                    </div>
+                                    <label for="address">Alamat:</label>
+                                    <input type="text" name="address" id="address">
+                                <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>--> 
-            
-            <!-- /.row -->
-            <!--<div class="row">
-                <div class="col-lg-8 customer">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Timeline
-                            
                         </div>
-                    -->    
-                        <!-- /.panel-heading -->
-                       <!-- <div class="panel-body">
-                            <ul>
-                            <?php foreach($user_posting as $key=>$row){ ?>
+                    </form>
+                </article>
+                <article class="timeline">
+                    <?php foreach($user_posting as $key=>$row){ ?>
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="<?=base_url($row["user_image"])?>" class="media-object" style="width:60px">
+                        </div>
+                        
+                        <div class="media-body">
+                            <h4 class="media-heading"><?=$row["fname"]?> <?=$row["lname"]?></h4>
+                            <?=hsc($row["post_title"])?> status: <?=$row["progress"]?>
+                            <p><?=hsc($row["content"])?></p>
+                            <a class="btn btn-default" href="<?=base_url("user/detail_post/".$row["user_post_id"])?>">View Detail</a>
+                            Kategori: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
+                            Sub Kategori: <?=isset($row["sub_category_name"])?$row["sub_category_name"]:""?><br>
+                            <?php if($row["image"]!=null){?>
+                            Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
+                            <?php } ?>
+                            <p>Tanggal & Waktu</p>
+                            <?php foreach ($row["comment"] as $key => $value): ?>
                                 <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title"><?=hsc($row["post_title"])?></h4>--><!--post title--> status: <?=$row["progress"]?>
-                   <!--                         <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?=$row["date_posted"]?></small>
-                                            </p>
-                                            <p></p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p><?=hsc($row["content"])?></p>--><!--postcontent-->
-                                            <!--<div class="progresscust">
-                                                <div class="progress progress-striped active">
-                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a class="btn btn-default" href="<?=base_url("user/detail_post/".$row["user_post_id"])?>">View Detail</a>
-                                        Kategori: <?=$row["category_name"]?>, Tipe Jasa: <?=$row["service_type"]?><br>
-                                        Sub Kategori: <?=isset($row["sub_category_name"])?$row["sub_category_name"]:""?><br>
-                                        <?php if($row["image"]!=null){?>
-                                        Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
-                                        <?php } ?>-->
-                                        <!-- <b>Number of likes: <span class="<?=$row["user_post_id"]."_num_likes"?>" data-num_likes="<?=$row["like_count"]?>"><?=$row["like_count"]?></span></b> <button class="like" data-user_post_id="<?=$row["user_post_id"]?>"><?=$row["like_by_me"]?"Liked":"Like";?></button> -->
-                                    <!--    <div class="panel">
-                                        Comment:
-                                        <ul>
-                                            <?php foreach ($row["comment"] as $key => $value): ?>
-                                                <li>
-                                                <?php 
-                                                    if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
-                                                    else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
-                                                    ?>
+                                <?php 
+                                if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                ?>
 
-                                                            At <?=$value["date"]?>
-                                                            <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
-                                                        <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
-                                                        <?=hsc($value["comment"])?>"
-                                                            
-                                                        </li>
-                                                        
-                                                    <?php endforeach ?>
-                                                </ul>
-                                                <form action="<?=base_url("user/user_comment")?>" method="post">
-                                                    <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
-                                                    <textarea name="comment"></textarea>
-                                                    <input type="submit" value="Submit comment"></input>
-                                                </form>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    <?php } ?>
-                                        <!-- <li>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Kerusakan mobil</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                                    </p>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Terjadi kerusakan luar biasa dibagian belakang mobil dikarenakan ditabrak oleh tank yang sedang lewat mohon agar segera diberikan feedback untuk perbaikkannya.</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        
-                                        <li class="timeline-panel">
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Rusak baling-baling kipas</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 10 hours ago via Twitter</small>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Terjadi insiden yang cukup menegangkan mengakibatkan baling-baling kipas rusak berantakan kepada mekanik mohon agar dapat di cek serpihan yang dapat diperbaiki</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Darurat kerusakan tutup botol</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 9 hours ago via Twitter</small>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Kepada para mekanik mohon agar segera ditanggapi kerusakan tutup botol yang mengakibatkan botol tidak dapat tertutup dengan rapat.</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Kerusakan AC tidak dingin</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 9 hours ago via Twitter</small>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Berikut adalah kronologi terjadinya kerusakan AC. Dikarenakan pemasukkan batu es kedalam kipas AC yang mengakibatkan terjadinya peledakan terhadap mesin AC tersebut mohon kepada mekanik agar dapat diperiksa</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Kerusakan Lemari es</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 9 hours ago via Twitter</small>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Berikut laporan kerusakan yang di alami oleh lemari es yaitu: lampu lemari es tidak dapat hidup, lemari es tidak dapat mengeluarkan angin, kipas lemari es tidak dapat berputar, pintu lemari es sulit ditutup, mesin lemari es tidak dapat ditemukan.</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">Kerusakan sepeda motor</h4>
-                                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 9 hours ago via Twitter</small>
-                                                </div>
-                                                <div class="timeline-body">
-                                                    <p>Berikut laporan kerusakan yaitu: ban sepeda motor tidak dapat ditemukan, mesin sepeda motor tidak dapat dilihat, badan sepeda motor tidak memiliki fisik. Kepada mekanik bersangkutan mohon agar segera datang dan melihat kondisi sepeda motor</p>
-                                                    <div class="progresscust">
-                                                        <div class="progress progress-striped active">
-                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> 
-                            </ul>
-                        </div>-->
-                        <!-- /.panel-body -->
-                    <!--</div>-->
-                    <!-- /.panel -->
-                <!--</div>-->
-                <!-- /.col-lg-8 -->
-                <!--<div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>-->
-                        <!-- /.panel-heading -->
-                        <!--<div class="panel-body">
-
-                                <?php if(count($user_notification)>0){ ?>
-                                    <?php foreach($user_notification as $key=>$row) { ?>
-                                        <div class="list-group">
-                                            <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
-                                                <?=$row["post_title"]?>
-                                                <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
-                                                <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    <?php } ?>
-                                <?php }else{ ?>
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item">
-                                            No Notifications
-                                        </a>
-                                    </div>
-                                <?php } ?>
-                                    <!-- /.list-group -->
-                                    <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.list-group -->
-                            <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
-                        <!--</div>-->
-                        <!-- /.panel-body -->
-                    <!--</div>-->
-                    <!-- panel -->
-                <!--</div>-->
-                <!-- /.col-lg-4 -->
-            <!--</div>-->
-            <!-- /.row -->
-        
-        <!-- /#page-wrapper -->
-        
-    <!--</div>-->
-    <!-- /#wrapper -->
+                                    At <?=$value["date"]?>
+                                    <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
+                                <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                <?=hsc($value["comment"])?>"
+                                    
+                                </li>
+                                    
+                            <?php endforeach ?>
+                            <form action="<?=base_url("user/user_comment")?>" method="post">
+                                <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
+                                <textarea name="comment"></textarea>
+                                <input type="submit" value="Submit comment"></input>
+                            </form>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    
+                </article>
+                
         </div>
     </section>
 </section>
@@ -527,4 +297,5 @@ $("document").ready(function(){
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7DAYC5xAZ2cARU_7olhRhRtVgcV3jeWc&signed_in=true&libraries=places&callback=initMap"
-        async defer></script>
+        ></script>
+

