@@ -214,12 +214,12 @@ if (self==top) {
                         <ul class="nav-sub">
                             <li>
                                 <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Lihat Iklan
+                                    <i class="fa fa-fw fa-picture-o"></i> Lihat Iklan
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Pasang Iklan
+                                    <i class="fa fa-fw fa-plus-square"></i> Pasang Iklan
                                 </a>
                             </li>
                         </ul>
@@ -231,22 +231,22 @@ if (self==top) {
                         <ul class="nav-sub">
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=0")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Sedang Berlangsung
+                                    <i class="fa fa-fw fa-clock-o"></i> Sedang Berlangsung
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=1")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Selesai
+                                    <i class="fa fa-fw fa-check"></i> Selesai
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=2")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Open
+                                    <i class="fa fa-fw fa-gear"></i> Open
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=3")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Ditolak
+                                    <i class="fa fa-fw fa-times"></i> Ditolak
                                 </a>
                             </li>
                         </ul>
