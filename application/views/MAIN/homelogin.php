@@ -88,7 +88,6 @@
                                 <div class="media-left media-top">
                                     <?php
                                         $img = (isset($row["user_image"]) ? $row["user_image"] : base_url("/asset/images/user.png"));
-                                        echo $img;
                                     ?>
                                     <img src="<?=$img?>" class="media-object user-avatar">
                                 </div>
