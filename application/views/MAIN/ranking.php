@@ -26,41 +26,24 @@
         <!-- /.row -->
 
         <!-- Projects Row -->
-        <div class="row">
+        
+            <?php foreach($rank as $key=>$row){ ?>
+            <div class="row">
             <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                <a href="<?=base_url("repairman/profile/".$row["repairman_id"]) ?>">
+                    <img class="img-responsive" src="<?=base_url($row['user_image'])?>" alt="image repairman">
                 </a>
                 <h3>
-                    <a href="#">Saroha</a>
+                    <a href="<?=base_url("repairman/profile/".$row["repairman_id"]) ?>"><?=$row["fname"]." ".$row["lname"]?></a>
                 </h3>
-                <p>Mempunyai kemampuan lebih dalam mengatasi kerusakan-kerusakan yang jarang terjadi</p>
-                <button class="btn btn-info">readmore</button>
+                <p><?=$row["keahlian"]?>
             </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Hellen</a>
-                </h3>
-                <p>Memiliki respon yang sangat tinggi dan cepat dalam menemukan masalah</p>
-                <button class="btn btn-info">readmore</button>
             </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Steffi</a>
-                </h3>
-                <p>Memiliki kemampuan menggambarkan objek tiga dimensi di dalam kepala</p>
-                <button class="btn btn-info">readmore</button>
-            </div>
-        </div>
+        <?php } ?>
+        
         <!-- /.row -->
-
-        <!-- Projects Row -->
+<!--
+        
         <div class="row">
             <div class="col-md-4 portfolio-item">
                 <a href="#">
@@ -94,7 +77,6 @@
             </div>
         </div>
 
-        <!-- Projects Row -->
         <div class="row">
             <div class="col-md-4 portfolio-item">
                 <a href="#">
@@ -127,11 +109,9 @@
                 <button class="btn btn-info">readmore</button>
             </div>
         </div>
-        <!-- /.row -->
 
         <hr>
 
-        <!-- Pagination -->
         <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
@@ -158,7 +138,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>--?
 
     </div>
 
