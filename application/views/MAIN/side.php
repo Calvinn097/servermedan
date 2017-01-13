@@ -164,28 +164,28 @@ if (self==top) {
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> Beranda
+                            <i class="fa  fa-fw fa-home"></i> Beranda
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("user/profile")?>" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> Profil
+                        <a href="<?=base_url("user/profile")?>" title="Profil">
+                            <i class="fa  fa-fw fa-user"></i> Profil
                         </a>
                     </li>
                     <li class="nav-dropdown">
                         <a href="<?=base_url("")?>" title="Progresss and History">
-                            <i class="fa  fa-fw fa-desktop"></i> Progress and History
+                            <i class="fa  fa-fw fa-cogs"></i> Progress and History
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("user/rank")?>" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> List Repairman
+                        <a href="<?=base_url("user/rank")?>" title="List Repairman">
+                            <i class="fa  fa-fw fa-trophy"></i> List Repairman
                         </a>
                     </li>
                     
                     <li>
-                        <a href="<?=base_url("news")?>" title="UI Elements">
-                            <i class="fa  fa-fw fa-cogs"></i> Berita
+                        <a href="<?=base_url("news")?>" title="Berita">
+                            <i class="fa  fa-fw fa-newspaper-o"></i> Berita
                         </a>
                     </li>
                 </ul>
@@ -199,54 +199,54 @@ if (self==top) {
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/user_login_repair")?>" title="Beranda Repairman">
-                            <i class="fa  fa-fw fa-desktop"></i> Beranda Repairman
+                            <i class="fa  fa-fw fa-tachometer"></i> Beranda Repairman
                         </a>
                     </li>
                     <li>
                         <a href="<?=base_url("repairman/profile")?>" title="Profil Repairman">
-                            <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
+                            <i class="fa  fa-fw fa-user-plus"></i> Profil Repairman
                         </a>
                     </li>
 					<li class="nav-dropdown">
-                        <a href="#" title="Beranda">
-                            <i class="fa  fa-fw fa-desktop"></i> Pengaturan Iklan
+                        <a href="#" title="Pengaturan Iklan">
+                            <i class="fa  fa-fw fa-object-group"></i> Pengaturan Iklan
                         </a>
                         <ul class="nav-sub">
                             <li>
                                 <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Lihat Iklan
+                                    <i class="fa fa-fw fa-picture-o"></i> Lihat Iklan
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Pasang Iklan
+                                    <i class="fa fa-fw fa-plus-square"></i> Pasang Iklan
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-dropdown">
-                        <a href="#" title="Pekerjaan">
-                            <i class="fa  fa-fw fa-cogs"></i> Job Progress
+                        <a href="#" title="Job Progress">
+                            <i class="fa  fa-fw fa-tasks"></i> Job Progress
                         </a>
                         <ul class="nav-sub">
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=0")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Dalam Progress
+                                    <i class="fa fa-fw fa-clock-o"></i> Sedang Berlangsung
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=1")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Selesai
+                                    <i class="fa fa-fw fa-check"></i> Selesai
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=2")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Open
+                                    <i class="fa fa-fw fa-gear"></i> Open
                                 </a>
                             </li>
                             <li>
                                 <a href="<?=base_url("repairman/job_repository?id=3")?>">
-                                    <i class="fa fa-fw fa-cogs"></i> Ditolak
+                                    <i class="fa fa-fw fa-times"></i> Ditolak
                                 </a>
                             </li>
                         </ul>
@@ -260,7 +260,7 @@ if (self==top) {
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/logout")?>" title="Keluar">
-                            <i class="fa  fa-fw fa-desktop"></i> Logout
+                            <i class="fa  fa-fw fa-power-off"></i> Logout
                         </a>
                     </li>
                 </ul>
