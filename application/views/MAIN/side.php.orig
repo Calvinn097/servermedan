@@ -14,17 +14,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- Custom Fonts -->
-    <link href="<?=base_url("/asset/font-awesome/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
-
-    <!-- Animate CSS by Daniel Eden-->
-    <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
-    <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
-    <script src="<?=base_url("/asset/javascript/jquery.min.js")?>"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <link href="<?=base_url("asset/bootstrap/3.3.7/css/bootstrap.min.css")?>" rel="stylesheet" type="text/css">
-    <script src="<?=base_url("asset/bootstrap/3.3.7/js/bootstrap.min.js")?>"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?=base_url("asset/img/favicon.ico")?>" type="image/x-icon">
     <!-- Bootstrap core CSS -->
@@ -108,13 +97,6 @@ if (self==top) {
         height: 80%;
         margin: 10%;
     }
-    .logout-nav
-    {
-        position: absolute;
-        left: 0;
-        bottom: 15px;
-        right: 0;
-    }
 </style>
 
 <body>
@@ -122,7 +104,12 @@ if (self==top) {
         <header id="header">
             <!--logo start-->
             <div class="brand">
+<<<<<<< HEAD
+                <a href="<?=base_url("")?>" class="logo">
+=======
                 <a href="<?=base_url("user/viewhome")?>" class="logo">
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
+                    <i class="icon-layers"></i>
                     <span>SERVER</span>Medan</a>
             </div>
             <!--logo end-->
@@ -141,7 +128,7 @@ if (self==top) {
                 </li>
                 <li class="toggle-navigation toggle-right">
                     <div class="profile-body dropdown username">
-                        <a href="<?=base_url("user/profile")?>" class="username"><h4>Nama Repairman</h4></a>
+                        <a href="javascript:void(0);" class="dropdown-toggle username" data-toggle="dropdown" aria-expanded="false"><h4>Nama Repairman</h4></a>
                     </div>
                 </li>
                 <li class="toggle-fullscreen hidden-xs">
@@ -160,43 +147,62 @@ if (self==top) {
         </header>
         <!--sidebar left start-->
         <aside class="sidebar sidebar-left sidebar-fixed-position">
+<<<<<<< HEAD
+            <div class="sidebar-profile">
+                <div class="avatar">
+                    <img class="img-circle profile-image" src="assets/img/profile.jpg" alt="profile">
+                    <i class="on border-dark animated bounceIn"></i>
+                </div>
+                <div class="profile-body dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle"><h4>Nama Repairman</h4></a>
+                </div>
+            </div>
+=======
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
             <nav>
                 <h5 class="sidebar-header">Menu</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
-                            <i class="fa  fa-fw fa-home"></i> Beranda
+                            <i class="fa  fa-fw fa-desktop"></i> Beranda
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("user/profile")?>" title="Profil">
-                            <i class="fa  fa-fw fa-user"></i> Profil
+<<<<<<< HEAD
+                        <a href="<?=base_url("")?>" title="Progress and History">
+=======
+                        <a href="<?=base_url("user/user_login_customer")?>" title="Beranda">
+                            <i class="fa  fa-fw fa-desktop"></i> Profil
                         </a>
                     </li>
                     <li class="nav-dropdown">
                         <a href="<?=base_url("")?>" title="Progresss and History">
-                            <i class="fa  fa-fw fa-cogs"></i> Progress and History
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
+                            <i class="fa  fa-fw fa-desktop"></i> Progress and History
                         </a>
                     </li>
                     <li>
-                        <a href="<?=base_url("user/rank")?>" title="List Repairman">
-                            <i class="fa  fa-fw fa-trophy"></i> List Repairman
+                        <a href="<?=base_url("news")?>" title="UI Elements">
+                            <i class="fa  fa-fw fa-cogs"></i> Berita
                         </a>
                     </li>
-                    
-
-
-
-
                     <li>
-                        <a href="<?=base_url("news")?>" title="Berita">
-                            <i class="fa  fa-fw fa-newspaper-o"></i> Berita
+                        <a href="<?=base_url("user/logout")?>" title="Keluar">
+<<<<<<< HEAD
+                            <i class="fa  fa-fw fa-desktop"></i> Logout
+=======
+                            <i class="fa  fa-fw fa-cogs"></i> Logout
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                         </a>
                     </li>
                 </ul>
             </nav>
             <?php
+<<<<<<< HEAD
                 if(user_login_info()["is_repairman"] != null)
+=======
+                if(user_login_info()["is_repairman"])
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                 {
             ?>
             <nav>
@@ -204,71 +210,37 @@ if (self==top) {
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a href="<?=base_url("user/user_login_repair")?>" title="Beranda Repairman">
-                            <i class="fa  fa-fw fa-tachometer"></i> Beranda Repairman
+                            <i class="fa  fa-fw fa-desktop"></i> Beranda Repairman
                         </a>
                     </li>
                     <li>
                         <a href="<?=base_url("repairman/profile")?>" title="Profil Repairman">
-                            <i class="fa  fa-fw fa-user-plus"></i> Profil Repairman
+                            <i class="fa  fa-fw fa-desktop"></i> Profil Repairman
                         </a>
                     </li>
-					<li class="nav-dropdown">
-                        <a href="#" title="Pengaturan Iklan">
-                            <i class="fa  fa-fw fa-object-group"></i> Pengaturan Iklan
+                    <li>
+<<<<<<< HEAD
+                        <a href="<?=base_url("repairman/job_repository")?>" title="Profil Repairman">
+                            <i class="fa  fa-fw fa-desktop"></i> List Pekerjaan
+=======
+                        <a href="<?=base_url("repairman/pasang_banner")?>" title="Beranda">
+                            <i class="fa  fa-fw fa-desktop"></i> Konfigurasi Banner
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-picture-o"></i> Lihat Iklan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?=base_url("repairman/pasang_banner")?>">
-                                    <i class="fa fa-fw fa-plus-square"></i> Pasang Iklan
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <li class="nav-dropdown">
-                        <a href="#" title="Job Progress">
-                            <i class="fa  fa-fw fa-tasks"></i> Job Progress
+                    <li>
+                        <a href="<?=base_url("repairman/job_repository")?>" title="Pekerjaan">
+                            <i class="fa  fa-fw fa-cogs"></i> Job Progress
                         </a>
-                        <ul class="nav-sub">
-                            <li>
-                                <a href="<?=base_url("repairman/job_repository?id=0")?>">
-                                    <i class="fa fa-fw fa-clock-o"></i> Sedang Berlangsung
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?=base_url("repairman/job_repository?id=1")?>">
-                                    <i class="fa fa-fw fa-check"></i> Selesai
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?=base_url("repairman/job_repository?id=2")?>">
-                                    <i class="fa fa-fw fa-gear"></i> Open
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?=base_url("repairman/job_repository?id=3")?>">
-                                    <i class="fa fa-fw fa-times"></i> Ditolak
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </nav>
+<<<<<<< HEAD
             <?php
                 }
             ?>
-            <nav class="logout-nav">
-                <ul class="nav nav-pills nav-stacked">
-                    <li>
-                        <a href="<?=base_url("user/logout")?>" title="Keluar">
-                            <i class="fa  fa-fw fa-power-off"></i> Logout
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+=======
+                <?php } ?>
+>>>>>>> 62e03b8326efebb7c696ebfd8df381f6a36935e4
         </aside>
         <!--sidebar left end-->

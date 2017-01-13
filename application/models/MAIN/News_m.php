@@ -10,7 +10,15 @@ class News_m extends CI_Model{
         if($limit!==null && $offset !== null){
             $this->db->limit($limit,$offset);
         }
-        return $this->db->order_by("date_created","desc")->get("sc_news")
+        if(isset($_GET["id"]))
+        {
+            return $this->db->order_by("date_created","desc")
+            ->where("news_category_id", $_GET["id"])
+            ->get("sc_news")
+            ->result_array();
+        }
+        return $this->db->order_by("date_created","desc")
+        ->get("sc_news")
         ->result_array();
     }
     function m_get_news_by_id($news_id){

@@ -54,21 +54,24 @@
 ?>
 <section class="main-content-wrapper">
     <div class="pageheader">
-        <h1 class="inline">Kategori Berita - </h1>
+        <h1 class="inline">Kategori Berita </h1>
         <div class="btn-group inline">
             <button type="button" class="btn btn-info btn-block btn-dropdown dropdown-toggle" data-toggle="dropdown">
-                Semua Kategori<span class="caret"></span>
+                <?php
+                    echo (isset($_GET["category"]) ? $_GET["category"] : "Semua Kategori");
+                ?>
+                <span class="caret"></span>
             </button>
             <ul class="dropdown-menu btn-dropdown" role="menu">
                 <li>
-                    <a href="<?=base_url("news/0")?>">Semua Kategori</a>
+                    <a href="<?=base_url("news")?>">Semua Kategori</a>
                 </li>
                 <?php
                     foreach($category as $key=>$value)
                     {
                         echo "<li class='divider'></li>";
                         echo "
-                        <li><a href='" . base_url("news/" . $value["news_category_id"]) . "'>" . $value["news_category"] . "</a></li>
+                        <li><a href='" . base_url("news?id=" . $value["news_category_id"] . "&category=" . $value["news_category"]) . "'>" . $value["news_category"] . "</a></li>
                         ";
                     }
                 ?>  
