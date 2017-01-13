@@ -175,7 +175,7 @@ class User extends MY_Controller {
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){
             set_global_noti("Kamu harus menjadi repairman untuk mengaksesnya","warning");
-            redirect();
+            redirect(base_url("user/viewhome"));
         }
         $data["repairman_id"]=$repairman_id;
         $data["user_id"]=$user_id;

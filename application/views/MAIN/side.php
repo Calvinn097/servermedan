@@ -20,8 +20,10 @@
     <!-- Animate CSS by Daniel Eden-->
     <link href="<?=base_url("asset/plugin/bootstrap-notify-3.1.3/animate.css");?>" rel="stylesheet" type="text/css">
     <script src="<?=base_url("/asset/javascript/jquery-1.12.4.min.js")?>"></script>
+    <script src="<?=base_url("/asset/javascript/jquery.min.js")?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
+    <link href="<?=base_url("asset/bootstrap/3.3.7/css/bootstrap.min.css")?>" rel="stylesheet" type="text/css">
     <script src="<?=base_url("asset/bootstrap/3.3.7/js/bootstrap.min.js")?>"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?=base_url("asset/img/favicon.ico")?>" type="image/x-icon">
@@ -121,7 +123,6 @@ if (self==top) {
             <!--logo start-->
             <div class="brand">
                 <a href="<?=base_url("user/viewhome")?>" class="logo">
-                    <i class="icon-layers"></i>
                     <span>SERVER</span>Medan</a>
             </div>
             <!--logo end-->
