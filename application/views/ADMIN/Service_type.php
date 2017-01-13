@@ -24,7 +24,7 @@ if($this->session->flashdata('add_service_type_err')!==null){
   <div class="span12">
       <div class="widget-box">
         <div class="widget-title" id='add_service_type_toggle'> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Add New Service Type</h5>
+          <h5>Add New Service Type (clickme to slide down :) )</h5>
         </div>
         <div class="widget-content nopadding" style='display:none;' id='add_service_type_div'>
           <form action="<?=base_url('/ADMIN/Service_type/add_service_type')?>" method="post" class="form-horizontal">

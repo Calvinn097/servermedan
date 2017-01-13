@@ -46,7 +46,7 @@ tinymce.init({
   </div>
   <div class="container-fluid">
     <div class="widget-title" id="news_category_div_collapser"> <span class="icon"> <i class="icon-file"></i></span>
-    <h5>Add News Category</h5>
+    <h5>Add News Category (can be clicked)</h5>
     </div>
     <div class="widget-content nopadding" style='display:none;' id='add_news_category_div'>
       <form action="<?=base_url('/ADMIN/News/insert_news_category')?>" method="post" class="form-horizontal">

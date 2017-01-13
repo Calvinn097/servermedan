@@ -30,7 +30,7 @@ if($this->session->flashdata('add_sub_category_err')!==null){
   <div class="span6">
       <div class="widget-box">
         <div class="widget-title" id='add_category_toggle'> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Add New Category</h5>
+          <h5>Add New Category (click to slide!)</h5>
         </div>
         <div class="widget-content nopadding" style='display:none;' id='add_category_div'>
           <form action="<?=base_url('/ADMIN/Category/add_category')?>" method="post" class="form-horizontal">
@@ -55,7 +55,7 @@ if($this->session->flashdata('add_sub_category_err')!==null){
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title" id='add_sub_category_toggle'> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Add New Sub-Category</h5>
+          <h5>Add New Sub-Category (click to slide!)</h5>
         </div>
         <div class="widget-content nopadding" style='display:none;' id='add_sub_category_div'>
           <form method="post" action="<?=base_url('ADMIN/Category/add_sub_category')?>" class="form-horizontal">
@@ -145,7 +145,7 @@ if($this->session->flashdata('add_sub_category_err')!==null){
   <div class="span12">
       <div class="widget-box">
         <div class="widget-title" id='sub_category_toggle'> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Sub Category</h5>
+          <h5>Sub Category (click to slide!)</h5>
         </div>
         <div class="widget-content nopadding" style='display:none;' id='sub_category_div'>
 		    <div class="widget-box collapsible">
