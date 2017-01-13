@@ -262,7 +262,7 @@ class User extends MY_Controller {
     
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
-        vd("data",$data["rank"]);
+        //vd("data",$data["rank"]);
         $this->load->view("Main/ranking", $data);   
     }
     public function detail_repair($user_post_id){
