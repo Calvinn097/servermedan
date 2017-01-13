@@ -180,6 +180,9 @@ class User extends MY_Controller {
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
+        if(!isset($_COOKIE["sm_login"])){
+            redirect(base_url());
+        }
         $user_id=user_login_info()["user_id"];
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){

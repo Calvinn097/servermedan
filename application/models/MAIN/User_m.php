@@ -252,6 +252,7 @@ class User_m extends CI_Model{
         )
         ->where("up.user_id",$user_id)
         ->from("sc_user_post up")
+        ->group_by("up.user_post_id")
         ->join("sc_user u","u.user_id=up.user_id")
         ->join("sc_category c","up.category_id=c.category_id")
         ->join("sc_sub_category","sc_sub_category.category_id=c.category_id")
