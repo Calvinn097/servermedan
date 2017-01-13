@@ -180,6 +180,9 @@ class User extends MY_Controller {
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
+        if(!isset($_COOKIE["sm_login"])){
+            redirect(base_url());
+        }
         $user_id=user_login_info()["user_id"];
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){
@@ -259,6 +262,7 @@ class User extends MY_Controller {
     
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
+        vd("data",$data["rank"]);
         $this->load->view("Main/ranking", $data);   
     }
     public function detail_repair($user_post_id){

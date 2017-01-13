@@ -139,7 +139,7 @@
                             <?php if($row["image"]!=null){?>
                             Photo:<img class="view_image" src="<?=base_url($row["image"])?>" height="100" width="150">
                             <?php } ?>
-                            <p>Tanggal & Waktu</p>
+                            <p>Tanggal & Waktu: <?=$row["date_posted"]?></p>
                             <?php foreach ($row["comment"] as $key => $value): ?>
                                 <li>
                                 <?php 
