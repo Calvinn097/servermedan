@@ -244,7 +244,7 @@ class User_m extends CI_Model{
 
     function m_get_user_posting_by_user_id($user_id=null,$api=false){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select("u.user_id,u.user_image,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
@@ -252,6 +252,7 @@ class User_m extends CI_Model{
         )
         ->where("up.user_id",$user_id)
         ->from("sc_user_post up")
+        ->group_by("up.user_post_id")
         ->join("sc_user u","u.user_id=up.user_id")
         ->join("sc_category c","up.category_id=c.category_id")
         ->join("sc_sub_category","sc_sub_category.category_id=c.category_id")
@@ -314,7 +315,7 @@ class User_m extends CI_Model{
     }
 
     function m_get_accepted_post($user_post_id){
-        return $this->db->select("pa.post_accepted_id,pa.repairman_id,pa.user_post_id,pa.date_accept,pa.date_dealed,pa.user_dealed,pa.price,pa.estimated_time,
+        return $this->db->select("pa.post_accepted_id,u.user_image,pa.repairman_id,pa.user_post_id,pa.date_accept,pa.date_dealed,pa.user_dealed,pa.price,pa.estimated_time,
             r.user_id,r.score,r.number_job,r.keahlian
             ")
         ->from("sc_post_accepted pa")
@@ -325,7 +326,7 @@ class User_m extends CI_Model{
     }
 
     function m_get_post_accepted_by_repairman_id_post_id($user_post_id,$repairman_id){
-        return $this->db->select("pa.post_accepted_id,pa.repairman_id,pa.user_post_id,pa.date_accept,pa.date_dealed,pa.user_dealed,pa.price,pa.estimated_time,
+        return $this->db->select("pa.post_accepted_id,pa.repairman_id,u.user_image,pa.user_post_id,pa.date_accept,pa.date_dealed,pa.user_dealed,pa.price,pa.estimated_time,
             r.user_id,r.score,r.number_job,r.keahlian
             ")
         ->where("pa.user_post_id",$user_post_id)
@@ -339,7 +340,7 @@ class User_m extends CI_Model{
 
     function m_user_get_user_posting_by_user_post_id($user_post_id,$user_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,
+        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,u.user_image,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
@@ -363,7 +364,7 @@ class User_m extends CI_Model{
 
     function m_repairman_get_user_posting_by_user_post_id($user_post_id,$repairman_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,
+        ->select("u.user_id,u.user_image,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,up.user_lat,up.user_lng,up.address as post_address,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name"
@@ -392,7 +393,7 @@ class User_m extends CI_Model{
 
     function m_get_post_comment_by_post_id($post_id){
         $res = $this->db
-            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            ->select("u.email,u.user_image,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
             pc.post_comment_id,pc.user_post_id,pc.comment,pc.date")
             ->where("user_post_id",$post_id)
             ->from("sc_post_comment pc")
@@ -408,7 +409,7 @@ class User_m extends CI_Model{
 
     function m_get_post_accepted_comment_by_post_id($post_accepted_id){
         $res = $this->db
-            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            ->select("u.email,u.fname,u.user_image,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
             pc.post_accepted_comment_id,pc.post_accepted_id,pc.comment,pc.date")
             ->where("p_acc.post_accepted_id",$post_accepted_id)
             ->from("sc_post_accepted_comment pc")
@@ -425,7 +426,7 @@ class User_m extends CI_Model{
 
     function m_get_post_accepted_comment_by_post_id_repairman_id($post_accepted_id,$repairman_id){
         $res = $this->db
-            ->select("u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
+            ->select("u.email,u.fname,u.user_image,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,u.user_id,
             pc.post_accepted_comment_id,pc.post_accepted_id,pc.comment,pc.date")
             ->where("p_acc.post_accepted_id",$post_accepted_id)
             ->where("p_acc.repairman_id",$repairman_id)
@@ -525,7 +526,7 @@ class User_m extends CI_Model{
     }
     function m_get_user_notification_by_user_id($user_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select("u.user_id,u.user_image,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name,
@@ -556,7 +557,7 @@ class User_m extends CI_Model{
     }
     function m_get_all_repairman_that_accept_list_by_user_post_id($user_post_id,$user_id){
         $user_post= $this->db
-        ->select("u.user_id,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
+        ->select("u.user_id,u.user_image,up.content,up.user_post_id,up.service_type_id,up.category_id,up.sub_category_id,up.post_title,up.location_lat,up.location_lng,up.date_posted,up.image,
         c.category_name,
         st.service_type,st.called,
         u.email,u.fname,u.lname,u.user_level,u.phone_number,u.state,u.address,u.postal,u.lat,u.lng,u.status,u.fb_id,u.google_id,u.gender,sc_sub_category.sub_category_name,

@@ -174,11 +174,15 @@ class User extends MY_Controller {
         $data["service_type"]=$this->Service_type_m->m_get_service_type();
         $data["user_posting"]=$this->User_m->m_get_user_posting_by_user_id($user_id);
         $data["user_notification"]=$this->User_m->m_get_user_notification_by_user_id($user_id);
-
+        $data["home_banner"]=$this->Repairman_m->m_get_request_banner_approved();
         // vd("data",$data["user_notification"],true); //param 3 true to make program stop, dont include param 3 to show data without stopping program
+        //vd("Data",$data["home_banner"]);
         $this->load->view("MAIN/homelogin",$data);
     }
     public function user_login_repair(){
+        if(!isset($_COOKIE["sm_login"])){
+            redirect(base_url());
+        }
         $user_id=user_login_info()["user_id"];
         $repairman_id = $this->Repairman_m->m_get_repairman_id_by_user_id($user_id);
         if($repairman_id==null){
@@ -258,6 +262,7 @@ class User extends MY_Controller {
     
     public function rank(){
         $data["rank"]=$this->User_m->m_get_rank();
+        vd("data",$data["rank"]);
         $this->load->view("Main/ranking", $data);   
     }
     public function detail_repair($user_post_id){

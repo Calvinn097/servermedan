@@ -3,6 +3,7 @@
   <div id="content-header">
   <div id="breadcrumb"> <a href="<?=base_url('/ADMIN')?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Manage Repairman Banner</a></div>
   <h1>Manage Repairman Banner</h1>
+  <p> This is places where all advertisement banner that repairman posted, to be approved and be displayed on user site.
   </div>
   <div class="container-fluid">
     <hr>
