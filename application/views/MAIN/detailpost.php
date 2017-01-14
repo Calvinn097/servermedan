@@ -282,7 +282,7 @@
 
 <script>
     function initMap() {
-        var uluru = {lat: <?=$detail_post["user_lat"]??0?>, lng: <?=$detail_post["user_lng"]??0?>};
+        var uluru = {lat: <?=isset($detail_post["user_lat"])?$detail_post["user_lng"]:0?>, lng: <?=isset($detail_post["user_lng"])?$detail_post["user_lng"]:0?>};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 17,
             center: uluru
