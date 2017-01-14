@@ -266,9 +266,9 @@ class User extends MY_Controller {
         
         $this->load->view("Main/ranking",$data);   
 =======
-        vd("data",$data["rank"]);
+        //vd("data",$data["rank"]);
         $this->load->view("Main/ranking", $data);   
->>>>>>> 78ef32d347765805bf85543128682eb769093660
+>>>>>>> 7457b9ebf256fc2c064ee1dc7477e9a6c3339422
     }
     public function detail_repair($user_post_id){
         $data["detail_repair"]=$this->User_m->m_get_user_posting_by_user_post_id($user_post_id);
@@ -373,6 +373,7 @@ class User extends MY_Controller {
     public function edit_profile_form(){
         $user_id = user_login_info()["user_id"];
         $data["user"]=$this->User_m->m_get_user_by_user_id($user_id);
+        $this->load->view("MAIN/user_profile_form",$data);
         
         
     }

@@ -78,98 +78,91 @@
 ?>
 <section class="main-content-wrapper">
     <div class="pageheader">
-        <h1 class="inline">Kategori Berita </h1>
+        <h1 class="inline">Detail Post</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
         <div class="container-fluid">
             <div id="wrapper">
                 <div class="container">
-                            <div class="portfolio">
-                                <!-- Portfolio Item Heading -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h1 class="page-header">Detail Posting
-                                            <!-- <small><?=$detail_post["post_title"]?></small> -->
-                                        </h1>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
+                    <div class="portfolio">
 
-                                <!-- Portfolio Item Row -->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
-                                        <img class="img-responsive" width="750" height="500" src=<?=base_url($detail_post["image"])?>>
-                                    </div>
+                        <!-- /.row -->
 
-                                    <div class="col-md-6">
-                                    <?php 
-                                    if(count($finished)>0){
-                                        echo "Date Finished = ".$finished["date_finished"]."<br>";
-                                        echo "Review: ".$finished["review"]."<br>";
-                                        echo "Rate: ".$finished["rate"]."<br>";
-                                        $status="Finished";
-                                        if($finished["lunas"]){
-                                            $status="lunas";
-                                        }else{
-                                            if($repairman){
-                                                echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
-                                            }
-                                        }
-                                        echo "<h5>Status: ".$status."</h5>";
-                                    }
-                                    ?>
-                                        
-                                        <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
-                                        <p><?=$detail_post["content"]?></p>
-                                        <p>Service :<?=$detail_post["service_type"]?></p>
-                                        <p>Category :<?=isset($detail_post["category_name"])?$detail_post["category_name"]:""?></p>
-                                        <p>Category :<?=isset($detail_post["sub_category_name"])?$detail_post["sub_category_name"]:""?></p>
-                                        <p>Address :<?=isset($detail_post["post_address"])?$detail_post["post_address"]:""?></p>
-                                        <!-- <h4>Detail Kerusakan</h4>
-                                        <ul>
-                                            <li>Sulit dibaca</li>
-                                            <li>Sulit dilihat</li>
-                                            <li>Tidak dapat diterawang</li>
-                                            <li>Tembus pandang</li>
-                                        </ul> -->
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div id="map"></div>
-                                            </div>
-                                        </div>
-                                        <?php if($repairman){ ?>
-                                            <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
-                                            <div class="agree">
-                                                <ul>
-                                                    <li>
-                                                    <?php if(!empty($accepted)){ ?>
-                                                    <?php $post_accepted_id=$accepted["post_accepted_id"]?>
-                                                    <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
-                                                    ?>" method="post">
-                                                    <?php }else{ ?>
-                                                    <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
-                                                    ?>" method="post">
-                                                    <?php } ?>
-                                                    Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
-                                                    Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
-                                                    <?php if(!empty($accepted) ){ ?>
-                                                    <input class="btn btn-info" type="submit" value="Edit">
-                                                    <?php }else{ ?>
-                                                    <input class="btn btn-info" type="submit" value="Terima">
-                                                    <?php } ?>
-                                                    </form>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </div>
-                                </div>
+                        <!-- Portfolio Item Row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
+                                <img class="img-responsive" width="100%" height="200" src=<?=base_url($detail_post["image"])?>>
                             </div>
+
+                            <div class="col-md-6">
+                            <?php 
+                            if(count($finished)>0){
+                                echo "Date Finished = ".$finished["date_finished"]."<br>";
+                                echo "Review: ".$finished["review"]."<br>";
+                                echo "Rate: ".$finished["rate"]."<br>";
+                                $status="Finished";
+                                if($finished["lunas"]){
+                                    $status="lunas";
+                                }else{
+                                    if($repairman){
+                                        echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
+                                    }
+                                }
+                                echo "<h5>Status: ".$status."</h5>";
+                            }
+                            ?>
+
+                                <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
+                                <p><?=$detail_post["content"]?></p>
+                                <p>Service :<?=$detail_post["service_type"]?></p>
+                                <p>Category :<?=isset($detail_post["category_name"])?$detail_post["category_name"]:""?></p>
+                                <p>Category :<?=isset($detail_post["sub_category_name"])?$detail_post["sub_category_name"]:""?></p>
+                                <p>Address :<?=isset($detail_post["post_address"])?$detail_post["post_address"]:""?></p>
+                                <!-- <h4>Detail Kerusakan</h4>
+                                <ul>
+                                    <li>Sulit dibaca</li>
+                                    <li>Sulit dilihat</li>
+                                    <li>Tidak dapat diterawang</li>
+                                    <li>Tembus pandang</li>
+                                </ul> -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="map"></div>
+                                    </div>
+                                </div>
+                                <?php if($repairman){ ?>
+                                    <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
+                                    <div class="agree">
+                                        <ul>
+                                            <li>
+                                            <?php if(!empty($accepted)){ ?>
+                                            <?php $post_accepted_id=$accepted["post_accepted_id"]?>
+                                            <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
+                                            ?>" method="post">
+                                            <?php }else{ ?>
+                                            <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
+                                            ?>" method="post">
+                                            <?php } ?>
+                                            Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
+                                            Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
+                                            <?php if(!empty($accepted) ){ ?>
+                                            <input class="btn btn-info" type="submit" value="Edit">
+                                            <?php }else{ ?>
+                                            <input class="btn btn-info" type="submit" value="Terima">
+                                            <?php } ?>
+                                            </form>
+                                            </li>
+                                            <li>
+                                                <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
                             
                             <div class="comment">
                                 Comment:
