@@ -93,7 +93,7 @@
                                     <div class="col-md-12">
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                                         <i class="fa fa-lock"></i>
-                                        <a href="javascript:void(0)" class="help-block">Forgot Your Password?</a>
+                                        <a href="<?=base_url("user/forgot_password")?>" class="help-block">Forgot Your Password?</a>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -1,4 +1,4 @@
-<?=vd("at",$user)?>
+
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",

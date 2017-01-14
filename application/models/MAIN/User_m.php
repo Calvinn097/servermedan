@@ -516,7 +516,7 @@ class User_m extends CI_Model{
     }
     function m_get_rank(){
         return $this->db
-        ->select("t2.user_id,t2.email,t2.fname,t2.lname,t2.password,t2.user_level,t2.phone_number,t2.state,t2.address,t2.postal,t2.lat,t2.lng,t2.fb_id,t2.google_id,t2.gender,
+        ->select("t2.user_id,t2.email,t2.user_image,t2.fname,t2.lname,t2.password,t2.user_level,t2.phone_number,t2.state,t2.address,t2.postal,t2.lat,t2.lng,t2.fb_id,t2.google_id,t2.gender,
             t1.repairman_id,t1.user_id,t1.score,t1.number_job,t1.keahlian,(t1.score+t1.keahlian) as point
             ")
         ->order_by("point","DESC")
