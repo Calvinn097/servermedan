@@ -1,51 +1,63 @@
-<!--google style-->
-<!--<style>-->
-<!--    #map {-->
-<!--        height: 70%;-->
-<!--    }-->
-<!--    .controls {-->
-<!--        margin-top: 10px;-->
-<!--        border: 1px solid transparent;-->
-<!--        border-radius: 2px 0 0 2px;-->
-<!--        box-sizing: border-box;-->
-<!--        -moz-box-sizing: border-box;-->
-<!--        height: 32px;-->
-<!--        outline: none;-->
-<!--        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);-->
-<!--    }-->
-<!---->
-<!--    /*#gmap_input {*/-->
-<!--    /*background-color: #fff;*/-->
-<!--    /*font-family: Roboto;*/-->
-<!--    /*font-size: 15px;*/-->
-<!--    /*font-weight: 300;*/-->
-<!--    /*margin-left: 12px;*/-->
-<!--    /*padding: 0 11px 0 13px;*/-->
-<!--    /*text-overflow: ellipsis;*/-->
-<!--    /*width: 300px;*/-->
-<!--    /*}*/-->
-<!---->
-<!--    #gmap_input:focus {-->
-<!--        border-color: #4d90fe;-->
-<!--    }-->
-<!---->
-<!--    /*.pac-container {*/-->
-<!--    /*font-family: Roboto;*/-->
-<!--    /*}*/-->
-<!---->
-<!--    #type-selector {-->
-<!--        color: #fff;-->
-<!--        background-color: #4d90fe;-->
-<!--        padding: 5px 11px 0px 11px;-->
-<!--    }-->
-<!---->
-<!--    #type-selector label {-->
-<!--        font-family: Roboto;-->
-<!--        font-size: 13px;-->
-<!--        font-weight: 300;-->
-<!--    }-->
-<!---->
-<!--</style>-->
+
+<style>
+    #map {
+        height: 60%;
+        margin: 20px;
+    }
+    .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /*#gmap_input {*/
+    /*background-color: #fff;*/
+    /*font-family: Roboto;*/
+    /*font-size: 15px;*/
+    /*font-weight: 300;*/
+    /*margin-left: 12px;*/
+    /*padding: 0 11px 0 13px;*/
+    /*text-overflow: ellipsis;*/
+    /*width: 300px;*/
+    /*}*/
+
+    #gmap_input:focus {
+        border-color: #4d90fe;
+    }
+
+    /*.pac-container {*/
+    /*font-family: Roboto;*/
+    /*}*/
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+    #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+    .agree ul{
+        list-style-type: none;
+    }
+    .agree ul .col-md-12,.comment .com{
+        margin-top:10px;   
+    }
+    .agree ul input[type=submit]{
+        display: inline;   
+    }
+    .agree .acc,.comment .com{
+        text-align:right;
+    }  
+</style>
 <!--Google Maps Script below-->
 <script>
     function initMap() {
@@ -81,115 +93,142 @@
         <h1 class="inline">Detail Post</h1>
     </div>
     <section id="main-content" class="animated fadeInUp">
-        <div class="container-fluid">
             <div id="wrapper">
-                <div class="container">
-                    <div class="portfolio">
+                <div class="portfolio">
 
-                        <!-- /.row -->
+                    <!-- /.row -->
 
-                        <!-- Portfolio Item Row -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
-                                <img class="img-responsive" width="100%" height="200" src=<?=base_url($detail_post["image"])?>>
-                            </div>
-
-                            <div class="col-md-6">
-                            <?php 
-                            if(count($finished)>0){
-                                echo "Date Finished = ".$finished["date_finished"]."<br>";
-                                echo "Review: ".$finished["review"]."<br>";
-                                echo "Rate: ".$finished["rate"]."<br>";
-                                $status="Finished";
-                                if($finished["lunas"]){
-                                    $status="lunas";
-                                }else{
-                                    if($repairman){
-                                        echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
-                                    }
-                                }
-                                echo "<h5>Status: ".$status."</h5>";
-                            }
-                            ?>
-
-                                <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
-                                <p><?=$detail_post["content"]?></p>
-                                <p>Service :<?=$detail_post["service_type"]?></p>
-                                <p>Category :<?=isset($detail_post["category_name"])?$detail_post["category_name"]:""?></p>
-                                <p>Category :<?=isset($detail_post["sub_category_name"])?$detail_post["sub_category_name"]:""?></p>
-                                <p>Address :<?=isset($detail_post["post_address"])?$detail_post["post_address"]:""?></p>
-                                <!-- <h4>Detail Kerusakan</h4>
-                                <ul>
-                                    <li>Sulit dibaca</li>
-                                    <li>Sulit dilihat</li>
-                                    <li>Tidak dapat diterawang</li>
-                                    <li>Tembus pandang</li>
-                                </ul> -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="map"></div>
-                                    </div>
-                                </div>
-                                <?php if($repairman){ ?>
-                                    <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
-                                    <div class="agree">
-                                        <ul>
-                                            <li>
-                                            <?php if(!empty($accepted)){ ?>
-                                            <?php $post_accepted_id=$accepted["post_accepted_id"]?>
-                                            <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
-                                            ?>" method="post">
-                                            <?php }else{ ?>
-                                            <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
-                                            ?>" method="post">
-                                            <?php } ?>
-                                            Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
-                                            Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
-                                            <?php if(!empty($accepted) ){ ?>
-                                            <input class="btn btn-info" type="submit" value="Edit">
-                                            <?php }else{ ?>
-                                            <input class="btn btn-info" type="submit" value="Terima">
-                                            <?php } ?>
-                                            </form>
-                                            </li>
-                                            <li>
-                                                <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <?php } ?>
-                                <?php } ?>
-                            </div>
+                    <!-- Portfolio Item Row -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
+                            <img width="100%" height="300" src=<?=base_url($detail_post["image"])?>>
                         </div>
+
+                        <div class="col-md-6">
+                        <?php 
+                        if(count($finished)>0){
+                            echo "Date Finished = ".$finished["date_finished"]."<br>";
+                            echo "Review: ".$finished["review"]."<br>";
+                            echo "Rate: ".$finished["rate"]."<br>";
+                            $status="Finished";
+                            if($finished["lunas"]){
+                                $status="lunas";
+                            }else{
+                                if($repairman){
+                                    echo "<a href='".base_url('user/lunas/'.$finished["post_finished_id"])."' class='btn btn-info'>Lunas!</a>";
+                                }
+                            }
+                            echo "<h5>Status: ".$status."</h5>";
+                        }
+                        ?>
+
+                            <h4><?=$detail_post["post_title"]?></h4> Posted by: <?=$detail_post["fname"]." ".$detail_post["lname"]?>
+                            <p><?=$detail_post["content"]?></p>
+                            <p>Service :<?=$detail_post["service_type"]?></p>
+                            <p>Category :<?=isset($detail_post["category_name"])?$detail_post["category_name"]:""?></p>
+                            <p>Category :<?=isset($detail_post["sub_category_name"])?$detail_post["sub_category_name"]:""?></p>
+                            <p>Address :<?=isset($detail_post["post_address"])?$detail_post["post_address"]:""?></p>
+                            <!-- <h4>Detail Kerusakan</h4>
+                            <ul>
+                                <li>Sulit dibaca</li>
+                                <li>Sulit dilihat</li>
+                                <li>Tidak dapat diterawang</li>
+                                <li>Tembus pandang</li>
+                            </ul> -->
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div id="map"></div>
+                            </div>
+                            <div class="col-md-12">
+                            <?php if($repairman){ ?>
+                                <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
+                                <div class="agree">
+                                    <ul>
+                                        <li>
+                                        <?php if(!empty($accepted)){ ?>
+                                        <?php $post_accepted_id=$accepted["post_accepted_id"]?>
+                                        <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
+                                        ?>" method="post">
+                                        <?php }else{ ?>
+                                        <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
+                                        ?>" method="post">
+                                        <?php } ?>
+                                        <div class="col-md-12">
+                                            <div class="col-md-4">
+                                                <label>Estimasi waktu dalam hari</label>
+                                            </div>
+                                            <div class="col-md-1">
+                                            :
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-4">
+                                                <label>Harga</label>
+                                            </div>
+                                            <div class="col-md-1">
+                                            :
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 acc">
+                                            <?php if(!empty($accepted) ){ ?>
+                                                <input class="btn btn-info" type="submit" value="Edit">
+                                            <?php }else{ ?>
+                                                <input class="btn btn-info" type="submit" value="Terima">
+                                            <?php } ?>
+                                            <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
+                                        </div>
+                                        </form>
+                                        </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <?php } ?>
+                            <?php } ?>
+                                </div>
+                            </div>
                     </div>
                             
-                            <div class="comment">
-                                Comment:
-                                <ul>
-                                    <?php foreach ($detail_post["comment"] as $key => $value): ?>
-                                        <li>
-                                        At <?=$value["date"]?>
-                                        <?php 
-                                        if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
-                                        else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
-                                        ?>
-                                        <a href="<?=$linkprofile?>">
-                                        <?=hsc($value["fname"])?> </a> is
-                                        <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
-                                        <?=hsc($value["comment"])?>"
-                                            
-                                        </li>
-                                        
-                                    <?php endforeach ?>
-                                </ul>
+                        <div class="comment">
+                            Comment:
+                            <ul>
+                                <?php foreach ($detail_post["comment"] as $key => $value): ?>
+                                    <li>
+                                    At <?=$value["date"]?>
+                                    <?php 
+                                    if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                    else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                    ?>
+                                    <a href="<?=$linkprofile?>">
+                                    <?=hsc($value["fname"])?> </a> is
+                                    <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Says:"
+                                    <?=hsc($value["comment"])?>"
 
+                                    </li>
+
+                                <?php endforeach ?>
+                            </ul>
                                 <form action="<?=base_url("user/user_comment")?>" method="post">
-                                    <input type="hidden" name="user_post_id" value="<?=$detail_post["user_post_id"]?>">
-                                    <textarea name="comment"></textarea>
-                                    <input type="submit" value="Submit comment"></input>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="user_post_id" value="<?=$detail_post["user_post_id"]?>">
+                                            <textarea class="form-control" name="comment"></textarea>
+                                        </div>
+                                        <div class="col-md-12 com">
+                                            <input type="submit" value="Submit comment"></input>
+                                        </div>
+                                    </div>
                                 </form>
-                            </div>
+                        </div>
                             <ul>
                         <!-- /.col-lg-8 -->
                         <!-- /.col-lg-4 -->
@@ -262,7 +301,6 @@
                     <h3>end Repairman 1 on 1 comment with user</h3>
                     <?php } ?>
                     <!-- /.row -->
-                </div>
                 <!-- /#page-wrapper -->
 
             </div>
