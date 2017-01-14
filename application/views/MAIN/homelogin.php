@@ -2,6 +2,7 @@
 <?php
     $header_data = array(
             "title"=>"Welcome to Servermedan",
+            
         );
      $this->load->view("MAIN/side.php",$header_data) 
 
@@ -14,32 +15,34 @@
     </div>
     <section id="main-content" class="animated fadeInUp">
         <div class="row">
-        <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-        </div>
-        <div class="panel-body">
-
-            <?php if(count($user_notification)>0){ ?>
-                <?php foreach($user_notification as $key=>$row) { ?>
-                    <div class="list-group">
-                        <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
-                            <?=$row["post_title"]?>
-                            <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
-                            <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
-                            </span>
-                        </a>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
                     </div>
-                <?php } ?>
-            <?php }else{ ?>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        No Notifications
-                    </a>
+                    <div class="panel-body">
+
+                        <?php if(count($user_notification)>0){ ?>
+                            <?php foreach($user_notification as $key=>$row) { ?>
+                                <div class="list-group">
+                                    <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
+                                        <?=$row["post_title"]?>
+                                        <?=$row["notif_user"]?> by <?=$row["repairman_accepter_name"]?>
+                                        <span class="pull-right text-muted small"><em><?=$row["date_accept"]?></em>
+                                        </span>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                        <?php }else{ ?>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    No Notifications
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
-            <?php } ?>
             </div>
-        </div>
         </div>
         <div class="container-fluid">
             <section id="main-wrapper" class="theme-blue-full">
@@ -47,36 +50,43 @@
         <!--content-->
         <section class="main-content-wrapper">
             <!--banner-->
-            <?php if(count($home_banner)>0){?>
-            <div id="myCarousel" class="carousel slide">
-                <ol class="carousel-indicators">
-                    <?php $i=0; foreach($home_banner as $key=>$row){ ?>
-                    <li data-target="#myCarousel" data-slide-to="<?=$i++?>" class="<?php if($i==1){echo'active';} ?>"></li>
-                    <?php } ?>
-                </ol>
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                <?php $i=0; foreach($home_banner as $key=>$row){ ?>
-                    <div class="item <?php if($i==0){echo'active';} $i++; ?>">
-                        <img src="<?=$row["path"]?>"  width="460" height="345">
-                    </div>
-                <?php } ?>
-                </div>
-					
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if(count($home_banner)>0){?>
+                    <div id="myCarousel" class="carousel slide">
+                        <ol class="carousel-indicators">
+                            <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                            <li data-target="#myCarousel" data-slide-to=<?=$i++?> class="<?php if($i==1){echo'active';} ?>"></li>
+                            <?php } ?>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                        <?php $i=0; foreach($home_banner as $key=>$row){ ?>
+                            <div class="item <?php if($i==0){echo'active';} $i++; ?>">
+                                <img src="<?=$row["path"]?>"  width="460" height="345">
+                            </div>
+                        <?php } ?>
+                        </div>
 
-            <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                </a>
+
+                    <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        </a>
+                    </div>
+                </div>
             </div>
             <?php }?>
-            <div class="container">
+            <div class="container homelogin">
                 <article>
+                    <div class="row">
+                        <div class="col-md-10">
                 <form id="post_order" class="tab-content posting" method="post" enctype="multipart/form-data" role="form" action="<?=base_url("User/user_posting")?>">
+                    
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#posting">Posting</a></li>
-                        <li><a href="#tambah"><input type="file" name="userfile" class="btn btn-default"></a></li>
+                        <li></li>
                     </ul>
                             <div id="posting" class="tab-pane fade in active">
                                 <textarea class="form-control" name="content"></textarea>
@@ -87,7 +97,7 @@
                             <div id="edit" class="tab-pane fade">
                                 <!--not needed but dont delete leave it be-->
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top:10px;">
                                 <select class="form-control" id="sel1" name="category_id">
                                     <option selected disabled>Kategori</option>
                                     <?php foreach($this->category_list as $row){ ?>
@@ -103,24 +113,27 @@
                                         <option value="<?=$row["service_type_id"]?>"><?=$row["service_type"]?></option>
                                     <?php } ?>
                                 </select>
+                                <a class="attach" href="#tambah"><input type="file" name="userfile" class="btn btn-default" style="display:inline;"></a>
                             </div>
                             <div id="locate_map">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" id="gmap_input" class="form-control controls" placeholder="Search your location and click at the map to get your lat and lng.">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div id="map" style="width:100%; height: 400px;"></div>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <div id="map" style="width:100%; height: 400px;"></div>
                                     </div>
-                                    <label for="address">Alamat:</label>
-                                    <input type="text" name="address" id="address">
-                                <input class="btn btn-info" type="submit" value="Post" style="float:right;"/>
+                                    <div class="col-md-12" style="margin:10px;">
+                                        <label for="address">Alamat:</label>
+                                        <input type="text" name="address" id="address">
+                                        <input class="btn btn-info" type="submit" value="Post" style="margin-left:50%;"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
+                        </div>
+                    </div>
                 </article>
                 <article class="timeline">
                     <?php foreach($user_posting as $key=>$row){ ?>
