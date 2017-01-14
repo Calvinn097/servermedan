@@ -136,6 +136,7 @@
                     </div>
                 </article>
                 <!--<article class="timeline">
+                <?php if(!isset($user_posting)){$user_posting=array();}?>
                     <?php foreach($user_posting as $key=>$row){ ?>
                     <div class="media">
                         <div class="media-left">
@@ -251,7 +252,7 @@
                         <form action="<?=base_url("user/user_comment")?>" method="post">
                             <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
                             <textarea name="comment"></textarea>
-                            <input type="submit" value="Submit comment"></input>
+                            <input type="submit" value="Submit comment">
                         </form>
                     </div>
                 </div>

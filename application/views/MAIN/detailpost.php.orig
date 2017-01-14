@@ -135,6 +135,7 @@
                                     <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
                                     <div class="agree">
                                         <ul>
+<<<<<<< HEAD
                                             <li>
                                             <?php if(!empty($accepted)){ ?>
                                             <?php $post_accepted_id=$accepted["post_accepted_id"]?>
@@ -143,6 +144,45 @@
                                             <?php }else{ ?>
                                             <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
                                             ?>" method="post">
+=======
+                                            <li>Sulit dibaca</li>
+                                            <li>Sulit dilihat</li>
+                                            <li>Tidak dapat diterawang</li>
+                                            <li>Tembus pandang</li>
+                                        </ul> -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="map" style="height:400px; width:400px;"></div>
+                                            </div>
+                                        </div>
+                                        <?php if($repairman){ ?>
+                                            <?php if((isset($accepted["user_dealed"])?$accepted["user_dealed"]:0)==0 && count($finished)==0){ ?>
+                                            <div class="agree">
+                                                <ul>
+                                                    <li>
+                                                    <?php if(!empty($accepted)){ ?>
+                                                    <?php $post_accepted_id=$accepted["post_accepted_id"]?>
+                                                    <form action="<?=base_url("repairman/edit_post/".$detail_post["user_post_id"]);
+                                                    ?>" method="post">
+                                                    <?php }else{ ?>
+                                                    <form action="<?=base_url("repairman/accept_post/".$detail_post["user_post_id"]);
+                                                    ?>" method="post">
+                                                    <?php } ?>
+                                                    Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
+                                                    Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">
+                                                    <?php if(!empty($accepted) ){ ?>
+                                                    <input class="btn btn-info" type="submit" value="Edit">
+                                                    <?php }else{ ?>
+                                                    <input class="btn btn-info" type="submit" value="Terima">
+                                                    <?php } ?>
+                                                    </form>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?=base_url("repairman/reject_post/".$detail_post["user_post_id"]);?>" class="btn btn-info">Tolak</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+>>>>>>> cc463076cfd3ee7b060c85691847d9ccc3469a7e
                                             <?php } ?>
                                             Estimasi waktu dalam hari:<input type="number" placeholder="7" min="1" max="365" name="estimasi_waktu" value="<?=$accepted["estimated_time"]?:""?>">
                                             Harga:<input type="number" placeholder="min 5000"  name="harga" value="<?=$accepted["price"]?:""?>">

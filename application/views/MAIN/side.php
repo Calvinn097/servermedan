@@ -193,6 +193,17 @@ if (self==top) {
                             <i class="fa  fa-fw fa-newspaper-o"></i> Berita
                         </a>
                     </li>
+                    <?php
+                    if(user_login_info()["is_repairman"] == null) {
+                        ?>
+                        <li>
+                            <a href="<?=base_url("user/become_repairman")?>" title="Berita">
+                                <i class="fa  fa-fw fa-newspaper-o"></i> Menjadi Repairman
+                            </a>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </nav>
             <?php

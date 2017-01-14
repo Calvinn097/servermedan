@@ -239,7 +239,6 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
             "date_reject"=>date("Y-m-d H:i:s")
         );
         $this->db->insert("sc_post_rejected",$array);
-        $post_accepted_id = $this->db->insert_id();
         $this->db->where("user_post_id",$post_id)
         ->where("repairman_id",$repairman_id)
         ->delete("sc_post_accepted");
@@ -337,6 +336,10 @@ t2.category_name,t3.sub_category_name,t3.service,t3.reparation,t3.jasa");
                     unset($user_post[$key]);
                 }
             }
+        }
+        foreach($user_post as $key=>$row){
+            $user_post[$key]["comment"]=$this->m_get_post_comment_by_post_id($row["user_post_id"]);
+            // $user_post[$key]["like_count"]=$this->m_get_user_post_like_count($row["user_post_id"]);
         }
         // sc.sub_category_name,sc.service,sc.reparation,sc.jasa,
         // vd("post4_",$user_post,true);
