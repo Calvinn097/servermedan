@@ -220,6 +220,26 @@
                                 <a href="<?=base_url('user/detail_post/'.$row['user_post_id'])?>" class="btn btn-primary posting-detail">Lihat Detail</a>
                             </div>
                         </div>
+                        <?php foreach ($row["comment"] as $key => $value): ?>
+                            <li>
+                                <?php
+                                if($value["user_level"]>0){$linkprofile=base_url("user/profile_user_id/".$value["user_id"]);}
+                                else{$linkprofile=base_url("user/profile/".$value["user_id"]);}
+                                ?>
+
+                                At <?=$value["date"]?>
+                                <a href="<?=$linkprofile?>"><?=hsc($value["fname"])?></a> is
+                                <?= ($value["user_level"]==null)?"User":"Repairman"; ?> Comment:"
+                                <?=hsc($value["comment"])?>"
+
+                            </li>
+
+                        <?php endforeach ?>
+                        <form action="<?=base_url("user/user_comment")?>" method="post">
+                            <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
+                            <textarea name="comment"></textarea>
+                            <input type="submit" value="Submit comment"></input>
+                        </form>
                     </div>
                 </div>
               </div>
