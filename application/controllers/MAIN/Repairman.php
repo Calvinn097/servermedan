@@ -134,7 +134,7 @@ class Repairman extends MY_Controller {
         $user_id = user_login_info()["user_id"];
         $repairman_id = $this->get_repairman_id($user_id);
         $this->Repairman_m->m_reject_user_post($user_post_id,$repairman_id);
-        redirect(base_url("/user/detail_post/$post_id"));   
+        redirect(base_url("/user/detail_post/$user_post_id"));
     }
     public function job_repository(){
         

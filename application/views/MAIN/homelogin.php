@@ -20,7 +20,7 @@
         </div>
         <div class="panel-body">
 
-            <?php if(count($user_notification)>0){ ?>
+            <?php if(isset($user_notification)&&count($user_notification)>0){ ?>
                 <?php foreach($user_notification as $key=>$row) { ?>
                     <div class="list-group">
                         <a href="<?=base_url("user/detail_post/".$row["user_post_id"])?>" class="list-group-item">
@@ -47,7 +47,7 @@
         <!--content-->
         <section class="main-content-wrapper">
             <!--banner-->
-            <?php if(count($home_banner)>0){?>
+            <?php if(isset($home_banner)&&count($home_banner)>0){?>
             <div id="myCarousel" class="carousel slide">
                 <ol class="carousel-indicators">
                     <?php $i=0; foreach($home_banner as $key=>$row){ ?>
@@ -123,6 +123,7 @@
                     </form>
                 </article>
                 <!--<article class="timeline">
+                <?php if(!isset($user_posting)){$user_posting=array();}?>
                     <?php foreach($user_posting as $key=>$row){ ?>
                     <div class="media">
                         <div class="media-left">
@@ -238,7 +239,7 @@
                         <form action="<?=base_url("user/user_comment")?>" method="post">
                             <input type="hidden" name="user_post_id" value="<?=$row["user_post_id"]?>">
                             <textarea name="comment"></textarea>
-                            <input type="submit" value="Submit comment"></input>
+                            <input type="submit" value="Submit comment">
                         </form>
                     </div>
                 </div>

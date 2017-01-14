@@ -1,51 +1,51 @@
 <!--google style-->
-<style>
-    #map {
-        height: 70%;
-    }
-    .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    /*#gmap_input {*/
-    /*background-color: #fff;*/
-    /*font-family: Roboto;*/
-    /*font-size: 15px;*/
-    /*font-weight: 300;*/
-    /*margin-left: 12px;*/
-    /*padding: 0 11px 0 13px;*/
-    /*text-overflow: ellipsis;*/
-    /*width: 300px;*/
-    /*}*/
-
-    #gmap_input:focus {
-        border-color: #4d90fe;
-    }
-
-    /*.pac-container {*/
-    /*font-family: Roboto;*/
-    /*}*/
-
-    #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-    }
-
-    #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-    }
-
-</style>
+<!--<style>-->
+<!--    #map {-->
+<!--        height: 70%;-->
+<!--    }-->
+<!--    .controls {-->
+<!--        margin-top: 10px;-->
+<!--        border: 1px solid transparent;-->
+<!--        border-radius: 2px 0 0 2px;-->
+<!--        box-sizing: border-box;-->
+<!--        -moz-box-sizing: border-box;-->
+<!--        height: 32px;-->
+<!--        outline: none;-->
+<!--        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);-->
+<!--    }-->
+<!---->
+<!--    /*#gmap_input {*/-->
+<!--    /*background-color: #fff;*/-->
+<!--    /*font-family: Roboto;*/-->
+<!--    /*font-size: 15px;*/-->
+<!--    /*font-weight: 300;*/-->
+<!--    /*margin-left: 12px;*/-->
+<!--    /*padding: 0 11px 0 13px;*/-->
+<!--    /*text-overflow: ellipsis;*/-->
+<!--    /*width: 300px;*/-->
+<!--    /*}*/-->
+<!---->
+<!--    #gmap_input:focus {-->
+<!--        border-color: #4d90fe;-->
+<!--    }-->
+<!---->
+<!--    /*.pac-container {*/-->
+<!--    /*font-family: Roboto;*/-->
+<!--    /*}*/-->
+<!---->
+<!--    #type-selector {-->
+<!--        color: #fff;-->
+<!--        background-color: #4d90fe;-->
+<!--        padding: 5px 11px 0px 11px;-->
+<!--    }-->
+<!---->
+<!--    #type-selector label {-->
+<!--        font-family: Roboto;-->
+<!--        font-size: 13px;-->
+<!--        font-weight: 300;-->
+<!--    }-->
+<!---->
+<!--</style>-->
 <!--Google Maps Script below-->
 <script>
     function initMap() {
@@ -135,7 +135,7 @@
                                         </ul> -->
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div id="map"></div>
+                                                <div id="map" style="height:400px; width:400px;"></div>
                                             </div>
                                         </div>
                                         <?php if($repairman){ ?>
@@ -279,6 +279,24 @@
 
 </body>
 </html>
-<?php vd("asd",$detail_post) ?> 
-<?php vd("accepted_repairman_list",$accepted_repairman_list)?>
-<?php vd("i_accept_comment",$i_accept_comment);?>
+
+<script>
+    function initMap() {
+        var uluru = {lat: <?=$detail_post["user_lat"]??0?>, lng: <?=$detail_post["user_lng"]??0?>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 17,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR2UoHvCPMicvAkJunYJtyoc-8imUuWkc&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+<?php //vd("asd",$detail_post) ?><!-- -->
+<?php //vd("accepted_repairman_list",$accepted_repairman_list)?>
+<?php //vd("i_accept_comment",$i_accept_comment);?>
